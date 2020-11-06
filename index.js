@@ -9,7 +9,9 @@ app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-require("./app/routes/customer.routes.js")(app)
+
+
+require("./app/routes")(app)
 
 app.get("/", (req, res) => {
   res.status(404).json({ message: 'Ruta inexistente' })
