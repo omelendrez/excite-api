@@ -298,7 +298,13 @@ exports.formatField = field => {
   let { name, value } = field
   value = value || ''
   value = value !== 'NaN' ? value : ''
-  value = value.replace(/�/g, '').replace(/�/g, '?').replace(/\u0000/g, '').replace(/\u0003/g, '').replace(/\u0004/g, '').replace(/"/g, '').replace(/\\/g, '')
+  value = value.replace(/�/g, '')
+    .replace(/�/g, '?')
+    .replace(/\u0000/g, '')
+    .replace(/\u0003/g, '')
+    .replace(/\u0004/g, '')
+    .replace(/"/g, '')
+    .replace(/\\/g, '')
 
   if (intFields.includes(name)) {
     return parseInt(value) || 0
