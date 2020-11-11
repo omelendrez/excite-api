@@ -4,6 +4,7 @@ const execSync = require('child_process').execSync
 const { formatField, ignoreFields, formatCreateField } = require('../helpers')
 
 const files = require('../../files.json')
+const { Console } = require('console')
 
 const readDBFFiles = () => {
   const create = []
@@ -32,17 +33,12 @@ const readDBFFiles = () => {
     lines.map((line, index) => {
       if (index > 0 && index < lines.length - 1) {
         const record = []
-        const fields = line.split(',')
+        const fields = line.split('","')
         record.push(id)
         header.map((field, idx) => {
           const data = { name: field, value: fields[idx] }
           record.push(formatField(data))
         })
-        /*
-        if (record[1] === 162) {
-          console.log(record)
-        }
-        */
         records.push('(' + record.join(',') + ')')
         id++
       }

@@ -1,7 +1,4 @@
 
-*.csv
-*.sql
-
 # Logs
 logs
 *.log
