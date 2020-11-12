@@ -16,6 +16,9 @@ const intFields = [
   'USUCOD',
   'VENCOD',
   'FACOFINUM',
+  'NUMVAL',
+  'NUMPV',
+  'NUMCOD',
   'PAGNUM',
   'REMNUM',
   'PAGSEC',
@@ -144,6 +147,10 @@ const textFields = [
   },
   {
     name: 'IVADES',
+    size: 25
+  },
+  {
+    name: 'NUMDES',
     size: 25
   },
   {
