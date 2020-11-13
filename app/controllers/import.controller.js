@@ -9,15 +9,17 @@ const readDBFFiles = () => {
   const sourceFolder = path.join(__dirname, '../../db')
   fs.readdir(sourceFolder, ((err, files) => {
     files.map(fileName => {
-      if (fileName.includes('DBF')) {
+      if (fileName.toUpperCase().includes('DBF') && !fileName.includes('CLIENTES')) {
         const file = fileName.toUpperCase().replace('.DBF', '')
         execSync(`node-dbf convert ${sourceFolder}/${file}.DBF > ${sourceFolder}/${file}.CSV`)
-        const csv = fs.readFileSync(`${sourceFolder}/${file}.csv`, 'utf-8')
+        const csv = fs.readFileSync(`${sourceFolder}/${file}.CSV`, 'utf-8')
+        /*
         fs.unlink(`${file}.csv`, err => {
           if (err) {
             console.log(err)
           }
         })
+        */
         const lines = csv.split(/\r?\n/)
         const header = lines[0].split(',').filter(field => field.replace(/\s/g, '') !== '""').map(field => field.replace(/"/g, '')).filter(field => !ignoreFields.includes(field))
         const columns = []
@@ -47,19 +49,19 @@ const readDBFFiles = () => {
         insert.push(records.join(',') + ';')
       }
     })
+    fs.writeFile('create.sql', create.join(''), err => {
+      if (err) {
+        return console.log(err)
+      }
+      console.log('Create done')
+    })
+    fs.writeFile('insert.sql', insert.join(''), err => {
+      if (err) {
+        return console.log(err)
+      }
+      console.log('Insert done')
+    })
   }))
-  fs.writeFile('create.sql', create.join(''), err => {
-    if (err) {
-      return console.log(err)
-    }
-    console.log('Create done')
-  })
-  fs.writeFile('insert.sql', insert.join(''), err => {
-    if (err) {
-      return console.log(err)
-    }
-    console.log('Insert done')
-  })
 }
 
 exports.import = (req, res) => {
