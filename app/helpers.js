@@ -1,11 +1,8 @@
-const intFields = require('../db/intFields.json')
-
-const floatFields = require('../db/floatFields.json')
-
-const dateFields = require('../db/dateFields.json')
-const ignoreFields = require('../db/ignoreFields.json')
-
-const textFields = require('../db/textFields.json')
+const intFields = require('./models/fields/intFields.json')
+const floatFields = require('./models/fields/floatFields.json')
+const dateFields = require('./models/fields/dateFields.json')
+const ignoreFields = require('./models/fields/ignoreFields.json')
+const textFields = require('./models/fields/textFields.json')
 
 exports.isField = field => {
   return !ignoreFields.includes(field) && (floatFields.includes(field) || intFields.includes(field) || dateFields.includes(field) || textFields.find(fld => fld.name === field))
@@ -24,7 +21,7 @@ exports.formatCreateField = field => {
   if (floatFields.includes(field)) {
     return `${field} DECIMAL(10, 2) DEFAULT 0`
   }
-  let textField = textFields.find(text => text.name === field)
+  const textField = textFields.find(text => text.name === field)
 
   return `${field} VARCHAR(${textField.size}) NOT NULL`
 }
@@ -50,16 +47,9 @@ exports.formatField = field => {
     return parseFloat(value) || 0
   }
 
-  const fieldObject = textFields.find(field => field.name === name)
-  if (fieldObject) {
-    if (value.length > fieldObject.size) {
-      return 'error'
-    }
-  }
-
   if (dateFields.includes(name)) {
     if (value === '') {
-      return `NULL`
+      return 'NULL'
     } else {
       return `"${value.substr(0, 4)}-${value.substr(4, 2)}-${value.substr(6, 2)}"`
     }

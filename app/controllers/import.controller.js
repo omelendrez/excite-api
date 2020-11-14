@@ -4,6 +4,7 @@ const execSync = require('child_process').execSync
 const { formatField, formatCreateField, isField } = require('../helpers')
 
 const readDBFFiles = () => {
+  console.time('data-conversion')
   const create = []
   const insert = []
   const sourceFolder = path.join(__dirname, '../../db')
@@ -11,7 +12,7 @@ const readDBFFiles = () => {
     files.map(fileName => {
       if (fileName.toUpperCase().includes('DBF')) {
         const file = fileName.toUpperCase().replace('.DBF', '')
-        execSync(`node-dbf convert ${sourceFolder}/${file}.DBF > ${sourceFolder}/${file}.CSV`)
+        //execSync(`node-dbf convert ${sourceFolder}/${file}.DBF > ${sourceFolder}/${file}.CSV`)
         const csv = fs.readFileSync(`${sourceFolder}/${file}.CSV`, 'utf-8')
         const lines = csv.split(/\r?\n/)
         const header = lines[0].split('","').map(field => field.replace(/\"/g, ''))
@@ -58,6 +59,7 @@ const readDBFFiles = () => {
       }
       console.log('Data conversion completed!')
     })
+    /*
     fs.readdir(sourceFolder, ((err, files) => {
       files.map(fileName => {
         if (fileName.toUpperCase().includes('CSV')) {
@@ -67,6 +69,8 @@ const readDBFFiles = () => {
         }
       })
     }))
+    */
+    console.timeEnd('data-conversion')
   }))
 }
 
