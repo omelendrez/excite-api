@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const execSync = require('child_process').execSync
-const { formatField, ignoreFields, formatCreateField } = require('../helpers')
+const { formatField, formatCreateField, isField } = require('../helpers')
 
 const readDBFFiles = () => {
   const create = []
@@ -9,38 +9,40 @@ const readDBFFiles = () => {
   const sourceFolder = path.join(__dirname, '../../db')
   fs.readdir(sourceFolder, ((err, files) => {
     files.map(fileName => {
-      if (fileName.toUpperCase().includes('DBF') && !fileName.includes('CLIENTES')) {
+      if (fileName.toUpperCase().includes('DBF')) {
         const file = fileName.toUpperCase().replace('.DBF', '')
         execSync(`node-dbf convert ${sourceFolder}/${file}.DBF > ${sourceFolder}/${file}.CSV`)
         const csv = fs.readFileSync(`${sourceFolder}/${file}.CSV`, 'utf-8')
-        /*
-        fs.unlink(`${file}.csv`, err => {
-          if (err) {
-            console.log(err)
-          }
-        })
-        */
         const lines = csv.split(/\r?\n/)
-        const header = lines[0].split(',').filter(field => field.replace(/\s/g, '') !== '""').map(field => field.replace(/"/g, '')).filter(field => !ignoreFields.includes(field))
+        const header = lines[0].split('","').map(field => field.replace(/\"/g, ''))
         const columns = []
         const records = []
         create.push(`DROP TABLE IF EXISTS ${file}; CREATE TABLE ${file} (`)
-        insert.push(`INSERT INTO ${file} (ID,${header.join(',')}) VALUES `)
+        insert.push(`INSERT INTO ${file} (ID,${header.filter(field => isField(field)).join(',')}) VALUES `)
         let id = 1
         columns.push(formatCreateField('ID'))
         header.map((field) => {
-          columns.push(formatCreateField(field))
+          if (field.length && isField(field)) {
+            columns.push(formatCreateField(field))
+          }
         })
         columns.push('PRIMARY KEY (ID)')
         create.push(columns.join(',') + ');')
         lines.map((line, index) => {
           if (index > 0 && index < lines.length - 1) {
             const record = []
-            const fields = line.split('","')
+            const fields = line.split('","').map(field => field.replace(/\"/g, ''))
             record.push(id)
             header.map((field, idx) => {
-              const data = { name: field, value: fields[idx] }
-              record.push(formatField(data))
+              if (isField(field)) {
+                const data = { name: field, value: fields[idx] }
+                const formattedField = formatField(data)
+                if (formattedField !== 'error') {
+                  record.push(formattedField)
+                } else {
+                  console.log(record)
+                }
+              }
             })
             records.push('(' + record.join(',') + ')')
             id++
@@ -49,18 +51,22 @@ const readDBFFiles = () => {
         insert.push(records.join(',') + ';')
       }
     })
-    fs.writeFile('create.sql', create.join(''), err => {
+    const dataSql = [create.join(''), insert.join('')]
+    fs.writeFile('data.sql', dataSql.join(''), err => {
       if (err) {
         return console.log(err)
       }
-      console.log('Create done')
+      console.log('Data conversion completed!')
     })
-    fs.writeFile('insert.sql', insert.join(''), err => {
-      if (err) {
-        return console.log(err)
-      }
-      console.log('Insert done')
-    })
+    fs.readdir(sourceFolder, ((err, files) => {
+      files.map(fileName => {
+        if (fileName.toUpperCase().includes('CSV')) {
+          fs.unlink(path.join(sourceFolder, '/', fileName), err => {
+            if (err) throw err
+          })
+        }
+      })
+    }))
   }))
 }
 
