@@ -1,11 +1,12 @@
 const fs = require('fs')
 const path = require('path')
+const { importData } = require("../models/import.model")
 const execSync = require('child_process').execSync
 const { formatField, formatCreateField, isField } = require('../helpers')
 
 const readDBFFiles = () => {
   console.time('data-conversion')
-  const create = []
+  const create = ['USE \`excite\`;']
   const insert = []
   const sourceFolder = path.join(__dirname, '../../db')
   fs.readdir(sourceFolder, ((err, files) => {
@@ -18,8 +19,8 @@ const readDBFFiles = () => {
         const header = lines[0].split('","').map(field => field.replace(/\"/g, ''))
         const columns = []
         const records = []
-        create.push(`DROP TABLE IF EXISTS ${file}; CREATE TABLE ${file} (`)
-        insert.push(`INSERT INTO ${file} (ID,${header.filter(field => isField(field)).join(',')}) VALUES `)
+        create.push(`DROP TABLE IF EXISTS \`${file}\`; CREATE TABLE \`${file}\` (`)
+        insert.push(`INSERT INTO \`${file}\` (ID,${header.filter(field => isField(field)).join(',')}) VALUES `)
         let id = 1
         columns.push(formatCreateField('ID'))
         header.map((field) => {
@@ -38,11 +39,7 @@ const readDBFFiles = () => {
               if (isField(field)) {
                 const data = { name: field, value: fields[idx] }
                 const formattedField = formatField(data)
-                if (formattedField !== 'error') {
-                  record.push(formattedField)
-                } else {
-                  console.log(record)
-                }
+                record.push(formattedField)
               }
             })
             records.push('(' + record.join(',') + ')')
@@ -53,12 +50,15 @@ const readDBFFiles = () => {
       }
     })
     const dataSql = [create.join(''), insert.join('')]
-    fs.writeFile('data.sql', dataSql.join(''), err => {
+    const query = dataSql.join('')
+    fs.writeFile('data.sql', query, err => {
       if (err) {
         return console.log(err)
       }
       console.log('Data conversion completed!')
     })
+    importData(query)
+
     /*
     fs.readdir(sourceFolder, ((err, files) => {
       files.map(fileName => {
