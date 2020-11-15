@@ -1,29 +1,29 @@
-const intFields = require('./models/fields/intFields.json')
-const floatFields = require('./models/fields/floatFields.json')
-const dateFields = require('./models/fields/dateFields.json')
-const ignoreFields = require('./models/fields/ignoreFields.json')
-const textFields = require('./models/fields/textFields.json')
+const fields = require('./models/fields.json')
 
 exports.isField = field => {
-  return !ignoreFields.includes(field) && (floatFields.includes(field) || intFields.includes(field) || dateFields.includes(field) || textFields.find(fld => fld.name === field))
+  return fields.filter(field => field.type !== 'IGNORE').find(fld => fld.name === field)
 }
 
-exports.formatCreateField = field => {
-  if (field === 'ID') {
-    return `${field} INTEGER NOT NULL AUTO_INCREMENT`
+exports.formatCreateField = fieldName => {
+  if (fieldName === 'ID') {
+    return `${fieldName} INTEGER NOT NULL AUTO_INCREMENT`
   }
-  if (dateFields.includes(field)) {
-    return `${field} DATETIME DEFAULT NULL`
-  }
-  if (intFields.includes(field)) {
-    return `${field} INTEGER NOT NULL`
-  }
-  if (floatFields.includes(field)) {
-    return `${field} DECIMAL(10, 2) DEFAULT 0`
-  }
-  const textField = textFields.find(text => text.name === field)
 
-  return `${field} VARCHAR(${textField.size}) NOT NULL`
+  const field = fields.find(fld => fld.name === fieldName)
+  const result = [fieldName]
+  if (field.type) {
+    result.push(field.type)
+  }
+  if (field.size) {
+    result.push(`(${field.size})`)
+  }
+  if (field.null) {
+    result.push(field.null)
+  }
+  if (field.default !== null) {
+    result.push(`DEFAULT ${field.default}`)
+  }
+  return result.join(' ')
 }
 
 exports.formatField = field => {
@@ -39,22 +39,22 @@ exports.formatField = field => {
     .replace(/"/g, '')
     .replace(/\\/g, '')
 
-  if (intFields.includes(name)) {
-    return parseInt(value) || 0
+  const fieldObject = fields.find(fld => fld.name === name)
+  let result = ''
+  switch (fieldObject.type) {
+    case 'DATETIME':
+      result = value ? `"${value.substr(0, 4)}-${value.substr(4, 2)}-${value.substr(6, 2)}"` : 'NULL'
+      break
+    case 'INTEGER':
+      result = parseInt(value) || 0
+      break
+    case 'DECIMAL':
+      result = parseFloat(value) || 0
+      break
+    default:
+      result = `"${value}"`
   }
 
-  if (floatFields.includes(name)) {
-    return parseFloat(value) || 0
-  }
-
-  if (dateFields.includes(name)) {
-    if (value === '') {
-      return 'NULL'
-    } else {
-      return `"${value.substr(0, 4)}-${value.substr(4, 2)}-${value.substr(6, 2)}"`
-    }
-  }
-
-  return `"${value}"`
+  return result
 
 }

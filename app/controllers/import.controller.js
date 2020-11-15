@@ -30,6 +30,7 @@ const readDBFFiles = () => {
         })
         columns.push('PRIMARY KEY (ID)')
         create.push(columns.join(',') + ');')
+        console.log(file, lines.length - 2)
         lines.map((line, index) => {
           if (index > 0 && index < lines.length - 1) {
             const record = []
