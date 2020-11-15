@@ -38,7 +38,7 @@ Cliente.findById = (customerId, result) => {
 }
 
 Cliente.getAll = result => {
-  sql.query("SELECT * FROM vendedor", (err, res) => {
+  sql.query("SELECT * FROM clientes", (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
