@@ -5,7 +5,8 @@ const execSync = require('child_process').execSync
 const { formatField, formatCreateField, isField } = require('../helpers')
 
 const readDBFFiles = () => {
-  console.time('data-conversion')
+  const PROCESS_NAME = 'data-conversion'
+  console.time(PROCESS_NAME)
   const create = []
   const insert = []
   const sourceFolder = path.join(__dirname, '../../db')
@@ -71,7 +72,7 @@ const readDBFFiles = () => {
       })
     }))
     */
-    console.timeEnd('data-conversion')
+    console.timeEnd(PROCESS_NAME)
   }))
 }
 
