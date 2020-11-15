@@ -1,4 +1,4 @@
 module.exports = app => {
-  require("./customer.routes")(app)
+  require("./cliente.routes")(app)
   require("./import.routes")(app)
 }
