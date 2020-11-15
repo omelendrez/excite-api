@@ -10,7 +10,7 @@ exports.formatCreateField = fieldName => {
   }
 
   const field = fields.find(fld => fld.name === fieldName)
-  const result = [fieldName]
+  const result = [field.name]
   if (field.type) {
     result.push(field.type)
   }
@@ -31,7 +31,8 @@ exports.formatField = field => {
   let { name, value } = field
   value = value || ''
   value = value !== 'NaN' ? value : ''
-  value = value.replace(/�/g, '')
+  value = value
+    .replace(/�/g, '')
     .replace(/�/g, '?')
     .replace(/\u0000/g, '')
     .replace(/\u0003/g, '')
