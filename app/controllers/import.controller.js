@@ -6,7 +6,7 @@ const { formatField, formatCreateField, isField } = require('../helpers')
 
 const readDBFFiles = () => {
   console.time('data-conversion')
-  const create = ['USE \`excite\`;']
+  const create = []
   const insert = []
   const sourceFolder = path.join(__dirname, '../../db')
   fs.readdir(sourceFolder, ((err, files) => {
