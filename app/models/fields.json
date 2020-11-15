@@ -1,45 +1,31 @@
 [
   {
-    "name": "CLINOM",
-    "type": "VARCHAR",
+    "name": "AJUCAN",
+    "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": 35
+    "size": null
   },
   {
-    "name": "CLIDOM",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
+    "name": "AJUFEC",
+    "type": "DATE",
+    "null": "NULL",
     "default": null,
-    "size": 35
+    "size": null
   },
   {
-    "name": "CLILOC",
-    "type": "VARCHAR",
+    "name": "AJUNUM",
+    "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": null
   },
   {
-    "name": "CLIOBS",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
+    "name": "AJUOBS",
+    "type": "IGNORE",
+    "null": null,
     "default": null,
-    "size": 300
-  },
-  {
-    "name": "CLICUIT",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 20
-  },
-  {
-    "name": "CLITEL",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 20
+    "size": null
   },
   {
     "name": "CLICEL",
@@ -49,11 +35,39 @@
     "size": 20
   },
   {
+    "name": "CLICOD",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
     "name": "CLICP",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
     "size": 8
+  },
+  {
+    "name": "CLICUIT",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 20
+  },
+  {
+    "name": "CLIDOM",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 35
+  },
+  {
+    "name": "CLIFAN",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 35
   },
   {
     "name": "CLIFP",
@@ -70,602 +84,21 @@
     "size": 12
   },
   {
-    "name": "IVACOD",
+    "name": "CLILOC",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 1
+    "size": 25
   },
   {
-    "name": "CLIFAN",
+    "name": "CLINOM",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
     "size": 35
   },
   {
-    "name": "PROCOD",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "CLITIPO",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "CONDES",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 45
-  },
-  {
-    "name": "ESTCOD",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "ESTDES",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "FACLET",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "ESTCOD",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "IVADES",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "NUMDES",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "PAGTIP",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 10
-  },
-  {
-    "name": "PAGCHENUM",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 12
-  },
-  {
-    "name": "PAGCHEBAN",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "PAGCHEEST",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "COMCOD",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 8
-  },
-  {
-    "name": "TRAOBS",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 60
-  },
-  {
-    "name": "VENOBS",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 60
-  },
-  {
-    "name": "PRODCOD",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 8
-  },
-  {
-    "name": "PRODDES",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "TIPCOD",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "PRODSEX",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 10
-  },
-  {
-    "name": "SUBTIPCOD",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 3
-  },
-  {
-    "name": "PRODEST",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "PRODCOM",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "PRONOM",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "REMFACLET",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "REMEMI",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "TIPDES",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 15
-  },
-  {
-    "name": "SUBTIPDES",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "TRANOM",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "TRADOM",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "TRALOC",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "TRATEL",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 20
-  },
-  {
-    "name": "TRAPROCOD",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 1
-  },
-  {
-    "name": "TRACUIT",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 20
-  },
-  {
-    "name": "VENNOM",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "VENDOM",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "VENLOC",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 25
-  },
-  {
-    "name": "VENTEL",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 20
-  },
-  {
-    "name": "VENCEL",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 20
-  },
-  {
-    "name": "VENINT",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 12
-  },
-  {
-    "name": "VENCP",
-    "type": "VARCHAR",
-    "null": "NOT NULL",
-    "default": null,
-    "size": 8
-  },
-  {
-    "name": "AJUFEC",
-    "type": "DATETIME",
-    "null": "NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "CLISALFEC",
-    "type": "DATETIME",
-    "null": "NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "CONFEC",
-    "type": "DATETIME",
-    "null": "NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "FACFEC",
-    "type": "DATETIME",
-    "null": "NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "PAGFEC",
-    "type": "DATETIME",
-    "null": "NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "IVAFEC",
-    "type": "DATETIME",
-    "null": "NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "REMFEC",
-    "type": "DATETIME",
-    "null": "NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "VENFECSAL",
-    "type": "DATETIME",
-    "null": "NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "AJUNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "AJUCAN",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "CLICOD",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "TRACOD",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "LOCCOD",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "CONNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "CONCLI",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "CONVEN",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "FACPV",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "FACNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "FACCAN",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "FACPV",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "FACNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "FACREMNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "USUCOD",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "VENCOD",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "FACOFINUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "NUMVAL",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "NUMPV",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "NUMCOD",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "PAGNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "REMNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "PAGSEC",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "COMCAN",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "PRODSTO",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "PRODSINI",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "REMCAN",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "REMPED",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "REMFACNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "REMPAGNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "REMLIQNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "REMFACPV",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
-  },
-  {
     "name": "CLIOBS",
-    "type": "IGNORE",
-    "null": null,
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "AJUOBS",
-    "type": "IGNORE",
-    "null": null,
-    "default": null,
-    "size": null
-  },
-  {
-    "name": "PAGOBS",
     "type": "IGNORE",
     "null": null,
     "default": null,
@@ -686,6 +119,13 @@
     "size": "10,2"
   },
   {
+    "name": "CLISALFEC",
+    "type": "DATE",
+    "null": "NULL",
+    "default": null,
+    "size": null
+  },
+  {
     "name": "CLISALHAB",
     "type": "DECIMAL",
     "null": null,
@@ -698,6 +138,34 @@
     "null": null,
     "default": 0,
     "size": "10,2"
+  },
+  {
+    "name": "CLITEL",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 20
+  },
+  {
+    "name": "CLITIPO",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "COMCAN",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "COMCOD",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 8
   },
   {
     "name": "CONCANDEB",
@@ -714,25 +182,60 @@
     "size": "10,2"
   },
   {
-    "name": "FACPRE",
-    "type": "DECIMAL",
-    "null": null,
-    "default": 0,
-    "size": "10,2"
+    "name": "CONCLI",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
   },
   {
-    "name": "FACIVA",
-    "type": "DECIMAL",
-    "null": null,
-    "default": 0,
-    "size": "10,2"
+    "name": "CONDES",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 45
   },
   {
-    "name": "FACNET",
-    "type": "DECIMAL",
-    "null": null,
-    "default": 0,
-    "size": "10,2"
+    "name": "CONFEC",
+    "type": "DATE",
+    "null": "NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "CONNUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "CONVEN",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "ESTCOD",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "ESTDES",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "FACCAN",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
   },
   {
     "name": "FACDES",
@@ -742,11 +245,95 @@
     "size": "10,2"
   },
   {
-    "name": "PAGIMP",
+    "name": "FACFEC",
+    "type": "DATE",
+    "null": "NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "FACIVA",
     "type": "DECIMAL",
     "null": null,
     "default": 0,
     "size": "10,2"
+  },
+  {
+    "name": "FACLET",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "FACNET",
+    "type": "DECIMAL",
+    "null": null,
+    "default": 0,
+    "size": "10,2"
+  },
+  {
+    "name": "FACNUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "FACOFINUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "FACPRE",
+    "type": "DECIMAL",
+    "null": null,
+    "default": 0,
+    "size": "10,2"
+  },
+  {
+    "name": "FACPV",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "FACPV",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "FACREMNUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "IVACOD",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "IVADES",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "IVAFEC",
+    "type": "DATE",
+    "null": "NULL",
+    "default": null,
+    "size": null
   },
   {
     "name": "IVAPOR",
@@ -756,6 +343,139 @@
     "size": "10,2"
   },
   {
+    "name": "LOCCOD",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "NUMCOD",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "NUMDES",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "NUMPV",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "NUMVAL",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "PAGCHEBAN",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "PAGCHEEST",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "PAGCHENUM",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 12
+  },
+  {
+    "name": "PAGFEC",
+    "type": "DATE",
+    "null": "NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "PAGIMP",
+    "type": "DECIMAL",
+    "null": null,
+    "default": 0,
+    "size": "10,2"
+  },
+  {
+    "name": "PAGNUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "PAGOBS",
+    "type": "IGNORE",
+    "null": null,
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "PAGSEC",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "PAGTIP",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 10
+  },
+  {
+    "name": "PROCOD",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "PRODCOD",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 8
+  },
+  {
+    "name": "PRODCOM",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "PRODDES",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "PRODEST",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
     "name": "PRODPRE",
     "type": "DECIMAL",
     "null": null,
@@ -763,11 +483,39 @@
     "size": "10,2"
   },
   {
-    "name": "REMPRE",
-    "type": "DECIMAL",
-    "null": null,
-    "default": 0,
-    "size": "10,2"
+    "name": "PRODSEX",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 10
+  },
+  {
+    "name": "PRODSINI",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "PRODSTO",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "PRONOM",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "REMCAN",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
   },
   {
     "name": "REMDES",
@@ -777,11 +525,235 @@
     "size": "10,2"
   },
   {
+    "name": "REMEMI",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "REMFACLET",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "REMFACNUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "REMFACPV",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "REMFEC",
+    "type": "DATE",
+    "null": "NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "REMLIQNUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "REMNUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "REMPAGNUM",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "REMPED",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "REMPRE",
+    "type": "DECIMAL",
+    "null": null,
+    "default": 0,
+    "size": "10,2"
+  },
+  {
+    "name": "SUBTIPCOD",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 3
+  },
+  {
+    "name": "SUBTIPDES",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "TIPCOD",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "TIPDES",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 15
+  },
+  {
+    "name": "TRACOD",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "TRACUIT",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 20
+  },
+  {
+    "name": "TRADOM",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "TRALOC",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "TRANOM",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "TRAOBS",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 60
+  },
+  {
+    "name": "TRAPROCOD",
+    "type": "CHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 1
+  },
+  {
+    "name": "TRATEL",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 20
+  },
+  {
+    "name": "USUCOD",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "VENCEL",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 20
+  },
+  {
+    "name": "VENCOD",
+    "type": "INTEGER",
+    "null": "NOT NULL",
+    "default": null,
+    "size": null
+  },
+  {
     "name": "VENCOM",
     "type": "DECIMAL",
     "null": null,
     "default": 0,
     "size": "10,2"
+  },
+  {
+    "name": "VENCP",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 8
+  },
+  {
+    "name": "VENDOM",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "VENFECSAL",
+    "type": "DATE",
+    "null": "NULL",
+    "default": null,
+    "size": null
+  },
+  {
+    "name": "VENINT",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 12
+  },
+  {
+    "name": "VENLOC",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "VENNOM",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 25
+  },
+  {
+    "name": "VENOBS",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 60
   },
   {
     "name": "VENSALDEB",
@@ -803,5 +775,12 @@
     "null": null,
     "default": 0,
     "size": "10,2"
+  },
+  {
+    "name": "VENTEL",
+    "type": "VARCHAR",
+    "null": "NOT NULL",
+    "default": null,
+    "size": 20
   }
 ]

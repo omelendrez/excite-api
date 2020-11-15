@@ -1,3 +1,4 @@
+const fs = require('fs')
 const fields = require('./models/fields.json')
 
 exports.isField = field => {
@@ -43,7 +44,7 @@ exports.formatField = field => {
   const fieldObject = fields.find(fld => fld.name === name)
   let result = ''
   switch (fieldObject.type) {
-    case 'DATETIME':
+    case 'DATE':
       result = value ? `"${value.substr(0, 4)}-${value.substr(4, 2)}-${value.substr(6, 2)}"` : 'NULL'
       break
     case 'INTEGER':
