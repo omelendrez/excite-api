@@ -1,0 +1,51 @@
+### Lista numeros
+GET http://localhost:3000/clientes
+
+### Agregar ajuste
+POST http://localhost:3000/clientes
+content-type: application/json
+
+{
+  "CLINOM": "Test",
+  "CLIDOM": "Test",
+  "CLILOC": "Test",
+  "CLICUIT": "Test",
+  "CLITEL": "Test",
+  "CLICEL": "Test",
+  "CLICP": "Test",
+  "CLIFP": "Test",
+  "CLIINT": "Test",
+  "IVACOD": "R",
+  "CLIFAN": "Test",
+  "TRACOD": "73",
+  "PROCOD": "Q",
+  "CLISALFEC": "2020-11-19",
+  "CLISALDEB": 1500,
+  "CLISALHAB": 1800,
+  "CLISALIMP":-300,
+  "LOCCOD": 0,
+  "CLITIPO": "C"
+}
+
+### Actualizar ajuste || Se pasa el id del registro a modificar en la url
+PUT http://localhost:3000/clientes/17
+content-type: application/json
+
+{
+  "NUMCOD": 88888,
+  "NUMDES":"Número de test updated",
+  "NUMVAL": 14148017, 
+  "NUMPV": 3
+}
+
+### Obtener ajuste pasando el id || Se pasa el id del registro a modificar en la url
+GET http://localhost:3000/clientes/17
+content-type: application/json
+
+### Eliminar ajuste pasando el id || Se pasa el id del registro a eliminar en la url
+DELETE http://localhost:3000/clientes/17
+content-type: application/json
+
+### Eliminar todos los clientes // No se pasa ningún id
+DELETE http://localhost:3000/clientes
+content-type: application/json

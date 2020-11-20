@@ -19,8 +19,8 @@ Tipo1.create = (newCustomer, result) => {
   })
 }
 
-Tipo1.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM tipo1 WHERE id = ${customerId}`, (err, res) => {
+Tipo1.findById = (id, result) => {
+  sql.query(`SELECT * FROM tipo1 WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

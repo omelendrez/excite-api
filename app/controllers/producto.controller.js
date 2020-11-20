@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Producto.findById(req.params.customerId, (err, data) => {
+  Producto.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Producto with id ${req.params.customerId}.`
+          message: `Not found Producto with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Producto with id " + req.params.customerId
+          message: "Error retrieving Producto with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Producto.updateById(
-    req.params.customerId,
+    req.params.id,
     new Producto(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Producto with id ${req.params.customerId}.`
+            message: `Not found Producto with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Producto with id " + req.params.customerId
+            message: "Error updating Producto with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Producto.remove(req.params.customerId, (err, data) => {
+  Producto.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Producto with id ${req.params.customerId}.`
+          message: `Not found Producto with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Producto with id " + req.params.customerId
+          message: "Could not delete Producto with id " + req.params.id
         })
       }
     } else res.send({ message: `Producto was deleted successfully!` })

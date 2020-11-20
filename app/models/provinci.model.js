@@ -19,8 +19,8 @@ Provinci.create = (newCustomer, result) => {
   })
 }
 
-Provinci.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM provinci WHERE id = ${customerId}`, (err, res) => {
+Provinci.findById = (id, result) => {
+  sql.query(`SELECT * FROM provinci WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

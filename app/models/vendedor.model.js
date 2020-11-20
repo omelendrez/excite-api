@@ -19,8 +19,8 @@ Vendedor.create = (newCustomer, result) => {
   })
 }
 
-Vendedor.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM vendedor WHERE id = ${customerId}`, (err, res) => {
+Vendedor.findById = (id, result) => {
+  sql.query(`SELECT * FROM vendedor WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

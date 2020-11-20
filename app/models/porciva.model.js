@@ -19,8 +19,8 @@ Porciva.create = (newCustomer, result) => {
   })
 }
 
-Porciva.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM porciva WHERE id = ${customerId}`, (err, res) => {
+Porciva.findById = (id, result) => {
+  sql.query(`SELECT * FROM porciva WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

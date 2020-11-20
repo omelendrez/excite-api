@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Transpor.findById(req.params.customerId, (err, data) => {
+  Transpor.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Transpor with id ${req.params.customerId}.`
+          message: `Not found Transpor with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Transpor with id " + req.params.customerId
+          message: "Error retrieving Transpor with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Transpor.updateById(
-    req.params.customerId,
+    req.params.id,
     new Transpor(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Transpor with id ${req.params.customerId}.`
+            message: `Not found Transpor with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Transpor with id " + req.params.customerId
+            message: "Error updating Transpor with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Transpor.remove(req.params.customerId, (err, data) => {
+  Transpor.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Transpor with id ${req.params.customerId}.`
+          message: `Not found Transpor with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Transpor with id " + req.params.customerId
+          message: "Could not delete Transpor with id " + req.params.id
         })
       }
     } else res.send({ message: `Transpor was deleted successfully!` })

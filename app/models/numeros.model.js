@@ -1,26 +1,28 @@
 const sql = require("./db.js")
 
-const Numeros = function (customer) {
-  this.code = customer.code
-  this.name = customer.name
-  this.active = customer.active
+const Numeros = function (record) {
+  this.NUMCOD = record.NUMCOD
+  this.NUMDES = record.NUMDES
+  this.NUMVAL = record.NUMVAL
+  this.NUMPV = record.NUMPV
 }
 
-Numeros.create = (newCustomer, result) => {
-  sql.query("INSERT INTO numeros SET ?", newCustomer, (err, res) => {
+Numeros.create = (newRecord, result) => {
+  console.log(newRecord)
+  sql.query("INSERT INTO numeros SET ?", newRecord, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
       return
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer })
-    result(null, { id: res.insertId, ...newCustomer })
+    console.log("created record: ", { id: res.insertId, ...newRecord })
+    result(null, { id: res.insertId, ...newRecord })
   })
 }
 
-Numeros.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM numeros WHERE id = ${customerId}`, (err, res) => {
+Numeros.findById = (id, result) => {
+  sql.query(`SELECT * FROM numeros WHERE ID = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
@@ -28,7 +30,7 @@ Numeros.findById = (customerId, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0])
+      console.log("found record: ", res[0])
       result(null, res[0])
       return
     }
@@ -50,10 +52,10 @@ Numeros.getAll = result => {
   })
 }
 
-Numeros.updateById = (id, customer, result) => {
+Numeros.updateById = (id, record, result) => {
   sql.query(
-    "UPDATE numeros SET code = ?, name = ?, active = ? WHERE id = ?",
-    [customer.code, customer.name, customer.active, id],
+    "UPDATE numeros SET NUMCOD = ?, NUMDES = ?, NUMVAL = ?, NUMPV = ? WHERE ID = ?",
+    [record.NUMCOD, record.NUMDES, record.NUMVAL, record.NUMPV, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err)
@@ -66,14 +68,14 @@ Numeros.updateById = (id, customer, result) => {
         return
       }
 
-      console.log("updated customer: ", { id: id, ...customer })
-      result(null, { id: id, ...customer })
+      console.log("updated record: ", { id: id, ...record })
+      result(null, { id: id, ...record })
     }
   )
 }
 
 Numeros.remove = (id, result) => {
-  sql.query("DELETE FROM numeros WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM numeros WHERE ID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
@@ -85,7 +87,7 @@ Numeros.remove = (id, result) => {
       return
     }
 
-    console.log("deleted customer with id: ", id)
+    console.log("deleted record with id: ", id)
     result(null, res)
   })
 }

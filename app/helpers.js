@@ -1,5 +1,6 @@
 const fs = require('fs')
 const fields = require('./models/fields.json')
+const sql = require('./models/db')
 
 exports.isField = field => {
   return fields.filter(field => field.type !== 'IGNORE').find(fld => fld.name === field)
@@ -60,3 +61,30 @@ exports.formatField = field => {
   return result
 
 }
+
+exports.findNumber = (code, result) => {
+  sql.query(`SELECT * FROM numeros WHERE NUMCOD = ${code}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err)
+      result(err, null)
+      return
+    }
+
+    if (res.length) {
+      console.log("found record: ", res[0])
+      result(null, res[0])
+      return
+    }
+
+    result({ kind: "not_found" }, null)
+  })
+}
+
+exports.updateNumber = (code, value) => {
+  sql.query(`UPDATE numeros SET NUMVAL = ${value} WHERE NUMCOD = ${code}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err)
+    }
+  })
+}
+

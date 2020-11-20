@@ -19,8 +19,8 @@ Transpor.create = (newCustomer, result) => {
   })
 }
 
-Transpor.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM transpor WHERE id = ${customerId}`, (err, res) => {
+Transpor.findById = (id, result) => {
+  sql.query(`SELECT * FROM transpor WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

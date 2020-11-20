@@ -1,5 +1,7 @@
 const sql = require("./db.js")
 
+const NUMCOD = 22
+
 const Facturas = function (customer) {
   this.code = customer.code
   this.name = customer.name
@@ -19,8 +21,8 @@ Facturas.create = (newCustomer, result) => {
   })
 }
 
-Facturas.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM facturas WHERE id = ${customerId}`, (err, res) => {
+Facturas.findById = (id, result) => {
+  sql.query(`SELECT * FROM facturas WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

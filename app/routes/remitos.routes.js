@@ -5,11 +5,11 @@ module.exports = app => {
 
   app.get("/remitos", remitos.findAll)
 
-  app.get("/remitos/:customerId", remitos.findOne)
+  app.get("/remitos/:id", remitos.findOne)
 
-  app.put("/remitos/:customerId", remitos.update)
+  app.put("/remitos/:id", remitos.update)
 
-  app.delete("/remitos/:customerId", remitos.delete)
+  app.delete("/remitos/:id", remitos.delete)
 
   app.delete("/remitos", remitos.deleteAll)
 };

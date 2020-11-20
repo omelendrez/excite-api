@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Estados.findById(req.params.customerId, (err, data) => {
+  Estados.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Estados with id ${req.params.customerId}.`
+          message: `Not found Estados with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Estados with id " + req.params.customerId
+          message: "Error retrieving Estados with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Estados.updateById(
-    req.params.customerId,
+    req.params.id,
     new Estados(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Estados with id ${req.params.customerId}.`
+            message: `Not found Estados with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Estados with id " + req.params.customerId
+            message: "Error updating Estados with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Estados.remove(req.params.customerId, (err, data) => {
+  Estados.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Estados with id ${req.params.customerId}.`
+          message: `Not found Estados with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Estados with id " + req.params.customerId
+          message: "Could not delete Estados with id " + req.params.id
         })
       }
     } else res.send({ message: `Estados was deleted successfully!` })

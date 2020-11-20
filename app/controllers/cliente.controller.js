@@ -7,13 +7,30 @@ exports.create = (req, res) => {
     })
   }
 
-  const cliente = new Cliente({
-    code: req.body.code,
-    name: req.body.name,
-    active: req.body.active
+  const record = new Cliente({
+    CLICOD: req.body.CLICOD,
+    CLINOM: req.body.CLINOM,
+    CLIDOM: req.body.CLIDOM,
+    CLILOC: req.body.CLIDOM,
+    CLICUIT: req.body.CLICUIT,
+    CLITEL: req.body.CLITEL,
+    CLICEL: req.body.CLICEL,
+    CLICP: req.body.CLICP,
+    CLIFP: req.body.CLIFP,
+    CLIINT: req.body.CLIINT,
+    IVACOD: req.body.IVACOD,
+    CLIFAN: req.body.CLIFAN,
+    TRACOD: req.body.TRACOD,
+    PROCOD: req.body.PROCOD,
+    CLISALFEC: req.body.CLISALFEC,
+    CLISALDEB: req.body.CLISALDEB,
+    CLISALHAB: req.body.CLISALHAB,
+    CLISALIMP: req.body.CLISALIMP,
+    LOCCOD: req.body.LOCCOD,
+    CLITIPO: req.body.CLITIPO,
   })
 
-  Cliente.create(cliente, (err, data) => {
+  Cliente.create(record, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -35,15 +52,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Cliente.findById(req.params.customerId, (err, data) => {
+  Cliente.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Cliente with id ${req.params.customerId}.`
+          message: `Not found Cliente with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Cliente with id " + req.params.customerId
+          message: "Error retrieving Cliente with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +75,17 @@ exports.update = (req, res) => {
   }
 
   Cliente.updateById(
-    req.params.customerId,
+    req.params.id,
     new Cliente(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Cliente with id ${req.params.customerId}.`
+            message: `Not found Cliente with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Cliente with id " + req.params.customerId
+            message: "Error updating Cliente with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +94,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Cliente.remove(req.params.customerId, (err, data) => {
+  Cliente.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Cliente with id ${req.params.customerId}.`
+          message: `Not found Cliente with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Cliente with id " + req.params.customerId
+          message: "Could not delete Cliente with id " + req.params.id
         })
       }
     } else res.send({ message: `Cliente was deleted successfully!` })

@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Tipo1.findById(req.params.customerId, (err, data) => {
+  Tipo1.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Tipo1 with id ${req.params.customerId}.`
+          message: `Not found Tipo1 with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Tipo1 with id " + req.params.customerId
+          message: "Error retrieving Tipo1 with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Tipo1.updateById(
-    req.params.customerId,
+    req.params.id,
     new Tipo1(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Tipo1 with id ${req.params.customerId}.`
+            message: `Not found Tipo1 with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Tipo1 with id " + req.params.customerId
+            message: "Error updating Tipo1 with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Tipo1.remove(req.params.customerId, (err, data) => {
+  Tipo1.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Tipo1 with id ${req.params.customerId}.`
+          message: `Not found Tipo1 with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Tipo1 with id " + req.params.customerId
+          message: "Could not delete Tipo1 with id " + req.params.id
         })
       }
     } else res.send({ message: `Tipo1 was deleted successfully!` })

@@ -7,13 +7,14 @@ exports.create = (req, res) => {
     })
   }
 
-  const ajutest = new Ajustest({
-    code: req.body.code,
-    name: req.body.name,
-    active: req.body.active
+  const record = new Ajustest({
+    AJUNUM: req.body.AJUNUM,
+    AJUFEC: req.body.AJUFEC,
+    PRODCOD: req.body.PRODCOD,
+    AJUCAN: req.body.AJUCAN
   })
 
-  Ajustest.create(ajutest, (err, data) => {
+  Ajustest.create(record, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -35,15 +36,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Ajustest.findById(req.params.customerId, (err, data) => {
+  Ajustest.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Ajustest with id ${req.params.customerId}.`
+          message: `Not found Ajustest with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Ajustest with id " + req.params.customerId
+          message: "Error retrieving Ajustest with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +59,17 @@ exports.update = (req, res) => {
   }
 
   Ajustest.updateById(
-    req.params.customerId,
+    req.params.id,
     new Ajustest(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Ajustest with id ${req.params.customerId}.`
+            message: `Not found Ajustest with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Ajustest with id " + req.params.customerId
+            message: "Error updating Ajustest with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +78,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Ajustest.remove(req.params.customerId, (err, data) => {
+  Ajustest.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Ajustest with id ${req.params.customerId}.`
+          message: `Not found Ajustest with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Ajustest with id " + req.params.customerId
+          message: "Could not delete Ajustest with id " + req.params.id
         })
       }
     } else res.send({ message: `Ajustest was deleted successfully!` })

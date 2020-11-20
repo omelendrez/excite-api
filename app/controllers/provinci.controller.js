@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Provinci.findById(req.params.customerId, (err, data) => {
+  Provinci.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Provinci with id ${req.params.customerId}.`
+          message: `Not found Provinci with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Provinci with id " + req.params.customerId
+          message: "Error retrieving Provinci with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Provinci.updateById(
-    req.params.customerId,
+    req.params.id,
     new Provinci(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Provinci with id ${req.params.customerId}.`
+            message: `Not found Provinci with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Provinci with id " + req.params.customerId
+            message: "Error updating Provinci with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Provinci.remove(req.params.customerId, (err, data) => {
+  Provinci.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Provinci with id ${req.params.customerId}.`
+          message: `Not found Provinci with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Provinci with id " + req.params.customerId
+          message: "Could not delete Provinci with id " + req.params.id
         })
       }
     } else res.send({ message: `Provinci was deleted successfully!` })

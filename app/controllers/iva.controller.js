@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Iva.findById(req.params.customerId, (err, data) => {
+  Iva.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Iva with id ${req.params.customerId}.`
+          message: `Not found Iva with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Iva with id " + req.params.customerId
+          message: "Error retrieving Iva with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Iva.updateById(
-    req.params.customerId,
+    req.params.id,
     new Iva(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Iva with id ${req.params.customerId}.`
+            message: `Not found Iva with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Iva with id " + req.params.customerId
+            message: "Error updating Iva with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Iva.remove(req.params.customerId, (err, data) => {
+  Iva.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Iva with id ${req.params.customerId}.`
+          message: `Not found Iva with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Iva with id " + req.params.customerId
+          message: "Could not delete Iva with id " + req.params.id
         })
       }
     } else res.send({ message: `Iva was deleted successfully!` })

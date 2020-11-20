@@ -19,8 +19,8 @@ Estados.create = (newCustomer, result) => {
   })
 }
 
-Estados.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM estados WHERE id = ${customerId}`, (err, res) => {
+Estados.findById = (id, result) => {
+  sql.query(`SELECT * FROM estados WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

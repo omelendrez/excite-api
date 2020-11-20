@@ -1,26 +1,34 @@
 const sql = require("./db.js")
 
-const Ajustest = function (customer) {
-  this.code = customer.code
-  this.name = customer.name
-  this.active = customer.active
+const NUMCOD = 7
+
+const Ajustest = function (record) {
+  this.AJUNUM = record.AJUNUM
+  this.AJUFEC = record.AJUFEC
+  this.PRODCOD = record.PRODCOD
+  this.AJUCAN = record.AJUCAN
 }
 
-Ajustest.create = (newCustomer, result) => {
-  sql.query("INSERT INTO ajustest SET ?", newCustomer, (err, res) => {
+Ajustest.create = (newRecord, result) => {
+  sql.query("INSERT INTO ajustest SET ?", newRecord, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
       return
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer })
-    result(null, { id: res.insertId, ...newCustomer })
+    console.log("created record: ", { id: res.insertId, ...newRecord })
+    result(null, { id: res.insertId, ...newRecord })
   })
 }
 
-Ajustest.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM ajustest WHERE id = ${customerId}`, (err, res) => {
+Ajustest.findById = (id, result) => {
+  const sqlQuery = `SELECT a.ID, a.AJUNUM, DATE_FORMAT(a.AJUFEC, '%Y-%m-%d') AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN
+  FROM ajustest AS a 
+  INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD
+  WHERE a.ID = ${id}`
+
+  sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
@@ -28,7 +36,7 @@ Ajustest.findById = (customerId, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0])
+      console.log("found record: ", res[0])
       result(null, res[0])
       return
     }
@@ -38,7 +46,11 @@ Ajustest.findById = (customerId, result) => {
 }
 
 Ajustest.getAll = result => {
-  sql.query("SELECT * FROM ajustest", (err, res) => {
+  const sqlQuery = `SELECT a.ID, a.AJUNUM, DATE_FORMAT(a.AJUFEC, '%Y-%m-%d') AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN
+  FROM ajustest AS a 
+  INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD;`
+
+  sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
@@ -50,30 +62,10 @@ Ajustest.getAll = result => {
   })
 }
 
-Ajustest.updateById = (id, customer, result) => {
-  sql.query(
-    "UPDATE ajustest SET code = ?, name = ?, active = ? WHERE id = ?",
-    [customer.code, customer.name, customer.active, id],
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err)
-        result(null, err)
-        return
-      }
+Ajustest.updateById = (id, record, result) => {
+  const sqlQuery = "UPDATE ajustest SET AJUNUM = ?, AJUFEC = ?, PRODCOD = ?, AJUCAN = ? WHERE ID = ?"
 
-      if (res.affectedRows == 0) {
-        result({ kind: "not_found" }, null)
-        return
-      }
-
-      console.log("updated customer: ", { id: id, ...customer })
-      result(null, { id: id, ...customer })
-    }
-  )
-}
-
-Ajustest.remove = (id, result) => {
-  sql.query("DELETE FROM ajustest WHERE id = ?", id, (err, res) => {
+  sql.query(sqlQuery, [record.AJUNUM, record.AJUFEC, record.PRODCOD, record.AJUCAN, id], (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
@@ -85,7 +77,28 @@ Ajustest.remove = (id, result) => {
       return
     }
 
-    console.log("deleted customer with id: ", id)
+    console.log("updated record: ", { id: id, ...record })
+    result(null, { id: id, ...record })
+  }
+  )
+}
+
+Ajustest.remove = (id, result) => {
+  const sqlQuery = "DELETE FROM ajustest WHERE ID = ?"
+
+  sql.query(sqlQuery, id, (err, res) => {
+    if (err) {
+      console.log("error: ", err)
+      result(null, err)
+      return
+    }
+
+    if (res.affectedRows == 0) {
+      result({ kind: "not_found" }, null)
+      return
+    }
+
+    console.log("deleted record with id: ", id)
     result(null, res)
   })
 }

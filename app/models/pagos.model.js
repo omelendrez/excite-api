@@ -1,5 +1,7 @@
 const sql = require("./db.js")
 
+const NUMCOD = 5
+
 const Pagos = function (customer) {
   this.code = customer.code
   this.name = customer.name
@@ -19,8 +21,8 @@ Pagos.create = (newCustomer, result) => {
   })
 }
 
-Pagos.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM pagos WHERE id = ${customerId}`, (err, res) => {
+Pagos.findById = (id, result) => {
+  sql.query(`SELECT * FROM pagos WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

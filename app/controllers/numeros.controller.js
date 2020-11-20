@@ -7,13 +7,14 @@ exports.create = (req, res) => {
     })
   }
 
-  const numeros = new Numeros({
-    code: req.body.code,
-    name: req.body.name,
-    active: req.body.active
+  const record = new Numeros({
+    NUMCOD: req.body.NUMCOD,
+    NUMDES: req.body.NUMDES,
+    NUMVAL: req.body.NUMVAL,
+    NUMPV: req.body.NUMPV
   })
 
-  Numeros.create(numeros, (err, data) => {
+  Numeros.create(record, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -35,15 +36,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Numeros.findById(req.params.customerId, (err, data) => {
+  Numeros.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Numeros with id ${req.params.customerId}.`
+          message: `Not found Numeros with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Numeros with id " + req.params.customerId
+          message: "Error retrieving Numeros with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +59,17 @@ exports.update = (req, res) => {
   }
 
   Numeros.updateById(
-    req.params.customerId,
+    req.params.id,
     new Numeros(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Numeros with id ${req.params.customerId}.`
+            message: `Not found Numeros with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Numeros with id " + req.params.customerId
+            message: "Error updating Numeros with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +78,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Numeros.remove(req.params.customerId, (err, data) => {
+  Numeros.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Numeros with id ${req.params.customerId}.`
+          message: `Not found Numeros with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Numeros with id " + req.params.customerId
+          message: "Could not delete Numeros with id " + req.params.id
         })
       }
     } else res.send({ message: `Numeros was deleted successfully!` })

@@ -1,26 +1,50 @@
 const sql = require("./db.js")
+const { findNumber, updateNumber } = require("../helpers")
 
-const Cliente = function (customer) {
-  this.code = customer.code
-  this.name = customer.name
-  this.active = customer.active
+const NUMCOD = 0
+
+const Cliente = function (record) {
+  this.CLINOM = record.CLINOM
+  this.CLIDOM = record.CLIDOM
+  this.CLILOC = record.CLIDOM
+  this.CLICUIT = record.CLICUIT
+  this.CLITEL = record.CLITEL
+  this.CLICEL = record.CLICEL
+  this.CLICP = record.CLICP
+  this.CLIFP = record.CLIFP
+  this.CLIINT = record.CLIINT
+  this.IVACOD = record.IVACOD
+  this.CLIFAN = record.CLIFAN
+  this.TRACOD = record.TRACOD
+  this.PROCOD = record.PROCOD
+  this.CLISALFEC = record.CLISALFEC
+  this.CLISALDEB = record.CLISALDEB
+  this.CLISALHAB = record.CLISALHAB
+  this.CLISALIMP = record.CLISALIMP
+  this.LOCCOD = record.LOCCOD
+  this.CLITIPO = record.CLITIPO
 }
 
-Cliente.create = (newCustomer, result) => {
-  sql.query("INSERT INTO clientes SET ?", newCustomer, (err, res) => {
-    if (err) {
-      console.log("error: ", err)
-      result(err, null)
-      return
-    }
+Cliente.create = (newRecord, result) => {
+  findNumber(NUMCOD, (err, data) => {
+    const value = data.NUMVAL + 1
+    newRecord.CLICOD = value
+    sql.query("INSERT INTO clientes SET ?", newRecord, (err, res) => {
+      if (err) {
+        console.log("error: ", err)
+        result(err, null)
+        return
+      }
+      updateNumber(NUMCOD, value)
+      console.log("created record: ", { id: res.insertId, ...newRecord })
+      result(null, { id: res.insertId, ...newRecord })
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer })
-    result(null, { id: res.insertId, ...newCustomer })
+    })
   })
 }
 
-Cliente.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM clientes WHERE id = ${customerId}`, (err, res) => {
+Cliente.findById = (id, result) => {
+  sql.query(`SELECT * FROM clientes WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
@@ -28,7 +52,7 @@ Cliente.findById = (customerId, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0])
+      console.log("found record: ", res[0])
       result(null, res[0])
       return
     }
@@ -50,10 +74,12 @@ Cliente.getAll = result => {
   })
 }
 
-Cliente.updateById = (id, customer, result) => {
-  sql.query(
-    "UPDATE clientes SET code = ?, name = ?, active = ? WHERE id = ?",
-    [customer.code, customer.name, customer.active, id],
+Cliente.updateById = (id, record, result) => {
+  sqlQuery = `UPDATE clientes SET 
+  CLICOD = ?, CLINOM = ?, CLIDOM = ?, CLILOC = ?, CLICUIT = ?, CLITEL = ?, CLICEL = ?, CLICP = ?, CLIFP = ?, CLIINT = ?, IVACOD = ?, CLIFAN = ?, TRACOD = ?, PROCOD = ?, CLISALFEC = ?, CLISALDEB = ?, CLISALHAB = ?, CLISALIMP = ?, LOCCOD = ?, CLITIPO = ? 
+  WHERE ID = ?;`
+  sql.query(sqlQuery,
+    [record.CLICOD, record.CLINOM, record.CLIDOM, record.CLILOC, record.CLICUIT, record.CLITEL, record.CLICEL, record.CLICP, record.CLIFP, record.CLIINT, record.IVACOD, record.CLIFAN, record.TRACOD, record.PROCOD, record.CLISALFEC, record.CLISALDEB, record.CLISALHAB, record.CLISALIMP, record.LOCCOD, record.CLITIPO, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err)
@@ -66,8 +92,8 @@ Cliente.updateById = (id, customer, result) => {
         return
       }
 
-      console.log("updated customer: ", { id: id, ...customer })
-      result(null, { id: id, ...customer })
+      console.log("updated record: ", { id: id, ...record })
+      result(null, { id: id, ...record })
     }
   )
 }
@@ -85,7 +111,7 @@ Cliente.remove = (id, result) => {
       return
     }
 
-    console.log("deleted customer with id: ", id)
+    console.log("deleted record with id: ", id)
     result(null, res)
   })
 }

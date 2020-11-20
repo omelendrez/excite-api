@@ -19,8 +19,8 @@ Iva.create = (newCustomer, result) => {
   })
 }
 
-Iva.findById = (customerId, result) => {
-  sql.query(`SELECT * FROM iva WHERE id = ${customerId}`, (err, res) => {
+Iva.findById = (id, result) => {
+  sql.query(`SELECT * FROM iva WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)

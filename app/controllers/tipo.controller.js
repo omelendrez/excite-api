@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Tipo.findById(req.params.customerId, (err, data) => {
+  Tipo.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Tipo with id ${req.params.customerId}.`
+          message: `Not found Tipo with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Tipo with id " + req.params.customerId
+          message: "Error retrieving Tipo with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Tipo.updateById(
-    req.params.customerId,
+    req.params.id,
     new Tipo(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Tipo with id ${req.params.customerId}.`
+            message: `Not found Tipo with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Tipo with id " + req.params.customerId
+            message: "Error updating Tipo with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Tipo.remove(req.params.customerId, (err, data) => {
+  Tipo.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Tipo with id ${req.params.customerId}.`
+          message: `Not found Tipo with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Tipo with id " + req.params.customerId
+          message: "Could not delete Tipo with id " + req.params.id
         })
       }
     } else res.send({ message: `Tipo was deleted successfully!` })

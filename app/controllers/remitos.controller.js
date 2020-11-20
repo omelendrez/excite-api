@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Remitos.findById(req.params.customerId, (err, data) => {
+  Remitos.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Remitos with id ${req.params.customerId}.`
+          message: `Not found Remitos with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Remitos with id " + req.params.customerId
+          message: "Error retrieving Remitos with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Remitos.updateById(
-    req.params.customerId,
+    req.params.id,
     new Remitos(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Remitos with id ${req.params.customerId}.`
+            message: `Not found Remitos with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Remitos with id " + req.params.customerId
+            message: "Error updating Remitos with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Remitos.remove(req.params.customerId, (err, data) => {
+  Remitos.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Remitos with id ${req.params.customerId}.`
+          message: `Not found Remitos with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Remitos with id " + req.params.customerId
+          message: "Could not delete Remitos with id " + req.params.id
         })
       }
     } else res.send({ message: `Remitos was deleted successfully!` })

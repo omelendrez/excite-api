@@ -35,15 +35,15 @@ exports.findAll = (req, res) => {
 }
 
 exports.findOne = (req, res) => {
-  Concepto.findById(req.params.customerId, (err, data) => {
+  Concepto.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Concepto with id ${req.params.customerId}.`
+          message: `Not found Concepto with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Concepto with id " + req.params.customerId
+          message: "Error retrieving Concepto with id " + req.params.id
         })
       }
     } else res.send(data)
@@ -58,17 +58,17 @@ exports.update = (req, res) => {
   }
 
   Concepto.updateById(
-    req.params.customerId,
+    req.params.id,
     new Concepto(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Concepto with id ${req.params.customerId}.`
+            message: `Not found Concepto with id ${req.params.id}.`
           })
         } else {
           res.status(500).send({
-            message: "Error updating Concepto with id " + req.params.customerId
+            message: "Error updating Concepto with id " + req.params.id
           })
         }
       } else res.send(data)
@@ -77,15 +77,15 @@ exports.update = (req, res) => {
 }
 
 exports.delete = (req, res) => {
-  Concepto.remove(req.params.customerId, (err, data) => {
+  Concepto.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Concepto with id ${req.params.customerId}.`
+          message: `Not found Concepto with id ${req.params.id}.`
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Concepto with id " + req.params.customerId
+          message: "Could not delete Concepto with id " + req.params.id
         })
       }
     } else res.send({ message: `Concepto was deleted successfully!` })
