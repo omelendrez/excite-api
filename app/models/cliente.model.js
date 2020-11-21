@@ -62,7 +62,8 @@ Cliente.findById = (id, result) => {
 }
 
 Cliente.getAll = result => {
-  sql.query("SELECT * FROM clientes", (err, res) => {
+  const sqlQuery = 'SELECT ID, CLICOD, CLINOM, CLIDOM, CLILOC, CLICUIT, CLITEL, CLICEL, CLICP, CLIFP, CLIINT, IVACOD FROM clientes;'
+  sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)

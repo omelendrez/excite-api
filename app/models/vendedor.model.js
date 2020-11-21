@@ -38,7 +38,8 @@ Vendedor.findById = (id, result) => {
 }
 
 Vendedor.getAll = result => {
-  sql.query("SELECT * FROM vendedor", (err, res) => {
+  const sqlQuery = `SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL, VENCEL, VENOBS, VENCP FROM vendedor;`
+  sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
