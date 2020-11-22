@@ -1,4 +1,5 @@
 const sql = require("./db.js")
+const { findNumber, updateNumber } = require("../helpers")
 
 const NUMCOD = 7
 
@@ -10,24 +11,24 @@ const Ajustest = function (record) {
 }
 
 Ajustest.create = (newRecord, result) => {
-  sql.query("INSERT INTO ajustest SET ?", newRecord, (err, res) => {
-    if (err) {
-      console.log("error: ", err)
-      result(err, null)
-      return
-    }
-
-    console.log("created record: ", { id: res.insertId, ...newRecord })
-    result(null, { id: res.insertId, ...newRecord })
+  findNumber(NUMCOD, (err, data) => {
+    const value = data.NUMVAL + 1
+    newRecord.AJUNUM = value
+    sql.query("INSERT INTO ajustest SET ?", newRecord, (err, res) => {
+      if (err) {
+        console.log("error: ", err)
+        result(err, null)
+        return
+      }
+      updateNumber(NUMCOD, value)
+      console.log("created record: ", { id: res.insertId, ...newRecord })
+      result(null, { id: res.insertId, ...newRecord })
+    })
   })
 }
 
 Ajustest.findById = (id, result) => {
-  const sqlQuery = `SELECT a.ID, a.AJUNUM, DATE_FORMAT(a.AJUFEC, '%Y-%m-%d') AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN
-  FROM ajustest AS a 
-  INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD
-  WHERE a.ID = ${id}`
-
+  const sqlQuery = `SELECT * FROM ajustest WHERE a.ID = ${id}`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
@@ -46,10 +47,7 @@ Ajustest.findById = (id, result) => {
 }
 
 Ajustest.getAll = result => {
-  const sqlQuery = `SELECT a.ID, a.AJUNUM, DATE_FORMAT(a.AJUFEC, '%Y-%m-%d') AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN
-  FROM ajustest AS a 
-  INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD;`
-
+  const sqlQuery = `SELECT a.ID, a.AJUNUM, DATE_FORMAT(a.AJUFEC, '%Y-%m-%d') AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN FROM ajustest AS a INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD;`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
