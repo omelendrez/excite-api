@@ -28,6 +28,14 @@ exports.formatCreateField = fieldName => {
   return result.join(' ')
 }
 
+exports.addIndex = (fieldName, indexes) => {
+  const field = fields.find(fld => fld.name === fieldName)
+  if (field.index) {
+    indexes.push(`INDEX (${fieldName})`)
+  }
+  return indexes
+}
+
 exports.formatField = field => {
 
   let { name, value } = field

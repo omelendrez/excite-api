@@ -40,7 +40,9 @@ Pagos.findById = (id, result) => {
 }
 
 Pagos.getAll = result => {
-  sql.query("SELECT * FROM pagos", (err, res) => {
+  const sqlQuery = `SELECT p.ID, p.PAGNUM, DATE_FORMAT(p.PAGFEC, '%Y-%m-%d') PAGFEC, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD;
+  `
+  sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)

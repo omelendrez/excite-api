@@ -18,7 +18,8 @@
     "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": null,
+    "index": true
   },
   {
     "name": "AJUOBS",
@@ -39,7 +40,8 @@
     "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": null,
+    "index": true
   },
   {
     "name": "CLICP",
@@ -207,7 +209,8 @@
     "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": null,
+    "index": true
   },
   {
     "name": "CONVEN",
@@ -277,7 +280,8 @@
     "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": null,
+    "index": true
   },
   {
     "name": "FACOFINUM",
@@ -292,13 +296,6 @@
     "null": null,
     "default": 0,
     "size": "10,2"
-  },
-  {
-    "name": "FACPV",
-    "type": "INTEGER",
-    "null": "NOT NULL",
-    "default": null,
-    "size": null
   },
   {
     "name": "FACPV",
@@ -417,7 +414,8 @@
     "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": null,
+    "index": true
   },
   {
     "name": "PAGOBS",
@@ -445,14 +443,16 @@
     "type": "CHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 1
+    "size": 1,
+    "index": true
   },
   {
     "name": "PRODCOD",
     "type": "CHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 8
+    "size": 8,
+    "index": true
   },
   {
     "name": "PRODCOM",
@@ -571,7 +571,8 @@
     "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": null,
+    "index": true
   },
   {
     "name": "REMPAGNUM",
@@ -599,7 +600,8 @@
     "type": "CHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 3
+    "size": 3,
+    "index": true
   },
   {
     "name": "SUBTIPDES",
@@ -613,7 +615,8 @@
     "type": "CHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 1
+    "size": 1,
+    "index": true
   },
   {
     "name": "TIPDES",
@@ -627,7 +630,8 @@
     "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": null,
+    "index": true
   },
   {
     "name": "TRACUIT",
@@ -697,7 +701,8 @@
     "type": "INTEGER",
     "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": null,
+    "index": true
   },
   {
     "name": "VENCOM",

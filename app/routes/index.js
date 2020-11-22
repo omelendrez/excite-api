@@ -15,5 +15,5 @@ module.exports = app => {
   require("./tipo1.routes")(app)
   require("./transpor.routes")(app)
   require("./vendedor.routes")(app)
-  //require("./import.routes")(app)
+  require("./import.routes")(app)
 }
