@@ -40,7 +40,7 @@ Numeros.findById = (id, result) => {
 }
 
 Numeros.getAll = result => {
-  sql.query("SELECT * FROM numeros", (err, res) => {
+  sql.query("SELECT ID, NUMCOD, NUMDES, NUMVAL, NUMPV FROM numeros", (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
