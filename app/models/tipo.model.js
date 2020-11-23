@@ -38,7 +38,7 @@ Tipo.findById = (id, result) => {
 }
 
 Tipo.getAll = result => {
-  sql.query("SELECT * FROM tipo", (err, res) => {
+  sql.query("SELECT ID, TIPCOD, TIPDES FROM tipo", (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)

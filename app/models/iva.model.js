@@ -38,7 +38,7 @@ Iva.findById = (id, result) => {
 }
 
 Iva.getAll = result => {
-  sql.query("SELECT * FROM iva", (err, res) => {
+  sql.query("SELECT ID, IVACOD, IVADES FROM iva", (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
