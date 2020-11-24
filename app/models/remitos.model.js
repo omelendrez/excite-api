@@ -40,7 +40,25 @@ Remitos.findById = (id, result) => {
 }
 
 Remitos.getAll = result => {
-  sql.query("SELECT * FROM remitos", (err, res) => {
+  const sqlQuery = `SELECT r.ID, r.REMNUM, DATE_FORMAT(r.REMFEC, '%Y-%m-%d') REMFEC,
+  e.ESTDES,
+  r.VENCOD,
+  v.VENNOM,
+  r.CLICOD,
+  c.CLINOM,
+  r.REMPAGNUM,
+  r.REMDES
+FROM
+  remitos r
+      INNER JOIN
+  estados e ON r.ESTCOD = e.ESTCOD
+      INNER JOIN
+  vendedor v ON r.VENCOD = v.VENCOD
+      INNER JOIN
+  clientes c ON r.CLICOD = c.CLICOD
+WHERE REMNUM <> 0
+ORDER BY r.REMNUM DESC;`
+  sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
