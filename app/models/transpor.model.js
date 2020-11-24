@@ -14,7 +14,6 @@ Transpor.create = (newCustomer, result) => {
       return
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer })
     result(null, { id: res.insertId, ...newCustomer })
   })
 }
@@ -28,7 +27,6 @@ Transpor.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0])
       result(null, res[0])
       return
     }
@@ -46,7 +44,6 @@ Transpor.getAll = result => {
       return
     }
 
-    //console.log("transpor: ", res)
     result(null, res)
   })
 }
@@ -67,7 +64,6 @@ Transpor.updateById = (id, customer, result) => {
         return
       }
 
-      console.log("updated customer: ", { id: id, ...customer })
       result(null, { id: id, ...customer })
     }
   )
@@ -86,7 +82,6 @@ Transpor.remove = (id, result) => {
       return
     }
 
-    console.log("deleted customer with id: ", id)
     result(null, res)
   })
 }
@@ -99,7 +94,6 @@ Transpor.removeAll = result => {
       return
     }
 
-    console.log(`deleted ${res.affectedRows} transpor`)
     result(null, res)
   })
 }

@@ -16,7 +16,6 @@ Numeros.create = (newRecord, result) => {
       return
     }
 
-    console.log("created record: ", { id: res.insertId, ...newRecord })
     result(null, { id: res.insertId, ...newRecord })
   })
 }
@@ -30,7 +29,6 @@ Numeros.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found record: ", res[0])
       result(null, res[0])
       return
     }
@@ -47,7 +45,6 @@ Numeros.getAll = result => {
       return
     }
 
-    //console.log("numeros: ", res)
     result(null, res)
   })
 }
@@ -68,7 +65,6 @@ Numeros.updateById = (id, record, result) => {
         return
       }
 
-      console.log("updated record: ", { id: id, ...record })
       result(null, { id: id, ...record })
     }
   )
@@ -87,7 +83,6 @@ Numeros.remove = (id, result) => {
       return
     }
 
-    console.log("deleted record with id: ", id)
     result(null, res)
   })
 }
@@ -100,7 +95,6 @@ Numeros.removeAll = result => {
       return
     }
 
-    console.log(`deleted ${res.affectedRows} numeros`)
     result(null, res)
   })
 }

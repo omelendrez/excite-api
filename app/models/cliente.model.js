@@ -36,7 +36,6 @@ Cliente.create = (newRecord, result) => {
         return
       }
       updateNumber(NUMCOD, value)
-      console.log("created record: ", { id: res.insertId, ...newRecord })
       result(null, { id: res.insertId, ...newRecord })
 
     })
@@ -52,7 +51,6 @@ Cliente.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found record: ", res[0])
       result(null, res[0])
       return
     }
@@ -70,7 +68,6 @@ Cliente.getAll = result => {
       return
     }
 
-    //console.log("clientes: ", res)
     result(null, res)
   })
 }
@@ -93,7 +90,6 @@ Cliente.updateById = (id, record, result) => {
         return
       }
 
-      console.log("updated record: ", { id: id, ...record })
       result(null, { id: id, ...record })
     }
   )
@@ -112,7 +108,6 @@ Cliente.remove = (id, result) => {
       return
     }
 
-    console.log("deleted record with id: ", id)
     result(null, res)
   })
 }
@@ -125,7 +120,6 @@ Cliente.removeAll = result => {
       return
     }
 
-    console.log(`deleted ${res.affectedRows} clientes`)
     result(null, res)
   })
 }

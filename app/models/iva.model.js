@@ -14,7 +14,6 @@ Iva.create = (newCustomer, result) => {
       return
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer })
     result(null, { id: res.insertId, ...newCustomer })
   })
 }
@@ -28,7 +27,6 @@ Iva.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0])
       result(null, res[0])
       return
     }
@@ -45,7 +43,6 @@ Iva.getAll = result => {
       return
     }
 
-    //console.log("iva: ", res)
     result(null, res)
   })
 }
@@ -66,7 +63,6 @@ Iva.updateById = (id, customer, result) => {
         return
       }
 
-      console.log("updated customer: ", { id: id, ...customer })
       result(null, { id: id, ...customer })
     }
   )
@@ -85,7 +81,6 @@ Iva.remove = (id, result) => {
       return
     }
 
-    console.log("deleted customer with id: ", id)
     result(null, res)
   })
 }
@@ -98,7 +93,6 @@ Iva.removeAll = result => {
       return
     }
 
-    console.log(`deleted ${res.affectedRows} iva`)
     result(null, res)
   })
 }

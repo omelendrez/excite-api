@@ -14,7 +14,6 @@ Producto.create = (newCustomer, result) => {
       return
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer })
     result(null, { id: res.insertId, ...newCustomer })
   })
 }
@@ -28,7 +27,6 @@ Producto.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0])
       result(null, res[0])
       return
     }
@@ -46,7 +44,6 @@ Producto.getAll = result => {
       return
     }
 
-    //console.log("producto: ", res)
     result(null, res)
   })
 }
@@ -67,7 +64,6 @@ Producto.updateById = (id, customer, result) => {
         return
       }
 
-      console.log("updated customer: ", { id: id, ...customer })
       result(null, { id: id, ...customer })
     }
   )
@@ -86,7 +82,6 @@ Producto.remove = (id, result) => {
       return
     }
 
-    console.log("deleted customer with id: ", id)
     result(null, res)
   })
 }
@@ -99,7 +94,6 @@ Producto.removeAll = result => {
       return
     }
 
-    console.log(`deleted ${res.affectedRows} producto`)
     result(null, res)
   })
 }

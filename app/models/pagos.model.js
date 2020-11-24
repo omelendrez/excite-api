@@ -16,7 +16,6 @@ Pagos.create = (newCustomer, result) => {
       return
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer })
     result(null, { id: res.insertId, ...newCustomer })
   })
 }
@@ -30,7 +29,6 @@ Pagos.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0])
       result(null, res[0])
       return
     }
@@ -48,7 +46,6 @@ Pagos.getAll = result => {
       return
     }
 
-    //console.log("pagos: ", res)
     result(null, res)
   })
 }
@@ -69,7 +66,6 @@ Pagos.updateById = (id, customer, result) => {
         return
       }
 
-      console.log("updated customer: ", { id: id, ...customer })
       result(null, { id: id, ...customer })
     }
   )
@@ -88,7 +84,6 @@ Pagos.remove = (id, result) => {
       return
     }
 
-    console.log("deleted customer with id: ", id)
     result(null, res)
   })
 }
@@ -101,7 +96,6 @@ Pagos.removeAll = result => {
       return
     }
 
-    console.log(`deleted ${res.affectedRows} pagos`)
     result(null, res)
   })
 }

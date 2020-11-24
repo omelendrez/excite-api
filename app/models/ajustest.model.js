@@ -21,14 +21,13 @@ Ajustest.create = (newRecord, result) => {
         return
       }
       updateNumber(NUMCOD, value)
-      console.log("created record: ", { id: res.insertId, ...newRecord })
       result(null, { id: res.insertId, ...newRecord })
     })
   })
 }
 
 Ajustest.findById = (id, result) => {
-  const sqlQuery = `SELECT * FROM ajustest WHERE a.ID = ${id}`
+  const sqlQuery = `SELECT * FROM ajustest WHERE ID = ${id}`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
@@ -37,7 +36,6 @@ Ajustest.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found record: ", res[0])
       result(null, res[0])
       return
     }
@@ -55,7 +53,6 @@ Ajustest.getAll = result => {
       return
     }
 
-    //console.log("ajustest: ", res)
     result(null, res)
   })
 }
@@ -75,7 +72,6 @@ Ajustest.updateById = (id, record, result) => {
       return
     }
 
-    console.log("updated record: ", { id: id, ...record })
     result(null, { id: id, ...record })
   }
   )
@@ -96,7 +92,6 @@ Ajustest.remove = (id, result) => {
       return
     }
 
-    console.log("deleted record with id: ", id)
     result(null, res)
   })
 }
@@ -109,7 +104,6 @@ Ajustest.removeAll = result => {
       return
     }
 
-    console.log(`deleted ${res.affectedRows} ajustest`)
     result(null, res)
   })
 }

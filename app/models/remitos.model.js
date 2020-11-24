@@ -16,7 +16,6 @@ Remitos.create = (newCustomer, result) => {
       return
     }
 
-    console.log("created customer: ", { id: res.insertId, ...newCustomer })
     result(null, { id: res.insertId, ...newCustomer })
   })
 }
@@ -30,7 +29,6 @@ Remitos.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found customer: ", res[0])
       result(null, res[0])
       return
     }
@@ -65,7 +63,6 @@ ORDER BY r.REMNUM DESC;`
       return
     }
 
-    //console.log("remitos: ", res)
     result(null, res)
   })
 }
@@ -86,7 +83,6 @@ Remitos.updateById = (id, customer, result) => {
         return
       }
 
-      console.log("updated customer: ", { id: id, ...customer })
       result(null, { id: id, ...customer })
     }
   )
@@ -105,7 +101,6 @@ Remitos.remove = (id, result) => {
       return
     }
 
-    console.log("deleted customer with id: ", id)
     result(null, res)
   })
 }
@@ -118,7 +113,6 @@ Remitos.removeAll = result => {
       return
     }
 
-    console.log(`deleted ${res.affectedRows} remitos`)
     result(null, res)
   })
 }
