@@ -684,8 +684,8 @@
   },
   {
     "name": "USUCOD",
-    "type": "INTEGER",
-    "null": "NOT NULL",
+    "type": "IGNORE",
+    "null": null,
     "default": null,
     "size": null
   },
