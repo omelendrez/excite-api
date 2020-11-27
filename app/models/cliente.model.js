@@ -21,8 +21,6 @@ const Cliente = function (record) {
   this.CLISALDEB = record.CLISALDEB
   this.CLISALHAB = record.CLISALHAB
   this.CLISALIMP = record.CLISALIMP
-  this.LOCCOD = record.LOCCOD
-  this.CLITIPO = record.CLITIPO
 }
 
 Cliente.create = (newRecord, result) => {
@@ -74,10 +72,9 @@ Cliente.getAll = result => {
 
 Cliente.updateById = (id, record, result) => {
   sqlQuery = `UPDATE clientes SET 
-  CLICOD = ?, CLINOM = ?, CLIDOM = ?, CLILOC = ?, CLICUIT = ?, CLITEL = ?, CLICEL = ?, CLICP = ?, CLIFP = ?, CLIINT = ?, IVACOD = ?, CLIFAN = ?, TRACOD = ?, PROCOD = ?, CLISALFEC = ?, CLISALDEB = ?, CLISALHAB = ?, CLISALIMP = ?, LOCCOD = ?, CLITIPO = ? 
-  WHERE ID = ?;`
+  CLICOD = ?, CLINOM = ?, CLIDOM = ?, CLILOC = ?, CLICUIT = ?, CLITEL = ?, CLICEL = ?, CLICP = ?, CLIFP = ?, CLIINT = ?, IVACOD = ?, CLIFAN = ?, TRACOD = ?, PROCOD = ?, CLISALFEC = ?, CLISALDEB = ?, CLISALHAB = ?, CLISALIMP = ? WHERE ID = ?;`
   sql.query(sqlQuery,
-    [record.CLICOD, record.CLINOM, record.CLIDOM, record.CLILOC, record.CLICUIT, record.CLITEL, record.CLICEL, record.CLICP, record.CLIFP, record.CLIINT, record.IVACOD, record.CLIFAN, record.TRACOD, record.PROCOD, record.CLISALFEC, record.CLISALDEB, record.CLISALHAB, record.CLISALIMP, record.LOCCOD, record.CLITIPO, id],
+    [record.CLICOD, record.CLINOM, record.CLIDOM, record.CLILOC, record.CLICUIT, record.CLITEL, record.CLICEL, record.CLICP, record.CLIFP, record.CLIINT, record.IVACOD, record.CLIFAN, record.TRACOD, record.PROCOD, record.CLISALFEC, record.CLISALDEB, record.CLISALHAB, record.CLISALIMP, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err)

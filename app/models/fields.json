@@ -150,10 +150,10 @@
   },
   {
     "name": "CLITIPO",
-    "type": "CHAR",
-    "null": "NOT NULL",
+    "type": "IGNORE",
+    "null": null,
     "default": null,
-    "size": 1
+    "size": null
   },
   {
     "name": "COMCAN",
@@ -214,8 +214,8 @@
   },
   {
     "name": "CONVEN",
-    "type": "INTEGER",
-    "null": "NOT NULL",
+    "type": "IGNORE",
+    "null": null,
     "default": null,
     "size": null
   },
@@ -341,8 +341,8 @@
   },
   {
     "name": "LOCCOD",
-    "type": "INTEGER",
-    "null": "NOT NULL",
+    "type": "IGNORE",
+    "null": null,
     "default": null,
     "size": null
   },

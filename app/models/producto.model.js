@@ -36,7 +36,27 @@ Producto.findById = (id, result) => {
 }
 
 Producto.getAll = result => {
-  const sqlQuery = `SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.PRODPRE, p.PRODSEX, P.PRODSTO, P.PRODSINI, p.PRODCOM FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD WHERE p.PRODEST = 'A' ORDER BY p.PRODCOD;`
+  const sqlQuery = `SELECT 
+  p.ID,
+  p.PRODCOD,
+  p.PRODDES,
+  p.TIPCOD,
+  t.TIPDES,
+  p.PRODPRE,
+  p.PRODSEX,
+  P.PRODSTO,
+  P.PRODSINI,
+  p.PRODCOM,
+  CASE p.PRODEST
+      WHEN 'A' THEN 'Activo'
+      WHEN 'I' THEN 'Inactivo'
+      ELSE p.PRODEST
+  END PRODEST
+FROM
+  producto p
+      INNER JOIN
+  tipo t ON p.TIPCOD = t.TIPCOD
+ORDER BY p.PRODCOD;`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)

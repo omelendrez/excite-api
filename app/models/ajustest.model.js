@@ -45,7 +45,7 @@ Ajustest.findById = (id, result) => {
 }
 
 Ajustest.getAll = result => {
-  const sqlQuery = `SELECT a.ID, a.AJUNUM, DATE_FORMAT(a.AJUFEC, '%Y-%m-%d') AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN FROM ajustest AS a INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD;`
+  const sqlQuery = `SELECT a.ID, a.AJUNUM, a.AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN FROM ajustest AS a INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD;`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)

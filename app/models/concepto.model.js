@@ -38,7 +38,7 @@ Concepto.findById = (id, result) => {
 }
 
 Concepto.getAll = result => {
-  const sqlQuery = `SELECT c.ID, c.CONNUM, DATE_FORMAT(c.CONFEC, '%Y-%m-%d') CONFEC, c.CONDES, c.CONCLI, cl.CLINOM, c.CONCANDEB, c.CONCANHAB FROM concepto c INNER JOIN clientes cl ON c.CONCLI = cl.CLICOD ORDER BY c.CONNUM DESC;`
+  const sqlQuery = `SELECT c.ID, c.CONNUM, c.CONFEC, c.CONDES, c.CONCLI, cl.CLINOM, c.CONCANDEB, c.CONCANHAB FROM concepto c INNER JOIN clientes cl ON c.CONCLI = cl.CLICOD ORDER BY c.CONNUM DESC;`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)

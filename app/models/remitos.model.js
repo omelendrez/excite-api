@@ -38,7 +38,7 @@ Remitos.findById = (id, result) => {
 }
 
 Remitos.getAll = result => {
-  const sqlQuery = `SELECT r.ID, r.REMNUM, DATE_FORMAT(r.REMFEC, '%Y-%m-%d') REMFEC,
+  const sqlQuery = `SELECT r.ID, r.REMNUM, r.REMFEC,
   e.ESTDES,
   r.VENCOD,
   v.VENNOM,

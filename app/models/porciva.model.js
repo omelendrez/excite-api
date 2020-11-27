@@ -36,7 +36,7 @@ Porciva.findById = (id, result) => {
 }
 
 Porciva.getAll = result => {
-  sql.query("SELECT ID, DATE_FORMAT(IVAFEC, '%Y-%m-%d') IVAFEC, IVAPOR FROM porciva", (err, res) => {
+  sql.query("SELECT ID, IVAFEC, IVAPOR FROM porciva", (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(null, err)
