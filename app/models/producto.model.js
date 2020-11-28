@@ -42,6 +42,8 @@ Producto.getAll = result => {
   p.PRODDES,
   p.TIPCOD,
   t.TIPDES,
+  p.SUBTIPCOD,
+  t1.SUBTIPDES,
   p.PRODPRE,
   p.PRODSEX,
   P.PRODSTO,
@@ -56,6 +58,8 @@ FROM
   producto p
       INNER JOIN
   tipo t ON p.TIPCOD = t.TIPCOD
+      LEFT JOIN
+  tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD
 ORDER BY p.PRODCOD;`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
