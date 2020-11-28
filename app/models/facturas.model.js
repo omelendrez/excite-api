@@ -41,7 +41,7 @@ Facturas.getAll = result => {
   sql.query("SELECT * FROM facturas", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -56,7 +56,7 @@ Facturas.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -74,7 +74,7 @@ Facturas.remove = (id, result) => {
   sql.query("DELETE FROM facturas WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -91,7 +91,7 @@ Facturas.removeAll = result => {
   sql.query("DELETE FROM facturas", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

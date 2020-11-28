@@ -64,7 +64,7 @@ ORDER BY p.PRODCOD;`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -79,7 +79,7 @@ Producto.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -97,7 +97,7 @@ Producto.remove = (id, result) => {
   sql.query("DELETE FROM producto WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -114,7 +114,7 @@ Producto.removeAll = result => {
   sql.query("DELETE FROM producto", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

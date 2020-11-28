@@ -4,6 +4,7 @@ const { findNumber, updateNumber } = require("../helpers")
 const NUMCOD = 0
 
 const Cliente = function (record) {
+  this.CLICOD = record.CLICOD
   this.CLINOM = record.CLINOM
   this.CLIDOM = record.CLIDOM
   this.CLILOC = record.CLIDOM
@@ -62,7 +63,7 @@ Cliente.getAll = result => {
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -78,7 +79,7 @@ Cliente.updateById = (id, record, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -96,7 +97,7 @@ Cliente.remove = (id, result) => {
   sql.query("DELETE FROM clientes WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -113,7 +114,7 @@ Cliente.removeAll = result => {
   sql.query("DELETE FROM clientes", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

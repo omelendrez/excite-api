@@ -41,7 +41,7 @@ Numeros.getAll = result => {
   sql.query("SELECT ID, NUMCOD, NUMDES, NUMVAL, NUMPV FROM numeros", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -56,7 +56,7 @@ Numeros.updateById = (id, record, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -74,7 +74,7 @@ Numeros.remove = (id, result) => {
   sql.query("DELETE FROM numeros WHERE ID = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -91,7 +91,7 @@ Numeros.removeAll = result => {
   sql.query("DELETE FROM numeros", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

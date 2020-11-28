@@ -42,7 +42,7 @@ Pagos.getAll = result => {
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -57,7 +57,7 @@ Pagos.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -75,7 +75,7 @@ Pagos.remove = (id, result) => {
   sql.query("DELETE FROM pagos WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -92,7 +92,7 @@ Pagos.removeAll = result => {
   sql.query("DELETE FROM pagos", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

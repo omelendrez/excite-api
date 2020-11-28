@@ -40,7 +40,7 @@ Transpor.getAll = result => {
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -55,7 +55,7 @@ Transpor.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -73,7 +73,7 @@ Transpor.remove = (id, result) => {
   sql.query("DELETE FROM transpor WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -90,7 +90,7 @@ Transpor.removeAll = result => {
   sql.query("DELETE FROM transpor", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

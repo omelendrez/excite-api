@@ -49,7 +49,7 @@ Ajustest.getAll = result => {
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -63,7 +63,7 @@ Ajustest.updateById = (id, record, result) => {
   sql.query(sqlQuery, [record.AJUNUM, record.AJUFEC, record.PRODCOD, record.AJUCAN, id], (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -83,7 +83,7 @@ Ajustest.remove = (id, result) => {
   sql.query(sqlQuery, id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -100,7 +100,7 @@ Ajustest.removeAll = result => {
   sql.query("DELETE FROM ajustest", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

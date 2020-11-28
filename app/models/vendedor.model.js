@@ -40,7 +40,7 @@ Vendedor.getAll = result => {
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -55,7 +55,7 @@ Vendedor.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -73,7 +73,7 @@ Vendedor.remove = (id, result) => {
   sql.query("DELETE FROM vendedor WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -90,7 +90,7 @@ Vendedor.removeAll = result => {
   sql.query("DELETE FROM vendedor", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

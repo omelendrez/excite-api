@@ -39,7 +39,7 @@ Porciva.getAll = result => {
   sql.query("SELECT ID, IVAFEC, IVAPOR FROM porciva", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -54,7 +54,7 @@ Porciva.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -72,7 +72,7 @@ Porciva.remove = (id, result) => {
   sql.query("DELETE FROM porciva WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -89,7 +89,7 @@ Porciva.removeAll = result => {
   sql.query("DELETE FROM porciva", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

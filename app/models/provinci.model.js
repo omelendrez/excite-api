@@ -39,7 +39,7 @@ Provinci.getAll = result => {
   sql.query("SELECT * FROM provinci", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -54,7 +54,7 @@ Provinci.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -72,7 +72,7 @@ Provinci.remove = (id, result) => {
   sql.query("DELETE FROM provinci WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -89,7 +89,7 @@ Provinci.removeAll = result => {
   sql.query("DELETE FROM provinci", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

@@ -59,7 +59,7 @@ ORDER BY r.REMNUM DESC;`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -74,7 +74,7 @@ Remitos.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -92,7 +92,7 @@ Remitos.remove = (id, result) => {
   sql.query("DELETE FROM remitos WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -109,7 +109,7 @@ Remitos.removeAll = result => {
   sql.query("DELETE FROM remitos", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

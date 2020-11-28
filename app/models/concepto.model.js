@@ -42,7 +42,7 @@ Concepto.getAll = result => {
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -57,7 +57,7 @@ Concepto.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -75,7 +75,7 @@ Concepto.remove = (id, result) => {
   sql.query("DELETE FROM concepto WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -92,7 +92,7 @@ Concepto.removeAll = result => {
   sql.query("DELETE FROM concepto", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

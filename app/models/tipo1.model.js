@@ -39,7 +39,7 @@ Tipo1.getAll = result => {
   sql.query("SELECT ID, TIPCOD, SUBTIPCOD, SUBTIPDES FROM tipo1", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -54,7 +54,7 @@ Tipo1.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -72,7 +72,7 @@ Tipo1.remove = (id, result) => {
   sql.query("DELETE FROM tipo1 WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -89,7 +89,7 @@ Tipo1.removeAll = result => {
   sql.query("DELETE FROM tipo1", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

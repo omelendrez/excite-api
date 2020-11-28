@@ -39,7 +39,7 @@ Iva.getAll = result => {
   sql.query("SELECT ID, IVACOD, IVADES FROM iva", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -54,7 +54,7 @@ Iva.updateById = (id, customer, result) => {
     (err, res) => {
       if (err) {
         console.log("error: ", err)
-        result(null, err)
+        result(err, null)
         return
       }
 
@@ -72,7 +72,7 @@ Iva.remove = (id, result) => {
   sql.query("DELETE FROM iva WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 
@@ -89,7 +89,7 @@ Iva.removeAll = result => {
   sql.query("DELETE FROM iva", (err, res) => {
     if (err) {
       console.log("error: ", err)
-      result(null, err)
+      result(err, null)
       return
     }
 

@@ -68,7 +68,7 @@ exports.update = (req, res) => {
           })
         } else {
           res.status(500).send({
-            message: "Error updating Transpor with id " + req.params.id
+            message: "Error intentando acutalizar Transporte con id " + req.params.id
           })
         }
       } else res.send(data)
