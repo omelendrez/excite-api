@@ -68,7 +68,8 @@ exports.update = (req, res) => {
           })
         } else {
           res.status(500).send({
-            message: "Error intentando acutalizar Transporte con id " + req.params.id
+            message: "Error intentando acutalizar Transporte con id " + req.params.id,
+            error: err
           })
         }
       } else res.send(data)

@@ -17,7 +17,8 @@ exports.create = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Customer."
+          err.message || "Some error occurred while creating the Customer.",
+        error: err
       })
     else res.send(data)
   })
@@ -28,7 +29,8 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers."
+          err.message || "Some error occurred while retrieving customers.",
+        error: err
       })
     else res.send(data)
   })
@@ -43,7 +45,8 @@ exports.findOne = (req, res) => {
         })
       } else {
         res.status(500).send({
-          message: "Error retrieving Customer with id " + req.params.id
+          message: "Error retrieving Customer with id " + req.params.id,
+          error: err
         })
       }
     } else res.send(data)
@@ -68,7 +71,8 @@ exports.update = (req, res) => {
           })
         } else {
           res.status(500).send({
-            message: "Error updating Customer with id " + req.params.id
+            message: "Error updating Customer with id " + req.params.id,
+            error: err
           })
         }
       } else res.send(data)
@@ -85,7 +89,8 @@ exports.delete = (req, res) => {
         })
       } else {
         res.status(500).send({
-          message: "Could not delete Customer with id " + req.params.id
+          message: "Could not delete Customer with id " + req.params.id,
+          error: err
         })
       }
     } else res.send({ message: `Customer was deleted successfully!` })
@@ -97,7 +102,8 @@ exports.deleteAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers."
+          err.message || "Some error occurred while removing all customers.",
+        error: err
       })
     else res.send({ message: `All Customers were deleted successfully!` })
   })
