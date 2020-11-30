@@ -72,7 +72,7 @@ ORDER BY r.REMNUM DESC;`
 }
 
 Remitos.updateById = (id, record, result) => {
-  record.CLISALFEC = record.CLISALFEC.split('T')[0]
+  record.REMFEC = record.REMFEC.split('T')[0]
   const fields = []
   const values = []
   Object.keys(record).filter(field => field != 'ID').map(field => {
