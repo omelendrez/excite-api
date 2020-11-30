@@ -56,7 +56,9 @@ Cliente.getAll = result => {
 }
 
 Cliente.updateById = (id, record, result) => {
-  record.CLISALFEC = record.CLISALFEC.split('T')[0]
+  if (record.CLISALFEC) {
+    record.CLISALFEC = record.CLISALFEC.split('T')[0]
+  }
   const fields = []
   const values = []
   Object.keys(record).filter(field => field != 'ID').map(field => {
@@ -64,7 +66,7 @@ Cliente.updateById = (id, record, result) => {
     values.push(record[field])
   })
   values.push(id)
-  sql.query(`UPDATE cliente SET ${fields.join(',')}  WHERE ID = ?`,
+  sql.query(`UPDATE clientes SET ${fields.join(',')}  WHERE ID = ?`,
     values,
     (err, res) => {
       if (err) {

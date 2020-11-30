@@ -47,6 +47,7 @@ Porciva.getAll = result => {
 }
 
 Porciva.updateById = (id, record, result) => {
+  record.IVAFEC = record.IVAFEC.split('T')[0]
   const fields = []
   const values = []
   Object.keys(record).filter(field => field != 'ID').map(field => {

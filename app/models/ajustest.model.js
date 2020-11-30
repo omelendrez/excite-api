@@ -64,7 +64,7 @@ Ajustest.updateById = (id, record, result) => {
     values.push(record[field])
   })
   values.push(id)
-  sql.query(`UPDATE ajutest SET ${fields.join(',')}  WHERE ID = ?`,
+  sql.query(`UPDATE ajustest SET ${fields.join(',')}  WHERE ID = ?`,
     values,
     (err, res) => {
       if (err) {

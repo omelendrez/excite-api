@@ -35,7 +35,7 @@ Transpor.findById = (id, result) => {
 }
 
 Transpor.getAll = result => {
-  const sqlQuery = 'SELECT ID, TRACOD, TRANOM, TRADOM, TRALOC, TRATEL, TRAOBS FROM transpor;'
+  const sqlQuery = 'SELECT ID, TRACOD, TRANOM, TRADOM, TRALOC, TRATEL, TRAOBS, TRACUIT FROM transpor;'
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
