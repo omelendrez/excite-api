@@ -7,13 +7,9 @@ exports.create = (req, res) => {
     })
   }
 
-  const transpor = new Transpor({
-    code: req.body.code,
-    name: req.body.name,
-    active: req.body.active
-  })
+  const record = new Transpor(req.body)
 
-  Transpor.create(transpor, (err, data) => {
+  Transpor.create(record, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -28,7 +24,7 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers."
+          err.message || "Some error occurred while retrieving records."
       })
     else res.send(data)
   })
@@ -98,7 +94,7 @@ exports.deleteAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers."
+          err.message || "Some error occurred while removing all records."
       })
     else res.send({ message: `All Customers were deleted successfully!` })
   })

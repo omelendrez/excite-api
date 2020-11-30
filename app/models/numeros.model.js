@@ -1,10 +1,8 @@
 const sql = require("./db.js")
 
 const Numeros = function (record) {
-  this.NUMCOD = record.NUMCOD
-  this.NUMDES = record.NUMDES
-  this.NUMVAL = record.NUMVAL
-  this.NUMPV = record.NUMPV
+  const keys = Object.keys(record)
+  keys.map(key => this[key] = record[key])
 }
 
 Numeros.create = (newRecord, result) => {
@@ -50,9 +48,15 @@ Numeros.getAll = result => {
 }
 
 Numeros.updateById = (id, record, result) => {
-  sql.query(
-    "UPDATE numeros SET NUMCOD = ?, NUMDES = ?, NUMVAL = ?, NUMPV = ? WHERE ID = ?",
-    [record.NUMCOD, record.NUMDES, record.NUMVAL, record.NUMPV, id],
+  const fields = []
+  const values = []
+  Object.keys(record).filter(field => field != 'ID').map(field => {
+    fields.push(`${field} = ?`)
+    values.push(record[field])
+  })
+  values.push(id)
+  sql.query(`UPDATE numeros SET ${fields.join(',')}  WHERE ID = ?`,
+    values,
     (err, res) => {
       if (err) {
         console.log("error: ", err)

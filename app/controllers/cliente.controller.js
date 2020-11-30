@@ -7,28 +7,7 @@ exports.create = (req, res) => {
     })
   }
 
-  const record = new Cliente({
-    CLICOD: req.body.CLICOD,
-    CLINOM: req.body.CLINOM,
-    CLIDOM: req.body.CLIDOM,
-    CLILOC: req.body.CLIDOM,
-    CLICUIT: req.body.CLICUIT,
-    CLITEL: req.body.CLITEL,
-    CLICEL: req.body.CLICEL,
-    CLICP: req.body.CLICP,
-    CLIFP: req.body.CLIFP,
-    CLIINT: req.body.CLIINT,
-    IVACOD: req.body.IVACOD,
-    CLIFAN: req.body.CLIFAN,
-    TRACOD: req.body.TRACOD,
-    PROCOD: req.body.PROCOD,
-    CLISALFEC: req.body.CLISALFEC,
-    CLISALDEB: req.body.CLISALDEB,
-    CLISALHAB: req.body.CLISALHAB,
-    CLISALIMP: req.body.CLISALIMP,
-    LOCCOD: req.body.LOCCOD,
-    CLITIPO: req.body.CLITIPO,
-  })
+  const record = new Cliente(req.body)
 
   Cliente.create(record, (err, data) => {
     if (err)
@@ -46,7 +25,7 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers.",
+          err.message || "Some error occurred while retrieving records.",
         error: err
       })
     else res.send(data)
@@ -76,7 +55,6 @@ exports.update = (req, res) => {
       message: "Content can not be empty!"
     })
   }
-
   Cliente.updateById(
     req.params.id,
     new Cliente(req.body),
@@ -119,7 +97,7 @@ exports.deleteAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers.",
+          err.message || "Some error occurred while removing all records.",
         error: err
       })
     else res.send({ message: `All Customers were deleted successfully!` })

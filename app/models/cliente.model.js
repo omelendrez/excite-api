@@ -4,24 +4,8 @@ const { findNumber, updateNumber } = require("../helpers")
 const NUMCOD = 0
 
 const Cliente = function (record) {
-  this.CLICOD = record.CLICOD
-  this.CLINOM = record.CLINOM
-  this.CLIDOM = record.CLIDOM
-  this.CLILOC = record.CLIDOM
-  this.CLICUIT = record.CLICUIT
-  this.CLITEL = record.CLITEL
-  this.CLICEL = record.CLICEL
-  this.CLICP = record.CLICP
-  this.CLIFP = record.CLIFP
-  this.CLIINT = record.CLIINT
-  this.IVACOD = record.IVACOD
-  this.CLIFAN = record.CLIFAN
-  this.TRACOD = record.TRACOD
-  this.PROCOD = record.PROCOD
-  this.CLISALFEC = record.CLISALFEC
-  this.CLISALDEB = record.CLISALDEB
-  this.CLISALHAB = record.CLISALHAB
-  this.CLISALIMP = record.CLISALIMP
+  const keys = Object.keys(record)
+  keys.map(key => this[key] = record[key])
 }
 
 Cliente.create = (newRecord, result) => {
@@ -72,10 +56,16 @@ Cliente.getAll = result => {
 }
 
 Cliente.updateById = (id, record, result) => {
-  sqlQuery = `UPDATE clientes SET 
-  CLICOD = ?, CLINOM = ?, CLIDOM = ?, CLILOC = ?, CLICUIT = ?, CLITEL = ?, CLICEL = ?, CLICP = ?, CLIFP = ?, CLIINT = ?, IVACOD = ?, CLIFAN = ?, TRACOD = ?, PROCOD = ?, CLISALFEC = ?, CLISALDEB = ?, CLISALHAB = ?, CLISALIMP = ? WHERE ID = ?;`
-  sql.query(sqlQuery,
-    [record.CLICOD, record.CLINOM, record.CLIDOM, record.CLILOC, record.CLICUIT, record.CLITEL, record.CLICEL, record.CLICP, record.CLIFP, record.CLIINT, record.IVACOD, record.CLIFAN, record.TRACOD, record.PROCOD, record.CLISALFEC, record.CLISALDEB, record.CLISALHAB, record.CLISALIMP, id],
+  record.CLISALFEC = record.CLISALFEC.split('T')[0]
+  const fields = []
+  const values = []
+  Object.keys(record).filter(field => field != 'ID').map(field => {
+    fields.push(`${field} = ?`)
+    values.push(record[field])
+  })
+  values.push(id)
+  sql.query(`UPDATE cliente SET ${fields.join(',')}  WHERE ID = ?`,
+    values,
     (err, res) => {
       if (err) {
         console.log("error: ", err)

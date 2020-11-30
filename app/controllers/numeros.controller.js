@@ -7,12 +7,7 @@ exports.create = (req, res) => {
     })
   }
 
-  const record = new Numeros({
-    NUMCOD: req.body.NUMCOD,
-    NUMDES: req.body.NUMDES,
-    NUMVAL: req.body.NUMVAL,
-    NUMPV: req.body.NUMPV
-  })
+  const record = new Numeros(req.body)
 
   Numeros.create(record, (err, data) => {
     if (err)
@@ -30,7 +25,7 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers.",
+          err.message || "Some error occurred while retrieving records.",
         error: err
       })
     else res.send(data)
@@ -103,7 +98,7 @@ exports.deleteAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers.",
+          err.message || "Some error occurred while removing all records.",
         error: err
       })
     else res.send({ message: `All Customers were deleted successfully!` })

@@ -1,9 +1,8 @@
 const sql = require("./db.js")
 
-const Estados = function (customer) {
-  this.code = customer.code
-  this.name = customer.name
-  this.active = customer.active
+const Estados = function (record) {
+  const keys = Object.keys(record)
+  keys.map(key => this[key] = record[key])
 }
 
 Estados.create = (newCustomer, result) => {
@@ -47,10 +46,16 @@ Estados.getAll = result => {
   })
 }
 
-Estados.updateById = (id, customer, result) => {
-  sql.query(
-    "UPDATE estados SET code = ?, name = ?, active = ? WHERE id = ?",
-    [customer.code, customer.name, customer.active, id],
+Estados.updateById = (id, record, result) => {
+  const fields = []
+  const values = []
+  Object.keys(record).filter(field => field != 'ID').map(field => {
+    fields.push(`${field} = ?`)
+    values.push(record[field])
+  })
+  values.push(id)
+  sql.query(`UPDATE estados SET ${fields.join(',')}  WHERE ID = ?`,
+    values,
     (err, res) => {
       if (err) {
         console.log("error: ", err)
@@ -63,7 +68,7 @@ Estados.updateById = (id, customer, result) => {
         return
       }
 
-      result(null, { id: id, ...customer })
+      result(null, { id: id, ...record })
     }
   )
 }

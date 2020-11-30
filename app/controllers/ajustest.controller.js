@@ -7,12 +7,7 @@ exports.create = (req, res) => {
     })
   }
 
-  const record = new Ajustest({
-    AJUNUM: req.body.AJUNUM,
-    AJUFEC: req.body.AJUFEC,
-    PRODCOD: req.body.PRODCOD,
-    AJUCAN: req.body.AJUCAN
-  })
+  const record = new Ajustest(req.body)
 
   Ajustest.create(record, (err, data) => {
     if (err)
@@ -30,7 +25,7 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers.",
+          err.message || "Some error occurred while retrieving records.",
         error: err
       })
     else res.send(data)
@@ -103,7 +98,7 @@ exports.deleteAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers.",
+          err.message || "Some error occurred while removing all records.",
         error: err
       })
     else res.send({ message: `All Customers were deleted successfully!` })

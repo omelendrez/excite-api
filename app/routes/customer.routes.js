@@ -1,15 +1,15 @@
 module.exports = app => {
-  const customers = require("../controllers/customer.controller.js")
+  const records = require("../controllers/record.controller.js")
 
-  app.post("/customers", customers.create)
+  app.post("/records", records.create)
 
-  app.get("/customers", customers.findAll)
+  app.get("/records", records.findAll)
 
-  app.get("/customers/:id", customers.findOne)
+  app.get("/records/:id", records.findOne)
 
-  app.put("/customers/:id", customers.update)
+  app.put("/records/:id", records.update)
 
-  app.delete("/customers/:id", customers.delete)
+  app.delete("/records/:id", records.delete)
 
-  app.delete("/customers", customers.deleteAll)
+  app.delete("/records", records.deleteAll)
 };

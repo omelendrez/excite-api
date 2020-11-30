@@ -4,10 +4,8 @@ const { findNumber, updateNumber } = require("../helpers")
 const NUMCOD = 7
 
 const Ajustest = function (record) {
-  this.AJUNUM = record.AJUNUM
-  this.AJUFEC = record.AJUFEC
-  this.PRODCOD = record.PRODCOD
-  this.AJUCAN = record.AJUCAN
+  const keys = Object.keys(record)
+  keys.map(key => this[key] = record[key])
 }
 
 Ajustest.create = (newRecord, result) => {
@@ -45,7 +43,7 @@ Ajustest.findById = (id, result) => {
 }
 
 Ajustest.getAll = result => {
-  const sqlQuery = `SELECT a.ID, a.AJUNUM, a.AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN FROM ajustest AS a INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD;`
+  const sqlQuery = `SELECT a.ID, a.AJUNUM, a.AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN FROM ajustest AS a INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD ORDER BY a.AJUNUM DESC;`
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)
@@ -58,22 +56,30 @@ Ajustest.getAll = result => {
 }
 
 Ajustest.updateById = (id, record, result) => {
-  const sqlQuery = "UPDATE ajustest SET AJUNUM = ?, AJUFEC = ?, PRODCOD = ?, AJUCAN = ? WHERE ID = ?"
+  record.AJUFEC = record.AJUFEC.split('T')[0]
+  const fields = []
+  const values = []
+  Object.keys(record).filter(field => field != 'ID').map(field => {
+    fields.push(`${field} = ?`)
+    values.push(record[field])
+  })
+  values.push(id)
+  sql.query(`UPDATE ajutest SET ${fields.join(',')}  WHERE ID = ?`,
+    values,
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err)
+        result(err, null)
+        return
+      }
 
-  sql.query(sqlQuery, [record.AJUNUM, record.AJUFEC, record.PRODCOD, record.AJUCAN, id], (err, res) => {
-    if (err) {
-      console.log("error: ", err)
-      result(err, null)
-      return
+      if (res.affectedRows == 0) {
+        result({ kind: "not_found" }, null)
+        return
+      }
+
+      result(null, { id: id, ...record })
     }
-
-    if (res.affectedRows == 0) {
-      result({ kind: "not_found" }, null)
-      return
-    }
-
-    result(null, { id: id, ...record })
-  }
   )
 }
 

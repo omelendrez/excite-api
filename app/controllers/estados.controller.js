@@ -7,13 +7,9 @@ exports.create = (req, res) => {
     })
   }
 
-  const estados = new Estados({
-    code: req.body.code,
-    name: req.body.name,
-    active: req.body.active
-  })
+  const record = new Estados(req.body)
 
-  Estados.create(estados, (err, data) => {
+  Estados.create(record, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -29,7 +25,7 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers.",
+          err.message || "Some error occurred while retrieving records.",
         error: err
       })
     else res.send(data)
@@ -102,7 +98,7 @@ exports.deleteAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all customers.",
+          err.message || "Some error occurred while removing all records.",
         error: err
       })
     else res.send({ message: `All Customers were deleted successfully!` })

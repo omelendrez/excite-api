@@ -2,10 +2,9 @@ const sql = require("./db.js")
 
 const NUMCOD = 2
 
-const Remitos = function (customer) {
-  this.code = customer.code
-  this.name = customer.name
-  this.active = customer.active
+const Remitos = function (record) {
+  const keys = Object.keys(record)
+  keys.map(key => this[key] = record[key])
 }
 
 Remitos.create = (newCustomer, result) => {
@@ -67,10 +66,17 @@ ORDER BY r.REMNUM DESC;`
   })
 }
 
-Remitos.updateById = (id, customer, result) => {
-  sql.query(
-    "UPDATE remitos SET code = ?, name = ?, active = ? WHERE id = ?",
-    [customer.code, customer.name, customer.active, id],
+Remitos.updateById = (id, record, result) => {
+  record.CLISALFEC = record.CLISALFEC.split('T')[0]
+  const fields = []
+  const values = []
+  Object.keys(record).filter(field => field != 'ID').map(field => {
+    fields.push(`${field} = ?`)
+    values.push(record[field])
+  })
+  values.push(id)
+  sql.query(`UPDATE remitos SET ${fields.join(',')}  WHERE ID = ?`,
+    values,
     (err, res) => {
       if (err) {
         console.log("error: ", err)
@@ -83,7 +89,7 @@ Remitos.updateById = (id, customer, result) => {
         return
       }
 
-      result(null, { id: id, ...customer })
+      result(null, { id: id, ...record })
     }
   )
 }
