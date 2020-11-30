@@ -50,6 +50,7 @@ Concepto.getAll = result => {
 }
 
 Concepto.updateById = (id, record, result) => {
+  record.CONFEC = record.CONFEC.split('T')[0]
   const fields = []
   const values = []
   Object.keys(record).filter(field => field != 'ID').map(field => {
