@@ -5,15 +5,15 @@ const Provinci = function (record) {
   keys.map(key => this[key] = record[key])
 }
 
-Provinci.create = (newCustomer, result) => {
-  sql.query("INSERT INTO provinci SET ?", newCustomer, (err, res) => {
+Provinci.create = (newRecord, result) => {
+  sql.query("INSERT INTO provinci SET ?", newRecord, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
       return
     }
 
-    result(null, { id: res.insertId, ...newCustomer })
+    result(null, { id: res.insertId, ...newRecord })
   })
 }
 

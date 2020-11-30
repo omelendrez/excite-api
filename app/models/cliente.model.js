@@ -20,7 +20,6 @@ Cliente.create = (newRecord, result) => {
       }
       updateNumber(NUMCOD, value)
       result(null, { id: res.insertId, ...newRecord })
-
     })
   })
 }

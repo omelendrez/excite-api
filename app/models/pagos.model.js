@@ -1,4 +1,5 @@
 const sql = require("./db.js")
+const { findNumber, updateNumber } = require("../helpers")
 
 const NUMCOD = 5
 
@@ -7,15 +8,19 @@ const Pagos = function (record) {
   keys.map(key => this[key] = record[key])
 }
 
-Pagos.create = (newCustomer, result) => {
-  sql.query("INSERT INTO pagos SET ?", newCustomer, (err, res) => {
-    if (err) {
-      console.log("error: ", err)
-      result(err, null)
-      return
-    }
-
-    result(null, { id: res.insertId, ...newCustomer })
+Pagos.create = (newRecord, result) => {
+  findNumber(NUMCOD, (err, data) => {
+    const value = data.NUMVAL + 1
+    newRecord.PAGNUM = value
+    sql.query("INSERT INTO pagos SET ?", newRecord, (err, res) => {
+      if (err) {
+        console.log("error: ", err)
+        result(err, null)
+        return
+      }
+      updateNumber(NUMCOD, value)
+      result(null, { id: res.insertId, ...newRecord })
+    })
   })
 }
 

@@ -5,15 +5,15 @@ const Estados = function (record) {
   keys.map(key => this[key] = record[key])
 }
 
-Estados.create = (newCustomer, result) => {
-  sql.query("INSERT INTO estados SET ?", newCustomer, (err, res) => {
+Estados.create = (newRecord, result) => {
+  sql.query("INSERT INTO estados SET ?", newRecord, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
       return
     }
 
-    result(null, { id: res.insertId, ...newCustomer })
+    result(null, { id: res.insertId, ...newRecord })
   })
 }
 

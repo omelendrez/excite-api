@@ -1,4 +1,5 @@
 const sql = require("./db.js")
+const { findNumber, updateNumber } = require("../helpers")
 
 const NUMCOD = 22
 
@@ -7,15 +8,19 @@ const Facturas = function (record) {
   keys.map(key => this[key] = record[key])
 }
 
-Facturas.create = (newCustomer, result) => {
-  sql.query("INSERT INTO facturas SET ?", newCustomer, (err, res) => {
-    if (err) {
-      console.log("error: ", err)
-      result(err, null)
-      return
-    }
-
-    result(null, { id: res.insertId, ...newCustomer })
+Facturas.create = (newRecord, result) => {
+  findNumber(NUMCOD, (err, data) => {
+    const value = data.NUMVAL + 1
+    newRecord.FACNUM = value
+    sql.query("INSERT INTO facturas SET ?", newRecord, (err, res) => {
+      if (err) {
+        console.log("error: ", err)
+        result(err, null)
+        return
+      }
+      updateNumber(NUMCOD, value)
+      result(null, { id: res.insertId, ...newRecord })
+    })
   })
 }
 

@@ -1,19 +1,26 @@
 const sql = require("./db.js")
+const { findNumber, updateNumber } = require("../helpers")
+
+const NUMCOD = 2
 
 const Vendedor = function (record) {
   const keys = Object.keys(record)
   keys.map(key => this[key] = record[key])
 }
 
-Vendedor.create = (newCustomer, result) => {
-  sql.query("INSERT INTO vendedor SET ?", newCustomer, (err, res) => {
-    if (err) {
-      console.log("error: ", err)
-      result(err, null)
-      return
-    }
-
-    result(null, { id: res.insertId, ...newCustomer })
+Vendedor.create = (newRecord, result) => {
+  findNumber(NUMCOD, (err, data) => {
+    const value = data.NUMVAL + 1
+    newRecord.VENCOD = value
+    sql.query("INSERT INTO vendedor SET ?", newRecord, (err, res) => {
+      if (err) {
+        console.log("error: ", err)
+        result(err, null)
+        return
+      }
+      updateNumber(NUMCOD, value)
+      result(null, { id: res.insertId, ...newRecord })
+    })
   })
 }
 

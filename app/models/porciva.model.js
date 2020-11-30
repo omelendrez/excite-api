@@ -5,15 +5,15 @@ const Porciva = function (record) {
   keys.map(key => this[key] = record[key])
 }
 
-Porciva.create = (newCustomer, result) => {
-  sql.query("INSERT INTO porciva SET ?", newCustomer, (err, res) => {
+Porciva.create = (newRecord, result) => {
+  sql.query("INSERT INTO porciva SET ?", newRecord, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
       return
     }
 
-    result(null, { id: res.insertId, ...newCustomer })
+    result(null, { id: res.insertId, ...newRecord })
   })
 }
 

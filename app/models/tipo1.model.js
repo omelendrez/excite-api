@@ -5,15 +5,15 @@ const Tipo1 = function (record) {
   keys.map(key => this[key] = record[key])
 }
 
-Tipo1.create = (newCustomer, result) => {
-  sql.query("INSERT INTO tipo1 SET ?", newCustomer, (err, res) => {
+Tipo1.create = (newRecord, result) => {
+  sql.query("INSERT INTO tipo1 SET ?", newRecord, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
       return
     }
 
-    result(null, { id: res.insertId, ...newCustomer })
+    result(null, { id: res.insertId, ...newRecord })
   })
 }
 

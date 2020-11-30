@@ -96,6 +96,6 @@ exports.deleteAll = (req, res) => {
         message:
           err.message || "Some error occurred while removing all records."
       })
-    else res.send({ message: `All Customers were deleted successfully!` })
+    else res.send({ message: `All Records were deleted successfully!` })
   })
 }
