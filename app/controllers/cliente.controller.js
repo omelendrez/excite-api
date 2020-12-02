@@ -21,7 +21,7 @@ exports.create = (req, res) => {
 }
 
 exports.findAll = (req, res) => {
-  Cliente.getAll((err, data) => {
+  Cliente.getAll(req.query, (err, data) => {
     if (err)
       res.status(500).send({
         message:

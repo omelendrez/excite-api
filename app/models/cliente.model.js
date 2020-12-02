@@ -41,8 +41,10 @@ Cliente.findById = (id, result) => {
   })
 }
 
-Cliente.getAll = result => {
-  const sqlQuery = 'SELECT ID, CLICOD, CLINOM, CLIDOM, CLILOC, CLICUIT, CLITEL, CLICEL, CLICP, CLIFP, CLIINT, IVACOD FROM clientes;'
+Cliente.getAll = (query, result) => {
+  const { search } = query
+  const sqlQuery = `SELECT c.ID, CLICOD, CLINOM, CLIDOM, CLILOC, CLICUIT, CLITEL, CLICEL, CLICP, CLIFP, CLIINT, i.IVADES FROM clientes c INNER JOIN iva i ON c.IVACOD = i.IVACOD ${search ? 'WHERE CONCAT(CLINOM,CLILOC,CLIDOM,CLITEL,CLICEL) LIKE "%' + search + '%"' : ''};`
+  console.log(sqlQuery)
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err)

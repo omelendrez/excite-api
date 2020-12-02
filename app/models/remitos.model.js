@@ -48,6 +48,7 @@ Remitos.getAll = result => {
   v.VENNOM,
   r.CLICOD,
   c.CLINOM,
+  r.REMFACNUM,
   r.REMPAGNUM,
   r.REMDES
 FROM

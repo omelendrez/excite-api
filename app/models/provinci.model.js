@@ -18,7 +18,7 @@ Provinci.create = (newRecord, result) => {
 }
 
 Provinci.findById = (id, result) => {
-  sql.query(`SELECT ID, PROCOD, PRONOM FROM provinci WHERE id = ${id}`, (err, res) => {
+  sql.query(`SELECT * FROM provinci WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err)
       result(err, null)
