@@ -55,6 +55,9 @@ Vendedor.getAll = result => {
 }
 
 Vendedor.updateById = (id, record, result) => {
+  if (record.VENFECSAL) {
+    record.VENFECSAL = record.VENFECSAL.split('T')[0]
+  }
   const fields = []
   const values = []
   Object.keys(record).filter(field => field != 'ID').map(field => {
