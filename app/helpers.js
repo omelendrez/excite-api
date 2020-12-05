@@ -1,6 +1,6 @@
 const fs = require('fs')
-const fields = require('./models/fields.json')
-const sql = require('./models/db')
+const fields = require('./models/db/fields.json')
+const sql = require('./models/db/db')
 
 exports.isField = field => {
   return fields.filter(field => field.type !== 'IGNORE').find(fld => fld.name === field)

@@ -1,6 +1,6 @@
-const sql = require("./db.js")
+const sql = require("./db/db")
 const { findNumber, updateNumber } = require("../helpers")
-const numeros = require('./numeros')
+const numeros = require('./db/numeros')
 
 const Model = function (record) {
   const keys = Object.keys(record)
@@ -85,7 +85,7 @@ Model.getAll = (query, result, model) => {
       sqlQuery = `SELECT ID, IVAFEC, IVAPOR FROM porciva;`
       break
     case 'producto':
-      sqlQuery = `SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE, p.PRODSEX, P.PRODSTO, P.PRODSINI, p.PRODCOM, CASE p.PRODEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE p.PRODEST END PRODEST FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD ORDER BY p.PRODCOD;`
+      sqlQuery = `SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE, p.PRODSEX, P.PRODSTO, P.PRODSINI, p.PRODCOM, CASE p.PRODEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE p.PRODEST END PRODEST FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD ${search ? 'WHERE CONCAT(p.PRODCOD," ",p.PRODDES) LIKE "%' + search + '%"' : ''} ORDER BY p.PRODCOD;`
       break
     case 'provinci':
       sqlQuery = `SELECT * FROM provinci;`
