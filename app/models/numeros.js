@@ -1,0 +1,22 @@
+exports.default = [
+  {
+    model: 'clientes',
+    field: 'CLICOD',
+    NUMCOD: 0
+  },
+  {
+    model: 'remitos',
+    field: 'REMNUM',
+    NUMCOD: 2
+  },
+  {
+    model: 'pagos',
+    field: 'PAGNUM',
+    NUMCOD: 5
+  },
+  {
+    model: 'ajustest',
+    field: 'AJUNUM',
+    NUMCOD: 7
+  }
+]

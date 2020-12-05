@@ -1,15 +1,17 @@
 module.exports = app => {
-  const tipos = require("../controllers/tipo.controller.js")
+  const controller = require("../controllers/controller.js")
+  const model = 'tipo'
+  const url = 'tipos'
 
-  app.post("/tipos", tipos.create)
+  app.post(`/${url}`, controller.create(model))
 
-  app.get("/tipos", tipos.findAll)
+  app.get(`/${url}`, controller.findAll(model))
 
-  app.get("/tipos/:id", tipos.findOne)
+  app.get(`/${url}/:id`, controller.findOne(model))
 
-  app.put("/tipos/:id", tipos.update)
+  app.put(`/${url}/:id`, controller.update(model))
 
-  app.delete("/tipos/:id", tipos.delete)
+  app.delete(`/${url}/:id`, controller.delete(model))
 
-  app.delete("/tipos", tipos.deleteAll)
+  app.delete(`/${url}`, controller.deleteAll(model))
 };

@@ -1,15 +1,17 @@
 module.exports = app => {
-  const iva = require("../controllers/iva.controller.js")
+  const controller = require("../controllers/controller.js")
+  const model = 'iva'
+  const url = 'iva'
 
-  app.post("/iva", iva.create)
+  app.post(`/${url}`, controller.create(model))
 
-  app.get("/iva", iva.findAll)
+  app.get(`/${url}`, controller.findAll(model))
 
-  app.get("/iva/:id", iva.findOne)
+  app.get(`/${url}/:id`, controller.findOne(model))
 
-  app.put("/iva/:id", iva.update)
+  app.put(`/${url}/:id`, controller.update(model))
 
-  app.delete("/iva/:id", iva.delete)
+  app.delete(`/${url}/:id`, controller.delete(model))
 
-  app.delete("/iva", iva.deleteAll)
+  app.delete(`/${url}`, controller.deleteAll(model))
 };

@@ -1,15 +1,17 @@
 module.exports = app => {
-  const numeros = require("../controllers/numeros.controller.js")
+  const controller = require("../controllers/controller.js")
+  const model = 'numeros'
+  const url = 'numeros'
 
-  app.post("/numeros", numeros.create)
+  app.post(`/${url}`, controller.create(model))
 
-  app.get("/numeros", numeros.findAll)
+  app.get(`/${url}`, controller.findAll(model))
 
-  app.get("/numeros/:id", numeros.findOne)
+  app.get(`/${url}/:id`, controller.findOne(model))
 
-  app.put("/numeros/:id", numeros.update)
+  app.put(`/${url}/:id`, controller.update(model))
 
-  app.delete("/numeros/:id", numeros.delete)
+  app.delete(`/${url}/:id`, controller.delete(model))
 
-  app.delete("/numeros", numeros.deleteAll)
+  app.delete(`/${url}`, controller.deleteAll(model))
 };

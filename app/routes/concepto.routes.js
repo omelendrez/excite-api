@@ -1,15 +1,17 @@
 module.exports = app => {
-  const conceptos = require("../controllers/concepto.controller.js")
+  const controller = require("../controllers/controller.js")
+  const model = 'concepto'
+  const url = 'conceptos'
 
-  app.post("/conceptos", conceptos.create)
+  app.post(`/${url}`, controller.create(model))
 
-  app.get("/conceptos", conceptos.findAll)
+  app.get(`/${url}`, controller.findAll(model))
 
-  app.get("/conceptos/:id", conceptos.findOne)
+  app.get(`/${url}/:id`, controller.findOne(model))
 
-  app.put("/conceptos/:id", conceptos.update)
+  app.put(`/${url}/:id`, controller.update(model))
 
-  app.delete("/conceptos/:id", conceptos.delete)
+  app.delete(`/${url}/:id`, controller.delete(model))
 
-  app.delete("/conceptos", conceptos.deleteAll)
+  app.delete(`/${url}`, controller.deleteAll(model))
 };

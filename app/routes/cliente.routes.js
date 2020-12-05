@@ -1,15 +1,18 @@
 module.exports = app => {
-  const clientes = require("../controllers/cliente.controller.js")
+  const controller = require("../controllers/controller.js")
+  const model = 'clientes'
+  const url = 'clientes'
 
-  app.post("/clientes", clientes.create)
+  app.post(`/${url}`, controller.create(model))
 
-  app.get("/clientes", clientes.findAll)
+  app.get(`/${url}`, controller.findAll(model))
 
-  app.get("/clientes/:id", clientes.findOne)
+  app.get(`/${url}/:id`, controller.findOne(model))
 
-  app.put("/clientes/:id", clientes.update)
+  app.put(`/${url}/:id`, controller.update(model))
 
-  app.delete("/clientes/:id", clientes.delete)
+  app.delete(`/${url}/:id`, controller.delete(model))
 
-  app.delete("/clientes", clientes.deleteAll)
+  app.delete(`/${url}`, controller.deleteAll(model))
+
 };

@@ -1,15 +1,17 @@
 module.exports = app => {
-  const porciva = require("../controllers/porciva.controller.js")
+  const controller = require("../controllers/controller.js")
+  const model = 'porciva'
+  const url = 'porciva'
 
-  app.post("/porciva", porciva.create)
+  app.post(`/${url}`, controller.create(model))
 
-  app.get("/porciva", porciva.findAll)
+  app.get(`/${url}`, controller.findAll(model))
 
-  app.get("/porciva/:id", porciva.findOne)
+  app.get(`/${url}/:id`, controller.findOne(model))
 
-  app.put("/porciva/:id", porciva.update)
+  app.put(`/${url}/:id`, controller.update(model))
 
-  app.delete("/porciva/:id", porciva.delete)
+  app.delete(`/${url}/:id`, controller.delete(model))
 
-  app.delete("/porciva", porciva.deleteAll)
+  app.delete(`/${url}`, controller.deleteAll(model))
 };
