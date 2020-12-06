@@ -62,21 +62,21 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 35
+    "size": 60
   },
   {
     "name": "CLIFAN",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 35
+    "size": 60
   },
   {
     "name": "CLIFP",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "CLIINT",
@@ -90,14 +90,14 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "CLINOM",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 35
+    "size": 60
   },
   {
     "name": "CLIOBS",
@@ -195,7 +195,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 45
+    "size": 60
   },
   {
     "name": "CONFEC",
@@ -231,7 +231,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "FACCAN",
@@ -323,7 +323,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "IVAFEC",
@@ -358,7 +358,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "NUMPV",
@@ -379,7 +379,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "PAGCHEEST",
@@ -466,7 +466,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "PRODEST",
@@ -508,7 +508,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "REMCAN",
@@ -600,7 +600,7 @@
     "type": "CHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 3,
+    "size": 6,
     "index": true
   },
   {
@@ -608,7 +608,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "TIPCOD",
@@ -645,21 +645,21 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "TRALOC",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "TRANOM",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "TRAOBS",
@@ -723,7 +723,7 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "VENFECSAL",
@@ -744,14 +744,14 @@
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "VENNOM",
     "type": "VARCHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 25
+    "size": 60
   },
   {
     "name": "VENOBS",

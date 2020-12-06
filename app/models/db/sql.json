@@ -28,7 +28,7 @@
   },
   {
     "model": "pagos",
-    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, p.CLICOD, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 {search} ORDER BY p.ID DESC;",
+    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, p.CLICOD, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 AND PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 {search} ORDER BY p.ID DESC;",
     "where": "CONCAT(\"|\",p.PAGNUM,\"|\",DATE_FORMAT(p.PAGFEC, \"%d-%m-%Y\"),\"|\",p.CLICOD,\"|\",c.CLINOM,\"|\")"
   },
   {
