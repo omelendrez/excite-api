@@ -2,17 +2,17 @@
   {
     "model": "ajustest",
     "all": "SELECT a.ID, a.AJUNUM, a.AJUFEC, a.PRODCOD, p.PRODDES, a.AJUCAN FROM ajustest AS a INNER JOIN producto AS p ON p.PRODCOD = a.PRODCOD {search} ORDER BY a.AJUNUM DESC;",
-    "where": "WHERE CONCAT(\"|\",a.PRODCOD,\"|\",p.PRODDES,\"|\",DATE_FORMAT(a.AJUFEC, \"%d-%m-%Y\"),\"|\")"
+    "where": "CONCAT(\"|\",a.PRODCOD,\"|\",p.PRODDES,\"|\",DATE_FORMAT(a.AJUFEC, \"%d-%m-%Y\"),\"|\")"
   },
   {
     "model": "clientes",
     "all": "SELECT c.ID, c.CLICOD, c.CLINOM, c.CLIDOM, c.CLILOC, c.CLICUIT, c.CLITEL, c.CLICEL, c.CLICP, c.CLIFP, c.CLIINT, i.IVADES FROM clientes c INNER JOIN iva i ON c.IVACOD = i.IVACOD {search};",
-    "where": "WHERE CONCAT(\"|\",c.CLICOD,\"|\",c.CLINOM,\"|\",c.CLILOC,\"|\",c.CLIDOM,\"|\",c.CLITEL,\"|\",c.CLICEL,\"|\", c.CLICP,\"|\")"
+    "where": "CONCAT(\"|\",c.CLICOD,\"|\",c.CLINOM,\"|\",c.CLILOC,\"|\",c.CLIDOM,\"|\",c.CLITEL,\"|\",c.CLICEL,\"|\", c.CLICP,\"|\")"
   },
   {
     "model": "concepto",
     "all": "SELECT c.ID, c.CONNUM, c.CONFEC, c.CONDES, c.CONCLI, cl.CLINOM, c.CONCANDEB, c.CONCANHAB FROM concepto c INNER JOIN clientes cl ON c.CONCLI = cl.CLICOD {search} ORDER BY c.CONNUM DESC;",
-    "where": "WHERE CONCAT(\"|\",c.CONNUM,\"|\",c.CONDES,\"|\",DATE_FORMAT(c.CONFEC, \"%d-%m-%Y\"),\"|\",c.CONCLI,\"|\",cl.CLINOM,\"|\")"
+    "where": "CONCAT(\"|\",c.CONNUM,\"|\",c.CONDES,\"|\",DATE_FORMAT(c.CONFEC, \"%d-%m-%Y\"),\"|\",c.CONCLI,\"|\",cl.CLINOM,\"|\")"
   },
   {
     "model": "estados",
@@ -28,8 +28,8 @@
   },
   {
     "model": "pagos",
-    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, p.CLICOD, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 AND PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 {search} ORDER BY p.ID DESC;",
-    "where": "AND CONCAT(\"|\",p.PAGNUM,\"|\",DATE_FORMAT(p.PAGFEC, \"%d-%m-%Y\"),\"|\",p.CLICOD,\"|\",c.CLINOM,\"|\")"
+    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, p.CLICOD, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 {search} ORDER BY p.ID DESC;",
+    "where": "CONCAT(\"|\",p.PAGNUM,\"|\",DATE_FORMAT(p.PAGFEC, \"%d-%m-%Y\"),\"|\",p.CLICOD,\"|\",c.CLINOM,\"|\")"
   },
   {
     "model": "porciva",
@@ -38,7 +38,7 @@
   {
     "model": "producto",
     "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE, p.PRODSEX, P.PRODSTO, P.PRODSINI, p.PRODCOM, CASE p.PRODEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE p.PRODEST END PRODEST FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD {search} ORDER BY p.PRODCOD;",
-    "where": "WHERE CONCAT(\"|\",p.PRODCOD,\"|\",p.PRODDES,\"|\")"
+    "where": "CONCAT(\"|\",p.PRODCOD,\"|\",p.PRODDES,\"|\")"
   },
   {
     "model": "provinci",
@@ -47,26 +47,26 @@
   {
     "model": "remitos",
     "all": "SELECT r.ID, r.REMNUM, r.REMFEC, e.ESTDES, r.VENCOD, v.VENNOM, r.CLICOD, c.CLINOM, r.REMFACNUM, r.REMPAGNUM, r.REMDES FROM remitos r INNER JOIN estados e ON r.ESTCOD = e.ESTCOD INNER JOIN vendedor v ON r.VENCOD = v.VENCOD INNER JOIN clientes c ON r.CLICOD = c.CLICOD WHERE REMNUM <> 0 {search} ORDER BY r.REMNUM DESC;",
-    "where": "AND CONCAT(\"|\",r.REMNUM,\"|\",DATE_FORMAT(r.REMFEC, \"%d-%m-%Y\"),\"|\", r.CLICOD,\"|\",c.CLINOM,\"|\",r.REMFACNUM,\"|\",r.REMPAGNUM,\"|\")"
+    "where": "CONCAT(\"|\",r.REMNUM,\"|\",DATE_FORMAT(r.REMFEC, \"%d-%m-%Y\"),\"|\", r.CLICOD,\"|\",c.CLINOM,\"|\", r.VENCOD,\"|\",v.VENNOM,\"|\",r.REMFACNUM,\"|\",r.REMPAGNUM,\"|\",e.ESTDES,\"|\")"
   },
   {
     "model": "tipo",
     "all": "SELECT ID, TIPCOD, TIPDES FROM tipo {search};",
-    "where": "WHERE CONCAT(\"|\",TIPCOD,\"|\",TIPDES,\"|\")"
+    "where": "CONCAT(\"|\",TIPCOD,\"|\",TIPDES,\"|\")"
   },
   {
     "model": "tipo1",
     "all": "SELECT ID, TIPCOD, SUBTIPCOD, SUBTIPDES FROM tipo1 {search};",
-    "where": "WHERE CONCAT(\"|\",TIPCOD,\"|\",SUBTIPCOD,\"|\",SUBTIPDES,\"|\")"
+    "where": "CONCAT(\"|\",TIPCOD,\"|\",SUBTIPCOD,\"|\",SUBTIPDES,\"|\")"
   },
   {
     "model": "transpor",
     "all": "SELECT ID, TRACOD, TRANOM, TRADOM, TRALOC, TRATEL, TRAOBS, TRACUIT FROM transpor {search};",
-    "where": "WHERE CONCAT(\"|\",TRACOD,\"|\",TRANOM,\"|\",TRADOM,\"|\",TRALOC,\"|\",TRATEL,\"|\",TRAOBS,\"|\")"
+    "where": "CONCAT(\"|\",TRACOD,\"|\",TRANOM,\"|\",TRADOM,\"|\",TRALOC,\"|\",TRATEL,\"|\",TRAOBS,\"|\")"
   },
   {
     "model": "vendedor",
     "all": "SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL, VENCEL, VENOBS, VENCP FROM vendedor {search};",
-    "where": "WHERE CONCAT(\"|\",VENCOD,\"|\",VENNOM,\"|\",VENDOM,\"|\",VENLOC,\"|\",VENTEL,\"|\",VENCEL,\"|\",VENOBS,\"|\")"
+    "where": "CONCAT(\"|\",VENCOD,\"|\",VENNOM,\"|\",VENDOM,\"|\",VENLOC,\"|\",VENTEL,\"|\",VENCEL,\"|\",VENOBS,\"|\")"
   }
 ]

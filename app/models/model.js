@@ -63,7 +63,7 @@ Model.getAll = (query, result, model) => {
   if (sqlObject) {
     if (search) {
       if (sqlObject.where) {
-        sqlWhere = `${sqlObject.where} LIKE "%${search}%"`
+        sqlWhere = (sqlObject.all.includes('WHERE') ? 'AND ' : 'WHERE ') + `${sqlObject.where} LIKE "%${search}%"`
       }
     }
     sqlQuery = sqlObject.all.split('{search}').join(sqlWhere)
