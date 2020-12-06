@@ -18,5 +18,10 @@
     "model": "ajustest",
     "field": "AJUNUM",
     "NUMCOD": 7
+  },
+  {
+    "model": "concepto",
+    "field": "CONNUM",
+    "NUMCOD": 10
   }
 ]
