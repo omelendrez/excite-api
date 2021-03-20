@@ -1,0 +1,36 @@
+### Lista ajustes
+GET http://localhost:3000/ajustes
+
+### Agregar ajuste
+POST http://localhost:3000/ajustes
+content-type: application/json
+
+{
+  "AJUNUM":99999 ,
+  "AJUFEC":"2020-11-19",
+  "PRODCOD": "080", 
+  "AJUCAN": -750  
+}
+
+### Actualizar ajuste || Se pasa el id del registro a modificar en la url
+PUT http://localhost:3000/ajustes/11335
+content-type: application/json
+
+{
+  "AJUNUM": 88888,
+  "AJUFEC":"2020-11-30",
+  "PRODCOD": "2002", 
+  "AJUCAN": 750
+}
+
+### Obtener ajuste pasando el id || Se pasa el id del registro a modificar en la url
+GET http://localhost:3000/ajustes/11335
+content-type: application/json
+
+### Eliminar ajuste pasando el id || Se pasa el id del registro a eliminar en la url
+DELETE http://localhost:3000/ajustes/11335
+content-type: application/json
+
+### Eliminar todos los ajustes // No se pasa ningún id
+DELETE http://localhost:3000/ajustes
+content-type: application/json

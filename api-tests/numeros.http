@@ -1,0 +1,36 @@
+### Lista numeros
+GET http://localhost:3000/numeros
+
+### Agregar ajuste
+POST http://localhost:3000/numeros
+content-type: application/json
+
+{
+  "NUMCOD": 99999,
+  "NUMDES":"Número de test",
+  "NUMVAL": 1, 
+  "NUMPV": 0
+}
+
+### Actualizar ajuste || Se pasa el id del registro a modificar en la url
+PUT http://localhost:3000/numeros/17
+content-type: application/json
+
+{
+  "NUMCOD": 88888,
+  "NUMDES":"Número de test updated",
+  "NUMVAL": 14148017, 
+  "NUMPV": 3
+}
+
+### Obtener ajuste pasando el id || Se pasa el id del registro a modificar en la url
+GET http://localhost:3000/numeros/17
+content-type: application/json
+
+### Eliminar ajuste pasando el id || Se pasa el id del registro a eliminar en la url
+DELETE http://localhost:3000/numeros/17
+content-type: application/json
+
+### Eliminar todos los numeros // No se pasa ningún id
+DELETE http://localhost:3000/numeros
+content-type: application/json

@@ -2,10 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const { importData } = require("../models/import.model")
 const execSync = require('child_process').execSync
-const { formatField, formatCreateField, isField } = require('../helpers')
+const { formatField, formatCreateField, addIndex, isField } = require('../helpers')
 
 const readDBFFiles = () => {
-  console.time('data-conversion')
+  const PROCESS_NAME = 'data-conversion'
+  console.time(PROCESS_NAME)
   const create = []
   const insert = []
   const sourceFolder = path.join(__dirname, '../../db')
@@ -18,6 +19,7 @@ const readDBFFiles = () => {
         const lines = csv.split(/\r?\n/)
         const header = lines[0].split('","').map(field => field.replace(/\"/g, ''))
         const columns = []
+        let indexes = []
         const records = []
         create.push(`DROP TABLE IF EXISTS \`${file}\`; CREATE TABLE \`${file}\` (`)
         insert.push(`INSERT INTO \`${file}\` (ID,${header.filter(field => isField(field)).join(',')}) VALUES `)
@@ -26,9 +28,13 @@ const readDBFFiles = () => {
         header.map((field) => {
           if (field.length && isField(field)) {
             columns.push(formatCreateField(field))
+            indexes = addIndex(field, indexes)
           }
         })
         columns.push('PRIMARY KEY (ID)')
+        if(indexes.length ) {
+          columns.push(indexes.join(','))
+        }
         create.push(columns.join(',') + ');')
         console.log(file, lines.length - 2)
         lines.map((line, index) => {
@@ -71,7 +77,7 @@ const readDBFFiles = () => {
       })
     }))
     */
-    console.timeEnd('data-conversion')
+    console.timeEnd(PROCESS_NAME)
   }))
 }
 

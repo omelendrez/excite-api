@@ -1,4 +1,4 @@
-const pool = require('./pool')
+const pool = require('./db/pool')
 
 exports.importData = sqlQuery => {
   pool.executeQuery(sqlQuery, null, (err, res) => {
