@@ -23,5 +23,10 @@
     "model": "concepto",
     "field": "CONNUM",
     "NUMCOD": 10
+  },
+  {
+    "model": "transpor",
+    "field": "TRACOD",
+    "NUMCOD": 60
   }
 ]
