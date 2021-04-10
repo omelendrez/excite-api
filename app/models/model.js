@@ -81,6 +81,25 @@ Model.getAll = (query, result, model) => {
   });
 };
 
+Model.getAllActive = (id, query, result, model) => {
+  let { search } = query;
+  let sqlQuery = "";
+
+  const sqlObject = sqlQueries.find((query) => query.model === model);
+  if (sqlObject) {
+    sqlQuery = sqlObject.all.split("{search}").join(id);
+  }
+  sql.query(sqlQuery, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
 Model.updateById = (id, record, result, model) => {
   if (record.AJUFEC) {
     record.AJUFEC = record.AJUFEC.split("T")[0];

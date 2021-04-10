@@ -40,6 +40,24 @@ exports.findAll = (model) => {
   };
 };
 
+exports.findAllActive = (model) => {
+  return (req, res) => {
+    Model.getAllActive(
+      req.params.id,
+      req.query,
+      (err, data) => {
+        if (err)
+          res.status(500).send({
+            message: err.message || "Error intentando recuperar los datos.",
+            error: err,
+          });
+        else res.send(data);
+      },
+      model
+    );
+  };
+};
+
 exports.findOne = (model) => {
   return (req, res) => {
     Model.findById(

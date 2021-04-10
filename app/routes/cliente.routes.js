@@ -7,7 +7,7 @@ module.exports = (app) => {
 
   app.get(`/${url}`, controller.findAll(model));
 
-  app.get(`/${url}-activos`, controller.findAll(`${model}-activos`));
+  app.get(`/${url}-activos/:id`, controller.findAllActive(`${model}-activos`));
 
   app.get(`/${url}/:id`, controller.findOne(model));
 
