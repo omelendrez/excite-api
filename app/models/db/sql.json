@@ -5,7 +5,7 @@
   },
   {
     "model": "clientes",
-    "all": "SELECT c.ID, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD"
+    "all": "SELECT c.ID, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD"
   },
   {
     "model": "clientes-activos",
@@ -37,11 +37,11 @@
   },
   {
     "model": "producto",
-    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE, p.PRODEST FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD;"
+    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE, CASE p.PRODEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE p.PRODEST END PRODEST FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD;"
   },
   {
     "model": "producto-activos",
-    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE, p.PRODEST FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD WHERE p.PRODEST='A';"
+    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD WHERE p.PRODEST='A';"
   },
   {
     "model": "provinci",
@@ -53,7 +53,7 @@
   },
   {
     "model": "tipo",
-    "all": "SELECT ID, TIPCOD, TIPDES FROM tipo"
+    "all": "SELECT ID, TIPCOD, TIPDES, CASE TIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE TIPEST FROM tipo"
   },
   {
     "model": "tipo-activos",
@@ -61,7 +61,7 @@
   },
   {
     "model": "tipo1",
-    "all": "SELECT ID, TIPCOD, SUBTIPCOD, SUBTIPDES FROM tipo1"
+    "all": "SELECT ID, TIPCOD, SUBTIPCOD, SUBTIPDES, CASE SUBTIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE SUBTIPEST FROM tipo1"
   },
   {
     "model": "tipo1-activos",
@@ -69,7 +69,7 @@
   },
   {
     "model": "transpor",
-    "all": "SELECT ID, TRACOD, TRANOM, TRADOM, TRALOC, TRATEL FROM transpor"
+    "all": "SELECT ID, TRACOD, TRANOM, TRADOM, TRALOC, TRATEL, CASE TRAEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE TRAEST FROM transpor"
   },
   {
     "model": "transpor-activos",
@@ -77,7 +77,7 @@
   },
   {
     "model": "vendedor",
-    "all": "SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL FROM vendedor"
+    "all": "SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL, CASE VENEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE VENEST END PRODEST FROM vendedor"
   },
   {
     "model": "vendedor-activos",
