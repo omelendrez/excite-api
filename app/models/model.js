@@ -81,7 +81,7 @@ Model.getAll = (query, result, model) => {
   });
 };
 
-Model.getAllActive = (id, query, result, model) => {
+Model.getAllByParentId = (id, query, result, model) => {
   let { search } = query;
   let sqlQuery = "";
 

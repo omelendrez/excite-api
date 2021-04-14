@@ -9,7 +9,7 @@
   },
   {
     "model": "clientes-activos",
-    "all": "SELECT c.ID, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD WHERE c.CLIEST='A' AND c.VENCOD = {search}"
+    "all": "SELECT c.ID, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST  FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD WHERE c.CLIEST='A' AND c.VENCOD = {search}"
   },
   {
     "model": "concepto",

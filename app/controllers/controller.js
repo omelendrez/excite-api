@@ -40,9 +40,9 @@ exports.findAll = (model) => {
   };
 };
 
-exports.findAllActive = (model) => {
+exports.findAllByParentId = (model) => {
   return (req, res) => {
-    Model.getAllActive(
+    Model.getAllByParentId(
       req.params.id,
       req.query,
       (err, data) => {
