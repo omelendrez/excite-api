@@ -12,6 +12,10 @@
     "all": "SELECT c.ID, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST  FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD WHERE c.VENCOD = {search}"
   },
   {
+    "model": "clientes-productos",
+    "all": "SELECT ID, TIPCOD, CLIPRODPRE FROM cliente1 WHERE CLICOD={search};"
+  },
+  {
     "model": "concepto",
     "all": "SELECT c.ID, c.CONNUM, c.CONFEC, c.CONDES, cl.CLINOM, c.CONCANDEB, c.CONCANHAB FROM concepto c INNER JOIN clientes cl ON c.CONCLI = cl.CLICOD ORDER BY c.CONNUM DESC"
   },
@@ -42,6 +46,10 @@
   {
     "model": "producto-activos",
     "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD WHERE p.PRODEST='A';"
+  },
+  {
+    "model": "producto-ajustes",
+    "all": "SELECT ID, AJUNUM, AJUFEC, AJUCAN, AJUOBS FROM ajustest WHERE PRODCOD = {search};"
   },
   {
     "model": "provinci",
@@ -82,5 +90,9 @@
   {
     "model": "vendedor-activos",
     "all": "SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL FROM vendedor WHERE VENEST='A'"
+  },
+  {
+    "model": "vendedor-productos",
+    "all": "SELECT ID, TIPCOD, VENCOM FROM vendedo2 WHERE VENCOD = {search};"
   }
 ]

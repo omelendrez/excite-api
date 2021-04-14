@@ -23,10 +23,10 @@
   },
   {
     "name": "AJUOBS",
-    "type": "IGNORE",
-    "null": null,
+    "type": "VARCHAR",
+    "null": "NOT NULL",
     "default": null,
-    "size": null
+    "size": 60
   },
   {
     "name": "CLICEL",
