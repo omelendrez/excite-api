@@ -547,8 +547,8 @@
   },
   {
     "name": "REMFACPV",
-    "type": "INTEGER",
-    "null": "NOT NULL",
+    "type": "IGNORE",
+    "null": null,
     "default": null,
     "size": null
   },
@@ -561,8 +561,8 @@
   },
   {
     "name": "REMLIQNUM",
-    "type": "INTEGER",
-    "null": "NOT NULL",
+    "type": "IGNORE",
+    "null": null,
     "default": null,
     "size": null
   },
@@ -583,8 +583,8 @@
   },
   {
     "name": "REMPED",
-    "type": "INTEGER",
-    "null": "NOT NULL",
+    "type": "IGNORE",
+    "null": null,
     "default": null,
     "size": null
   },
