@@ -29,7 +29,7 @@
   },
   {
     "model": "iva",
-    "all": "SELECT ID, IVACOD, IVADES FROM iva;"
+    "all": "SELECT ID, IVACOD, IVADES, CASE IVAEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE IVAEST END IVAEST FROM iva;"
   },
   {
     "model": "numeros",
