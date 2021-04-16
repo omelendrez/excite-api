@@ -101,6 +101,6 @@
   },
   {
     "model": "vendedor-productos",
-    "all": "SELECT ID, TIPCOD, VENCOM FROM vendedo2 WHERE VENCOD = {search};"
+    "all": "SELECT v.ID, CONCAT(v.TIPCOD, ' - ', t.TIPDES) TIPDES, v.VENCOM FROM vendedo2 v INNER JOIN tipo t ON t.TIPCOD = v.TIPCOD WHERE VENCOD = {search};"
   }
 ]
