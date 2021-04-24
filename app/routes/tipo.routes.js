@@ -9,6 +9,11 @@ module.exports = (app) => {
 
   app.get(`/${url}-activos`, controller.findAll(`${model}-activos`));
 
+  app.get(
+    `/${url}-subtipos/:id`,
+    controller.findAllByParentId(`${model}-subtipos`)
+  );
+
   app.get(`/${url}/:id`, controller.findOne(model));
 
   app.put(`/${url}/:id`, controller.update(model));

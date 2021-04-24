@@ -76,6 +76,10 @@
     "all": "SELECT ID, TIPCOD, TIPDES FROM tipo WHERE TIPEST='A'"
   },
   {
+    "model": "tipo-subtipos",
+    "all": "SELECT ID, TIPCOD, SUBTIPCOD, SUBTIPDES, CASE SUBTIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE SUBTIPEST END SUBTIPEST FROM tipo1 WHERE TIPCOD = '{search}'"
+  },
+  {
     "model": "tipo1",
     "all": "SELECT ID, TIPCOD, SUBTIPCOD, SUBTIPDES, CASE SUBTIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE SUBTIPEST END SUBTIPEST FROM tipo1"
   },
