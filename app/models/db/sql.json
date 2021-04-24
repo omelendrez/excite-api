@@ -69,7 +69,7 @@
   },
   {
     "model": "tipo",
-    "all": "SELECT ID, TIPCOD, TIPDES, CASE TIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE TIPEST END TIPEST FROM tipo"
+    "all": "SELECT ID, TIPCOD, TIPDES, (SELECT COUNT(*) FROM tipo1 WHERE tipo1.TIPCOD = t.TIPCOD) SUBTIPOS, CASE TIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE TIPEST END TIPEST FROM tipo t"
   },
   {
     "model": "tipo-activos",
