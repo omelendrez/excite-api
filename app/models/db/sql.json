@@ -65,7 +65,7 @@
   },
   {
     "model": "remitos-items",
-    "all": "SELECT r.ID, p.PRODDES, r.REMCAN, r.REMPRE FROM remiitem r INNER JOIN producto p ON p.PRODCOD = r.PRODCOD WHERE r.REMNUM = {search}"
+    "all": "SELECT r.ID, r.REMNUM, CONCAT(r.PRODCOD, ' - ', p.PRODDES) PRODDES, r.REMCAN, r.REMPRE FROM remiitem r INNER JOIN producto p ON p.PRODCOD = r.PRODCOD WHERE r.REMNUM = {search}"
   },
   {
     "model": "tipo",
