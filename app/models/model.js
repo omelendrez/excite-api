@@ -38,6 +38,7 @@ Model.create = (newRecord, result, model) => {
 
 Model.findById = (id, result, model) => {
   const sqlQuery = `SELECT * FROM ${model} WHERE ID = ${id}`;
+  console.log(sqlQuery);
   sql.query(sqlQuery, (err, res) => {
     if (err) {
       console.log("error: ", err);

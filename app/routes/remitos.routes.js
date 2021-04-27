@@ -9,7 +9,9 @@ module.exports = (app) => {
 
   app.get(`/${url}/:id`, controller.findOne(model));
 
-  app.get(`/${url}-items/:id`, controller.findAllByParentId(`${model}-items`));
+  app.get(`/${url}/:id/items`, controller.findAllByParentId(`${model}-items`));
+
+  app.get(`/${url}/items/:id`, controller.findOne("remiitem"));
 
   app.put(`/${url}/:id`, controller.update(model));
 
