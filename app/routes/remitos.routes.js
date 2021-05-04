@@ -15,6 +15,8 @@ module.exports = (app) => {
 
   app.put(`/${url}/:id`, controller.update(model));
 
+  app.put(`/${url}/items/:id`, controller.update("remiitem"));
+
   app.delete(`/${url}/:id`, controller.delete(model));
 
   app.delete(`/${url}/items/:id`, controller.delete("remiitem"));
