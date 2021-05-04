@@ -17,5 +17,7 @@ module.exports = (app) => {
 
   app.delete(`/${url}/:id`, controller.delete(model));
 
+  app.delete(`/${url}/items/:id`, controller.delete("remiitem"));
+
   app.delete(`/${url}`, controller.deleteAll(model));
 };
