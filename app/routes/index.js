@@ -1,19 +1,20 @@
-module.exports = app => {
-  require("./ajustest.routes")(app)
-  require("./cliente.routes")(app)
-  require("./concepto.routes")(app)
-  require("./estados.routes")(app)
-  require("./facturas.routes")(app)
-  require("./iva.routes")(app)
-  require("./numeros.routes")(app)
-  require("./pagos.routes")(app)
-  require("./porciva.routes")(app)
-  require("./producto.routes")(app)
-  require("./provinci.routes")(app)
-  require("./remitos.routes")(app)
-  require("./tipo.routes")(app)
-  require("./tipo1.routes")(app)
-  require("./transpor.routes")(app)
-  require("./vendedor.routes")(app)
-  require("./import.routes")(app)
-}
+module.exports = (app) => {
+  require("./ajustest.routes")(app);
+  require("./cliente.routes")(app);
+  require("./concepto.routes")(app);
+  require("./estados.routes")(app);
+  require("./facturas.routes")(app);
+  require("./iva.routes")(app);
+  require("./numeros.routes")(app);
+  require("./pagos.routes")(app);
+  require("./porciva.routes")(app);
+  require("./producto.routes")(app);
+  require("./provinci.routes")(app);
+  require("./remitos.routes")(app);
+  require("./tipo.routes")(app);
+  require("./tipo1.routes")(app);
+  require("./transpor.routes")(app);
+  require("./vendedor.routes")(app);
+  require("./import.routes")(app);
+  app.get(`/wake-up`, (_, res) => res.status(200).send({ up: true }));
+};
