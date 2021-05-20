@@ -13,7 +13,7 @@
   },
   {
     "model": "clientes-productos",
-    "all": "SELECT ID, TIPCOD, CLIPRODPRE FROM cliente1 WHERE CLICOD={search};"
+    "all": "SELECT c.ID, CONCAT(c.TIPCOD, ' - ', t.TIPDES) 'TIPO',  c.CLIPRODPRE FROM cliente1 c INNER JOIN tipo t ON c.TIPCOD = t.TIPCOD WHERE CLICOD={search} ORDER BY 2;"
   },
   {
     "model": "clientes-remitos",
