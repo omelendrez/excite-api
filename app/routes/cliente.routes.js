@@ -12,10 +12,7 @@ module.exports = (app) => {
     controller.findAllByParentId(`${model}-activos`)
   );
 
-  app.get(
-    `/${url}-productos/:id`,
-    controller.findAllByParentId(`${model}-productos`)
-  );
+  app.get(`/${url}-tipos/:id`, controller.findAllByParentId(`${model}-tipos`));
 
   app.get(
     `/${url}-remitos/:id`,
