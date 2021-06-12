@@ -16,11 +16,11 @@ module.exports = (app) => {
   app.delete(`/${url}`, controller.deleteAll(model));
 
   app.get(
-    `/${url}/remitos/:id`,
+    `/${url}/:id/remitos`,
     controller.findAllByParentId(`${model}-remitos`)
   );
   app.get(
-    `/${url}/valores/:id`,
+    `/${url}/:id/valores`,
     controller.findAllByParentId(`${model}-valores`)
   );
 };
