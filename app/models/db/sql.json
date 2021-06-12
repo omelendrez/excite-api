@@ -40,6 +40,14 @@
     "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 AND PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 ORDER BY p.ID DESC;"
   },
   {
+    "model": "pagos-remitos",
+    "all": "SELECT ID, PAGNUM, REMNUM FROM pagos1 WHERE PAGNUM={search}"
+  },
+  {
+    "model": "pagos-valores",
+    "all": "SELECT ID, PAGNUM, PAGSEC, PAGTIP, PAGIMP, PAGCHENUM, PAGCHEBAN FROM pagos2 WHERE PAGNUM={search};"
+  },
+  {
     "model": "porciva",
     "all": "SELECT ID, IVAFEC, IVAPOR FROM porciva;"
   },
