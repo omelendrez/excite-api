@@ -21,7 +21,7 @@ Model.create = (newRecord, result, model) => {
           return;
         }
         updateNumber(numero.NUMCOD, value);
-        result(null, { id: res.insertId, ...newRecord });
+        result(null, { ID: res.insertId, ...newRecord });
       });
     });
   } else {
@@ -31,7 +31,7 @@ Model.create = (newRecord, result, model) => {
         result(err, null);
         return;
       }
-      result(null, { id: res.insertId, ...newRecord });
+      result(null, { ID: res.insertId, ...newRecord });
     });
   }
 };
@@ -138,7 +138,7 @@ Model.updateById = (id, record, result, model) => {
         return;
       }
 
-      result(null, { id: id, ...record });
+      result(null, { ID: id, ...record });
     }
   );
 };
