@@ -23,4 +23,7 @@ module.exports = (app) => {
     `/${url}/:id/valores`,
     controller.findAllByParentId(`${model}-valores`)
   );
+
+  app.get(`/${url}/remitos/:id`, controller.findOne("pagos1"));
+  app.get(`/${url}/valores/:id`, controller.findOne("pagos2"));
 };
