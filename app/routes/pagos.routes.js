@@ -25,5 +25,10 @@ module.exports = (app) => {
   );
 
   app.get(`/${url}/remitos/:id`, controller.findOne("pagos1"));
+  app.put(`/${url}/remitos/:id`, controller.update("pagos1"));
+  app.delete(`/${url}/remitos/:id`, controller.delete("pagos1"));
+
   app.get(`/${url}/valores/:id`, controller.findOne("pagos2"));
+  app.put(`/${url}/valores/:id`, controller.update("pagos2"));
+  app.delete(`/${url}/valores/:id`, controller.delete("pagos2"));
 };
