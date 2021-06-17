@@ -44,6 +44,10 @@
     "all": "SELECT p.ID, p.PAGNUM, p.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=p.REMNUM) REMTOT FROM pagos1 p INNER JOIN remitos r ON r.REMNUM=p.REMNUM WHERE p.PAGNUM={search}"
   },
   {
+    "model": "pagos-remitos-pending",
+    "all": "SELECT r.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=r.REMNUM) REMTOT FROM remitos r WHERE r.ESTCOD='S' AND r.REMNUM NOT IN (SELECT REMNUM FROM PAGOS1) AND r.REMNUM <> 0 AND r.CLICOD={search};"
+  },
+  {
     "model": "pagos-valores",
     "all": "SELECT ID, PAGNUM, PAGSEC, PAGTIP, PAGIMP, PAGCHENUM, PAGCHEBAN FROM pagos2 WHERE PAGNUM={search};"
   },

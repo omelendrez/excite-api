@@ -20,6 +20,10 @@ module.exports = (app) => {
     controller.findAllByParentId(`${model}-remitos`)
   );
   app.get(
+    `/${url}/:id/remitos/pending`,
+    controller.findAllByParentId(`${model}-remitos-pending`)
+  );
+  app.get(
     `/${url}/:id/valores`,
     controller.findAllByParentId(`${model}-valores`)
   );
