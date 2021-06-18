@@ -17,7 +17,7 @@
   },
   {
     "model": "clientes-remitos",
-    "all": "SELECT r.ID, r.REMNUM, r.REMFEC, r.ESTCOD, e.ESTDES, r.REMFACNUM, r.REMPAGNUM, r.REMDES, r.REMFACLET, (SELECT SUM(ri.REMCAN*ri.REMPRE) FROM remiitem ri WHERE ri.REMNUM = r.REMNUM) TOTAL FROM remitos r INNER JOIN estados e ON e.ESTCOD = r.ESTCOD WHERE r.CLICOD = {search} ORDER BY r.ID"
+    "all": "SELECT r.ID, r.REMNUM, r.REMFEC, e.ESTDES, r.REMFACNUM, r.REMPAGNUM, r.REMDES, r.REMFACLET, (SELECT SUM(ri.REMCAN*ri.REMPRE) FROM remiitem ri WHERE ri.REMNUM = r.REMNUM) TOTAL FROM remitos r INNER JOIN estados e ON e.ESTCOD = r.ESTCOD WHERE r.CLICOD = {search} ORDER BY r.ID"
   },
   {
     "model": "concepto",
@@ -41,7 +41,7 @@
   },
   {
     "model": "pagos-remitos",
-    "all": "SELECT p.ID, p.PAGNUM, p.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=p.REMNUM) REMTOT, e.ESTDES FROM pagos1 p INNER JOIN remitos r ON r.REMNUM=p.REMNUM INNER JOIN estados e ON r.ESTCOD = e.ESTCOD WHERE p.PAGNUM={search}"
+    "all": "SELECT p.ID, r.ID REMID, p.PAGNUM, p.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=p.REMNUM) REMTOT, r.ESTCOD, e.ESTDES FROM pagos1 p INNER JOIN remitos r ON r.REMNUM=p.REMNUM INNER JOIN estados e ON r.ESTCOD = e.ESTCOD WHERE p.PAGNUM={search}"
   },
   {
     "model": "pagos-remitos-pending",
