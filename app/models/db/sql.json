@@ -57,7 +57,7 @@
   },
   {
     "model": "producto",
-    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE, CASE p.PRODEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE p.PRODEST END PRODEST FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD;"
+    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODSTO, p.PRODPRE, CASE p.PRODEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE p.PRODEST END PRODEST FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON p.SUBTIPCOD = t1.SUBTIPCOD;"
   },
   {
     "model": "producto-activos",
