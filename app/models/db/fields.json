@@ -484,10 +484,10 @@
   },
   {
     "name": "PRODSEX",
-    "type": "VARCHAR",
+    "type": "CHAR",
     "null": "NOT NULL",
     "default": null,
-    "size": 10
+    "size": 1
   },
   {
     "name": "PRODSINI",
