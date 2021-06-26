@@ -21,4 +21,6 @@ module.exports = (app) => {
   app.delete(`/${url}/:id`, controller.delete(model));
 
   app.delete(`/${url}`, controller.deleteAll(model));
+
+  app.put(`/${url}/update-price/:id`, controller.updatePrice(model));
 };

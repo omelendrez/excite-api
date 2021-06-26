@@ -81,7 +81,8 @@
   },
   {
     "model": "tipo",
-    "all": "SELECT ID, TIPCOD, TIPDES, (SELECT COUNT(*) FROM tipo1 WHERE tipo1.TIPCOD = t.TIPCOD) SUBTIPOS, CASE TIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE TIPEST END TIPEST FROM tipo t"
+    "all": "SELECT ID, TIPCOD, TIPDES, (SELECT COUNT(*) FROM tipo1 WHERE tipo1.TIPCOD = t.TIPCOD) SUBTIPOS, CASE TIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE TIPEST END TIPEST FROM tipo t",
+    "update-price": "UPDATE producto SET PRODPRE={PRODPRE} WHERE PRODEST='A' AND TIPCOD='{TIPCOD}';"
   },
   {
     "model": "tipo-activos",

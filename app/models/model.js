@@ -101,6 +101,7 @@ Model.getAllByParentId = (id, query, result, model) => {
 };
 
 Model.updateById = (id, record, result, model) => {
+  // Remote time from dates
   if (record.AJUFEC) {
     record.AJUFEC = record.AJUFEC.split("T")[0];
   }
@@ -141,6 +142,28 @@ Model.updateById = (id, record, result, model) => {
       result(null, { ID: id, ...record });
     }
   );
+};
+
+Model.updatePrice = (id, record, result, model) => {
+  const { PRODPRE } = record;
+  let sqlQuery = "";
+  const sqlObject = sqlQueries.find((query) => query.model === model);
+  if (sqlObject) {
+    sqlQuery = sqlObject["update-price"]
+      .split("{TIPCOD}")
+      .join(id)
+      .split("{PRODPRE}")
+      .join(PRODPRE);
+  }
+  sql.query(sqlQuery, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
 };
 
 Model.remove = (id, result, model) => {
