@@ -21,7 +21,7 @@
   },
   {
     "model": "concepto",
-    "all": "SELECT c.ID, c.CONNUM, c.CONFEC, c.CONDES, cl.CLINOM, c.CONCANDEB, c.CONCANHAB FROM concepto c INNER JOIN clientes cl ON c.CONCLI = cl.CLICOD ORDER BY c.CONNUM DESC;"
+    "all": "SELECT c.ID, c.CONNUM, c.CONFEC, c.CONDES, c.CONCLI, cl.CLINOM, c.CONCANDEB, c.CONCANHAB FROM concepto c INNER JOIN clientes cl ON c.CONCLI = cl.CLICOD ORDER BY c.CONNUM DESC;"
   },
   {
     "model": "estados",
@@ -37,7 +37,7 @@
   },
   {
     "model": "pagos",
-    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 AND PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 ORDER BY p.ID DESC;"
+    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, p.CLICOD, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 AND PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 ORDER BY p.ID DESC;"
   },
   {
     "model": "pagos-remitos",
