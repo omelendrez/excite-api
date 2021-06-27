@@ -21,7 +21,7 @@
   },
   {
     "model": "concepto",
-    "all": "SELECT c.ID, c.CONNUM, c.CONFEC, c.CONDES, cl.CLINOM, c.CONCANDEB, c.CONCANHAB FROM concepto c INNER JOIN clientes cl ON c.CONCLI = cl.CLICOD ORDER BY c.CONNUM DESC"
+    "all": "SELECT c.ID, c.CONNUM, c.CONFEC, c.CONDES, cl.CLINOM, c.CONCANDEB, c.CONCANHAB FROM concepto c INNER JOIN clientes cl ON c.CONCLI = cl.CLICOD ORDER BY c.CONNUM DESC;"
   },
   {
     "model": "estados",
