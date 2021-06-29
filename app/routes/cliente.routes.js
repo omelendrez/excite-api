@@ -19,6 +19,11 @@ module.exports = (app) => {
     controller.findAllByParentId(`${model}-remitos`)
   );
 
+  app.get(
+    `/${url}-saldos/:id`,
+    controller.findAllByParentId(`${model}-saldos`)
+  );
+
   app.get(`/${url}/:id`, controller.findOne(model));
 
   app.put(`/${url}/:id`, controller.update(model));
