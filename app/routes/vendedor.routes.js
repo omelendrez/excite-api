@@ -14,6 +14,11 @@ module.exports = (app) => {
     controller.findAllByParentId(`${model}-productos`)
   );
 
+  app.get(
+    `/${url}/:id/deudores`,
+    controller.findAllByParentId(`${model}-deudores`)
+  );
+
   app.get(`/${url}/:id`, controller.findOne(model));
 
   app.put(`/${url}/:id`, controller.update(model));

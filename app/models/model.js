@@ -87,7 +87,7 @@ Model.getAllByParentId = (id, query, result, model) => {
 
   const sqlObject = sqlQueries.find((query) => query.model === model);
   if (sqlObject) {
-    sqlQuery = sqlObject.all.split("{search}").join(id);
+    sqlQuery = sqlObject.all.split("{search}").join(id == 0 ? "" : id);
   }
   sql.query(sqlQuery, (err, res) => {
     if (err) {
