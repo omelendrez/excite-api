@@ -14,6 +14,8 @@ module.exports = (app) => {
 
   app.get(`/${url}-tipos/:id`, controller.findAllByParentId(`${model}-tipos`));
 
+  app.delete(`/${url}-tipos/:id`, controller.delete("cliente1"));
+
   app.get(
     `/${url}-remitos/:id`,
     controller.findAllByParentId(`${model}-remitos`)
