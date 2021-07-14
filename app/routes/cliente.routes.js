@@ -12,9 +12,12 @@ module.exports = (app) => {
     controller.findAllByParentId(`${model}-activos`)
   );
 
-  app.get(`/${url}-tipos/:id`, controller.findAllByParentId(`${model}-tipos`));
+  app.get(`/${url}/:id/tipos`, controller.findAllByParentId(`${model}-tipos`));
 
-  app.delete(`/${url}-tipos/:id`, controller.delete("cliente1"));
+  app.post(`/${url}/tipos`, controller.create("cliente1"));
+  app.get(`/${url}/tipos/:id`, controller.findOne("cliente1"));
+  app.put(`/${url}/tipos/:id`, controller.update("cliente1"));
+  app.delete(`/${url}/tipos/:id`, controller.delete("cliente1"));
 
   app.get(
     `/${url}-remitos/:id`,
