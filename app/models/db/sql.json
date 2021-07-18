@@ -98,7 +98,7 @@
   },
   {
     "model": "tipo-subtipos",
-    "all": "SELECT ID, TIPCOD, SUBTIPCOD, SUBTIPDES, CASE SUBTIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE SUBTIPEST END SUBTIPEST FROM tipo1 WHERE TIPCOD = '{search}'"
+    "all": "SELECT t1.ID, t1.TIPCOD, t.TIPDES, SUBTIPCOD, SUBTIPDES, CASE SUBTIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE SUBTIPEST END SUBTIPEST FROM tipo1 t1 INNER JOIN tipo t ON t.TIPCOD = t1.TIPCOD WHERE t1.TIPCOD = '{search}'"
   },
   {
     "model": "tipo1",
