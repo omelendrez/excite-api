@@ -20,12 +20,12 @@ module.exports = (app) => {
   app.delete(`/${url}/tipos/:id`, controller.delete("cliente1"));
 
   app.get(
-    `/${url}-remitos/:id`,
+    `/${url}/:id/remitos`,
     controller.findAllByParentId(`${model}-remitos`)
   );
 
   app.get(
-    `/${url}-saldos/:id`,
+    `/${url}/:id/saldos`,
     controller.findAllByParentId(`${model}-saldos`)
   );
 

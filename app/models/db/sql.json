@@ -17,11 +17,11 @@
   },
   {
     "model": "clientes-remitos",
-    "all": "SELECT r.ID, r.REMNUM, r.REMFEC, e.ESTDES, r.REMFACNUM, r.REMPAGNUM, r.REMDES, r.REMFACLET, (SELECT SUM(ri.REMCAN*ri.REMPRE) FROM remiitem ri WHERE ri.REMNUM = r.REMNUM)-r.REMDES TOTAL FROM remitos r INNER JOIN estados e ON e.ESTCOD = r.ESTCOD WHERE r.CLICOD = {search} ORDER BY r.ID"
+    "all": "SELECT r.ID, r.REMNUM, r.REMFEC, e.ESTDES, r.REMFACNUM, r.REMPAGNUM, r.REMDES, r.REMFACLET, (SELECT SUM(ri.REMCAN*ri.REMPRE) FROM remiitem ri WHERE ri.REMNUM = r.REMNUM)-r.REMDES TOTAL FROM remitos r INNER JOIN estados e ON e.ESTCOD = r.ESTCOD WHERE r.REMNUM > 0 AND  r.ESTCOD = 'S' AND r.CLICOD = {search} ORDER BY r.ID"
   },
   {
     "model": "clientes-saldos",
-    "all": "SELECT 'Presupuestos' TYPE, IFNULL(SUM(r1.REMCAN*r1.REMPRE),0)-r.REMDES AMOUNT FROM remitos r INNER JOIN remiitem r1 ON r1.REMNUM = r.REMNUM WHERE r.ESTCOD <> 'A' AND r.CLICOD = {search} UNION SELECT 'Conceptos', IFNULL(SUM(co.CONCANDEB-co.CONCANHAB),0) FROM concepto co WHERE co.CONCLI = {search} UNION SELECT 'Pagos', IFNULL(SUM(p2.PAGIMP),0)*-1 IMPORTE FROM pagos p  INNER JOIN pagos1 p1 ON p1.PAGNUM = p.PAGNUM INNER JOIN pagos2 p2 ON p2.PAGNUM = p.PAGNUM WHERE p.CLICOD = {search} "
+    "all": "SELECT 'Presupuestos' TYPE, IFNULL(SUM(r1.REMCAN*r1.REMPRE),0)-r.REMDES AMOUNT FROM remitos r INNER JOIN remiitem r1 ON r1.REMNUM = r.REMNUM WHERE r.REMNUM > 0 AND r.ESTCOD <> 'A' AND r.CLICOD = {search} UNION SELECT 'Conceptos', IFNULL(SUM(co.CONCANDEB-co.CONCANHAB),0) FROM concepto co WHERE co.CONCLI = {search} UNION SELECT 'Pagos', IFNULL(SUM(p2.PAGIMP),0)*-1 IMPORTE FROM pagos p  INNER JOIN pagos1 p1 ON p1.PAGNUM = p.PAGNUM INNER JOIN pagos2 p2 ON p2.PAGNUM = p.PAGNUM WHERE p.CLICOD = {search} "
   },
   {
     "model": "concepto",
@@ -49,7 +49,7 @@
   },
   {
     "model": "pagos-remitos-pending",
-    "all": "SELECT r.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=r.REMNUM)-r.REMDES REMTOT FROM remitos r WHERE r.ESTCOD='S' AND r.REMNUM NOT IN (SELECT REMNUM FROM PAGOS1) AND r.REMNUM <> 0 AND r.CLICOD={search};"
+    "all": "SELECT r.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=r.REMNUM)-r.REMDES REMTOT FROM remitos r WHERE r.ESTCOD='S' AND r.REMNUM NOT IN (SELECT REMNUM FROM PAGOS1) AND r.REMNUM > 0 AND r.CLICOD={search};"
   },
   {
     "model": "pagos-valores",
@@ -77,7 +77,7 @@
   },
   {
     "model": "remitos",
-    "all": "SELECT r.ID, r.REMNUM, r.REMFEC, r.REMDES, e.ESTDES, r.VENCOD, v.VENNOM, r.CLICOD, c.CLINOM, COUNT(i.REMCAN) REMQTY, IFNULL(SUM(i.REMPRE * i.REMCAN),0) REMTOT FROM remitos r LEFT OUTER JOIN remiitem i ON i.REMNUM = r.REMNUM INNER JOIN estados e ON r.ESTCOD = e.ESTCOD INNER JOIN vendedor v ON r.VENCOD = v.VENCOD INNER JOIN clientes c ON r.CLICOD = c.CLICOD WHERE r.REMNUM <> 0 GROUP BY r.ID ORDER BY r.REMNUM DESC;"
+    "all": "SELECT r.ID, r.REMNUM, r.REMFEC, r.REMDES, e.ESTDES, r.VENCOD, v.VENNOM, r.CLICOD, c.CLINOM, COUNT(i.REMCAN) REMQTY, IFNULL(SUM(i.REMPRE * i.REMCAN),0) REMTOT FROM remitos r LEFT OUTER JOIN remiitem i ON i.REMNUM = r.REMNUM INNER JOIN estados e ON r.ESTCOD = e.ESTCOD INNER JOIN vendedor v ON r.VENCOD = v.VENCOD INNER JOIN clientes c ON r.CLICOD = c.CLICOD WHERE r.REMNUM > 0 GROUP BY r.ID ORDER BY r.REMNUM DESC;"
   },
   {
     "model": "remitos-items",
@@ -85,7 +85,7 @@
   },
   {
     "model": "remitos-deudores",
-    "all": "SELECT r.CLICOD, c.CLINOM, r.VENCOD, v.VENNOM, c.CLILOC, r.REMNUM, r.REMFEC, r.REMFACNUM, IFNULL((SELECT SUM(ri.REMCAN*ri.REMPRE) FROM remiitem ri WHERE ri.REMNUM = r.REMNUM),0)-r.REMDES TOTAL, DATEDIFF(NOW(), r.REMFEC) DAYS FROM remitos r INNER JOIN clientes c ON c.CLICOD = r.CLICOD INNER JOIN vendedor v ON v.VENCOD = r.VENCOD WHERE r.REMNUM <> 0 AND r.ESTCOD = 'S' ORDER BY DAYS DESC, r.VENCOD ASC, r.CLICOD ASC;"
+    "all": "SELECT r.CLICOD, c.CLINOM, r.VENCOD, v.VENNOM, c.CLILOC, r.REMNUM, r.REMFEC, r.REMFACNUM, IFNULL((SELECT SUM(ri.REMCAN*ri.REMPRE) FROM remiitem ri WHERE ri.REMNUM = r.REMNUM),0)-r.REMDES TOTAL, DATEDIFF(NOW(), r.REMFEC) DAYS FROM remitos r INNER JOIN clientes c ON c.CLICOD = r.CLICOD INNER JOIN vendedor v ON v.VENCOD = r.VENCOD WHERE r.REMNUM > 0 AND r.ESTCOD = 'S' ORDER BY DAYS DESC, r.VENCOD ASC, r.CLICOD ASC;"
   },
   {
     "model": "tipo",
