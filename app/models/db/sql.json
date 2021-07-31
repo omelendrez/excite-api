@@ -5,7 +5,7 @@
   },
   {
     "model": "clientes",
-    "all": "SELECT c.ID, c.CLICOD, c.CLINOM, c.VENCOD, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST, (SELECT COUNT(*) FROM cliente1 c1 WHERE c1.CLICOD=c.CLICOD) CLITIP FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD"
+    "all": "SELECT c.ID, c.CLICOD, c.CLINOM, c.VENCOD, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST, (SELECT COUNT(*) FROM cliente1 c1 WHERE c1.CLICOD=c.CLICOD) CLITIP FROM clientes c LEFT JOIN vendedor v ON v.VENCOD = c.VENCOD"
   },
   {
     "model": "clientes-activos",
