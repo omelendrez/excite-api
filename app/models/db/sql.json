@@ -21,7 +21,7 @@
   },
   {
     "model": "clientes-saldos",
-    "all": "SELECT 'Presupuestos' TYPE, COUNT(*) RECS, IFNULL(SUM(r1.REMCAN*r1.REMPRE),0)-r.REMDES AMOUNT FROM remitos r INNER JOIN remiitem r1 ON r1.REMNUM = r.REMNUM WHERE r.REMNUM > 0 AND r.ESTCOD <> 'A' AND r.CLICOD={search} UNION SELECT 'Conceptos', COUNT(*), IFNULL(SUM(co.CONCANDEB-co.CONCANHAB),0) FROM concepto co WHERE co.CONCLI={search} UNION SELECT 'Pagos', COUNT(*), IFNULL(SUM(p2.PAGIMP),0)*-1 IMPORTE FROM pagos p  INNER JOIN pagos2 p2 ON p2.PAGNUM = p.PAGNUM WHERE p.CLICOD={search} UNION SELECT 'Balance', COUNT(DISTINCT r.REMNUM), IFNULL(SUM(ri.REMCAN*ri.REMPRE),0)-r.REMDES*-1 FROM remiitem ri INNER JOIN remitos r ON r.REMNUM=ri.REMNUM WHERE r.CLICOD={search};"
+    "all": "SELECT 'Presupuestos' TYPE, COUNT(*) RECS, IFNULL(SUM(r1.REMCAN*r1.REMPRE),0)-r.REMDES AMOUNT FROM remitos r INNER JOIN remiitem r1 ON r1.REMNUM = r.REMNUM WHERE r.REMNUM > 0 AND r.ESTCOD <> 'A' AND r.CLICOD={search} UNION SELECT 'Conceptos', COUNT(*), IFNULL(SUM(co.CONCANDEB-co.CONCANHAB),0) FROM concepto co WHERE co.CONCLI={search} UNION SELECT 'Pagos', COUNT(*), IFNULL(SUM(p2.PAGIMP),0)*-1 IMPORTE FROM pagos p  INNER JOIN pagos2 p2 ON p2.PAGNUM = p.PAGNUM WHERE p.CLICOD={search} UNION SELECT 'Balance Actual', COUNT(DISTINCT r.REMNUM), IFNULL(SUM(ri.REMCAN*ri.REMPRE),0)-r.REMDES*-1 FROM remiitem ri INNER JOIN remitos r ON r.REMNUM=ri.REMNUM WHERE r.CLICOD={search};"
   },
   {
     "model": "concepto",
