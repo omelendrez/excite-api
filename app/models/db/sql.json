@@ -21,7 +21,7 @@
   },
   {
     "model": "clientes-saldos",
-    "all": "SELECT 'Presupuestos' TYPE, IFNULL((SELECT  SUM(REMPRE*REMCAN)*-1 FROM remitos r INNER JOIN remiitem i on i.REMNUM = r.REMNUM WHERE r.CLICOD={search}),0) AMOUNT UNION SELECT 'Pagos', IFNULL((SELECT  (PAGIMP) FROM pagos2 WHERE PAGNUM IN (SELECT PAGNUM FROM pagos WHERE CLICOD={search})),0) UNION SELECT  'Balance Actual', CLISALIMP  FROM clientes WHERE CLICOD={search};"
+    "all": "SELECT 'Presupuestos' TYPE, IFNULL((SELECT SUM(REMPRE*REMCAN)*-1 FROM remitos r INNER JOIN remiitem i on i.REMNUM = r.REMNUM WHERE r.CLICOD={search}),0) AMOUNT UNION SELECT 'Pagos', IFNULL((SELECT SUM(PAGIMP) FROM pagos2 WHERE PAGNUM IN (SELECT PAGNUM FROM pagos WHERE CLICOD={search})),0) UNION SELECT  'Balance Actual', CLISALIMP  FROM clientes WHERE CLICOD={search};"
   },
   {
     "model": "concepto",
