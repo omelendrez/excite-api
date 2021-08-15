@@ -5,19 +5,19 @@
   },
   {
     "model": "clientes",
-    "all": "SELECT c.ID, c.CLICOD, c.CLINOM, c.VENCOD, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST, (SELECT COUNT(*) FROM cliente1 c1 WHERE c1.CLICOD=c.CLICOD) CLITIP FROM clientes c LEFT JOIN vendedor v ON v.VENCOD = c.VENCOD"
+    "all": "SELECT c.ID, c.CLICOD, c.CLINOM, c.VENCOD, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST, (SELECT COUNT(*) FROM cliente1 c1 WHERE c1.CLICOD=c.CLICOD) CLITIP FROM clientes c LEFT JOIN vendedor v ON v.VENCOD = c.VENCOD ORDER BY c.CLICOD;"
   },
   {
     "model": "clientes-activos",
-    "all": "SELECT c.ID, c.CLICOD, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST  FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD WHERE c.VENCOD={search}"
+    "all": "SELECT c.ID, c.CLICOD, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST  FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD WHERE c.VENCOD={search} ORDER BY c.CLICOD;"
   },
   {
     "model": "clientes-tipos",
-    "all": "SELECT c.ID, c.TIPCOD, t.TIPDES,  c.CLIPRODPRE FROM cliente1 c INNER JOIN tipo t ON c.TIPCOD = t.TIPCOD WHERE CLICOD={search} ORDER BY 2;"
+    "all": "SELECT c.ID, c.TIPCOD, t.TIPDES,  c.CLIPRODPRE FROM cliente1 c INNER JOIN tipo t ON c.TIPCOD = t.TIPCOD WHERE CLICOD={search} ORDER BY c.TIPCOD;"
   },
   {
     "model": "clientes-remitos",
-    "all": "SELECT r.ID, r.REMNUM, r.REMFEC, e.ESTDES, r.REMFACNUM, r.REMPAGNUM, r.REMDES, r.REMFACLET, (SELECT SUM(ri.REMCAN*ri.REMPRE) FROM remiitem ri WHERE ri.REMNUM = r.REMNUM)-r.REMDES TOTAL FROM remitos r INNER JOIN estados e ON e.ESTCOD = r.ESTCOD WHERE r.REMNUM > 0 AND  r.ESTCOD = 'S' AND r.CLICOD={search} ORDER BY r.ID"
+    "all": "SELECT r.ID, r.REMNUM, r.REMFEC, e.ESTDES, r.REMFACNUM, r.REMPAGNUM, r.REMDES, r.REMFACLET, (SELECT SUM(ri.REMCAN*ri.REMPRE) FROM remiitem ri WHERE ri.REMNUM = r.REMNUM)-r.REMDES TOTAL FROM remitos r INNER JOIN estados e ON e.ESTCOD = r.ESTCOD WHERE r.REMNUM > 0 AND  r.ESTCOD = 'S' AND r.CLICOD={search} ORDER BY r.REMNUM;"
   },
   {
     "model": "clientes-saldos",
@@ -29,31 +29,31 @@
   },
   {
     "model": "estados",
-    "all": "SELECT ID, ESTCOD, ESTDES FROM estados;"
+    "all": "SELECT ID, ESTCOD, ESTDES FROM estados ORDER BY ESTCOD;"
   },
   {
     "model": "iva",
-    "all": "SELECT ID, IVACOD, IVADES, CASE IVAEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE IVAEST END IVAEST FROM iva;"
+    "all": "SELECT ID, IVACOD, IVADES, CASE IVAEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE IVAEST END IVAEST FROM iva ORDER BY IVACOD;"
   },
   {
     "model": "numeros",
-    "all": "SELECT ID, NUMCOD, NUMDES, NUMVAL, NUMPV FROM numeros;"
+    "all": "SELECT ID, NUMCOD, NUMDES, NUMVAL, NUMPV FROM numeros ORDER BY NUMCOD;"
   },
   {
     "model": "pagos",
-    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, p.CLICOD, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 AND PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 ORDER BY p.ID DESC;"
+    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, p.CLICOD, c.CLINOM, (SELECT  IFNULL(SUM(PAGIMP), 0) FROM pagos2 WHERE PAGNUM <> 0 AND PAGNUM = p.PAGNUM) TOTAL FROM pagos p INNER JOIN clientes c ON p.CLICOD = c.CLICOD WHERE p.PAGNUM <> 0 ORDER BY p.PAGNUM DESC;"
   },
   {
     "model": "pagos-remitos",
-    "all": "SELECT p.ID, r.ID REMID, p.PAGNUM, p.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=p.REMNUM)-r.REMDES REMTOT, r.ESTCOD, e.ESTDES FROM pagos1 p INNER JOIN remitos r ON r.REMNUM=p.REMNUM INNER JOIN estados e ON r.ESTCOD = e.ESTCOD WHERE p.PAGNUM={search}"
+    "all": "SELECT p.ID, r.ID REMID, p.PAGNUM, p.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=p.REMNUM)-r.REMDES REMTOT, r.ESTCOD, e.ESTDES FROM pagos1 p INNER JOIN remitos r ON r.REMNUM=p.REMNUM INNER JOIN estados e ON r.ESTCOD = e.ESTCOD WHERE p.PAGNUM={search} ORDER BY r.REMNUM;"
   },
   {
     "model": "pagos-remitos-pending",
-    "all": "SELECT r.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=r.REMNUM)-r.REMDES REMTOT FROM remitos r WHERE r.ESTCOD='S' AND r.REMNUM NOT IN (SELECT REMNUM FROM PAGOS1) AND r.REMNUM > 0 AND r.CLICOD={search};"
+    "all": "SELECT r.REMNUM, r.REMFEC, r.REMDES, (SELECT IFNULL(SUM(REMCAN*REMPRE),0) FROM remiitem WHERE REMNUM=r.REMNUM)-r.REMDES REMTOT FROM remitos r WHERE r.ESTCOD='S' AND r.REMNUM NOT IN (SELECT REMNUM FROM PAGOS1) AND r.REMNUM > 0 AND r.CLICOD={search} ORDER BY r.REMNUM;"
   },
   {
     "model": "pagos-valores",
-    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, PAGSEC, PAGTIP, PAGIMP, PAGCHENUM, PAGCHEBAN FROM pagos2 p2 INNER JOIN pagos p ON p.PAGNUM=p2.PAGNUM WHERE p2.PAGNUM={search};"
+    "all": "SELECT p.ID, p.PAGNUM, p.PAGFEC, PAGSEC, PAGTIP, PAGIMP, PAGCHENUM, PAGCHEBAN FROM pagos2 p2 INNER JOIN pagos p ON p.PAGNUM=p2.PAGNUM WHERE p2.PAGNUM={search} ORDER BY p.PAGSEC;"
   },
   {
     "model": "porciva",
@@ -65,15 +65,15 @@
   },
   {
     "model": "producto-activos",
-    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON t1.TIPCOD = p.TIPCOD AND p.SUBTIPCOD = t1.SUBTIPCOD WHERE p.PRODEST='A';"
+    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON t1.TIPCOD = p.TIPCOD AND p.SUBTIPCOD = t1.SUBTIPCOD WHERE p.PRODEST='A' ORDER BY p.PRODCOD;"
   },
   {
     "model": "producto-ajustes",
-    "all": "SELECT ID, AJUNUM, AJUFEC, AJUCAN, AJUOBS FROM ajustest WHERE PRODCOD={search};"
+    "all": "SELECT ID, AJUNUM, AJUFEC, AJUCAN, AJUOBS FROM ajustest WHERE PRODCOD={search} ORDER BY AJUNUM DESC;"
   },
   {
     "model": "provinci",
-    "all": "SELECT PROCOD, PRONOM FROM provinci;"
+    "all": "SELECT PROCOD, PRONOM FROM provinci ORDER BY PROCOD;"
   },
   {
     "model": "remitos",
@@ -94,11 +94,11 @@
   },
   {
     "model": "tipo-activos",
-    "all": "SELECT ID, TIPCOD, TIPDES FROM tipo WHERE TIPEST='A'"
+    "all": "SELECT ID, TIPCOD, TIPDES FROM tipo WHERE TIPEST='A' ORDER BY TIPCOD;"
   },
   {
     "model": "tipo-subtipos",
-    "all": "SELECT t1.ID, t1.TIPCOD, t.TIPDES, SUBTIPCOD, SUBTIPDES, CASE SUBTIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE SUBTIPEST END SUBTIPEST FROM tipo1 t1 INNER JOIN tipo t ON t.TIPCOD = t1.TIPCOD WHERE t1.TIPCOD = '{search}'"
+    "all": "SELECT t1.ID, t1.TIPCOD, t.TIPDES, SUBTIPCOD, SUBTIPDES, CASE SUBTIPEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE SUBTIPEST END SUBTIPEST FROM tipo1 t1 INNER JOIN tipo t ON t.TIPCOD = t1.TIPCOD WHERE t1.TIPCOD = '{search}' ORDER BY t1.TIPCOD, t1.SUBTIPCOD"
   },
   {
     "model": "tipo1",
@@ -110,7 +110,7 @@
   },
   {
     "model": "transpor",
-    "all": "SELECT ID, TRACOD, TRANOM, TRADOM, TRALOC, TRATEL, CASE TRAEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE TRAEST END TRAEST FROM transpor"
+    "all": "SELECT ID, TRACOD, TRANOM, TRADOM, TRALOC, TRATEL, CASE TRAEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE TRAEST END TRAEST FROM transpor ORDER BY 1;"
   },
   {
     "model": "transpor-activos",
@@ -118,14 +118,14 @@
   },
   {
     "model": "vendedor",
-    "all": "SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL, CASE VENEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE VENEST END VENEST FROM vendedor"
+    "all": "SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL, CASE VENEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE VENEST END VENEST FROM vendedor ORDER BY VENCOD;"
   },
   {
     "model": "vendedor-activos",
-    "all": "SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL FROM vendedor WHERE VENEST='A'"
+    "all": "SELECT ID, VENCOD, VENNOM, VENDOM, VENLOC, VENTEL FROM vendedor WHERE VENEST='A' ORDER BY 1;"
   },
   {
     "model": "vendedor-productos",
-    "all": "SELECT v.ID, CONCAT(v.TIPCOD, ' - ', t.TIPDES) TIPDES, v.VENCOM FROM vendedo2 v INNER JOIN tipo t ON t.TIPCOD = v.TIPCOD WHERE VENCOD={search};"
+    "all": "SELECT v.ID, CONCAT(v.TIPCOD, ' - ', t.TIPDES) TIPDES, v.VENCOM FROM vendedo2 v INNER JOIN tipo t ON t.TIPCOD = v.TIPCOD WHERE VENCOD={search} ORDER BY v.TIPCOD, t.TIPDES;"
   }
 ]
