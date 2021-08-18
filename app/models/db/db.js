@@ -1,4 +1,4 @@
-const mysql = require("mysql")
+const mysql = require("mysql");
 
 const pool = mysql.createPool({
   connetionLimit: 10,
@@ -6,7 +6,9 @@ const pool = mysql.createPool({
   database: process.env.SQL_DATABASE,
   user: process.env.SQL_USER,
   password: process.env.SQL_PASSWORD,
-  multipleStatements: true
-})
+  multipleStatements: true,
+  //dateStrings: ["DATE", "DATETIME"],
+  timezone: "GMT",
+});
 
-module.exports = pool
+module.exports = pool;
