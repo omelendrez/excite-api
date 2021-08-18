@@ -7,8 +7,8 @@ const pool = mysql.createPool({
   user: process.env.SQL_USER,
   password: process.env.SQL_PASSWORD,
   multipleStatements: true,
-  //dateStrings: ["DATE", "DATETIME"],
-  timezone: "GMT",
+  timezone: "UTC",
+  dateStrings: ["DATE", "DATETIME"],
 });
 
 module.exports = pool;
