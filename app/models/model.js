@@ -1,5 +1,5 @@
 const sql = require("./db/db");
-const { findNumber, updateNumber } = require("../helpers");
+const { findNumber, updateNumber, getIDField } = require("../helpers");
 const numeros = require("./db/numeros.json");
 const sqlQueries = require("./db/sql.json");
 
@@ -37,7 +37,8 @@ Model.create = (newRecord, result, model) => {
 };
 
 Model.findById = (id, result, model) => {
-  const sqlQuery = `SELECT * FROM ${model} WHERE ID = ${id}`;
+  let idField = getIDField(model);
+  const sqlQuery = `SELECT * FROM ${model} WHERE ${idField} = ${id}`;
 
   sql.query(sqlQuery, (err, res) => {
     if (err) {
@@ -117,18 +118,19 @@ Model.updateById = (id, record, result, model) => {
   if (record.IVAFEC) {
     record.IVAFEC = record.IVAFEC.split("T")[0];
   }
+  let idField = getIDField(model);
 
   const fields = [];
   const values = [];
   Object.keys(record)
-    .filter((field) => field != "ID")
+    .filter((field) => field != idField)
     .forEach((field) => {
       fields.push(`${field} = ?`);
       values.push(record[field]);
     });
   values.push(id);
   sql.query(
-    `UPDATE ${model} SET ${fields.join(",")}  WHERE ID = ?`,
+    `UPDATE ${model} SET ${fields.join(",")} WHERE ${idField} = ?`,
     values,
     (err, res) => {
       if (err) {
@@ -150,11 +152,12 @@ Model.updateById = (id, record, result, model) => {
 Model.updatePrice = (id, record, result, model) => {
   const { PRODPRE } = record;
   let sqlQuery = "";
+  const idField = getIDField(model);
   const sqlObject = sqlQueries.find((query) => query.model === model);
   if (sqlObject) {
     sqlQuery = sqlObject["update-price"]
       .split("{TIPCOD}")
-      .join(id)
+      .join(iidField)
       .split("{PRODPRE}")
       .join(PRODPRE);
   }

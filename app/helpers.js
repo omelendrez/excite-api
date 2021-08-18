@@ -98,3 +98,15 @@ exports.updateNumber = (code, value) => {
     }
   );
 };
+
+exports.getIDField = (model) => {
+  let idField = "";
+  switch (model) {
+    case "clientes":
+      idField = "CLICOD";
+      break;
+    default:
+      idField = "ID";
+  }
+  return idField;
+};
