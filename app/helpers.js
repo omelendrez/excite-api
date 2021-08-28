@@ -114,6 +114,9 @@ exports.getIDField = (model) => {
     case "pagos":
       idField = "PAGNUM";
       break;
+    case "remitos":
+      idField = "REMNUM";
+      break;
     default:
       idField = "ID";
   }
