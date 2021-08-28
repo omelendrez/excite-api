@@ -173,7 +173,9 @@ Model.updatePrice = (id, record, result, model) => {
 };
 
 Model.remove = (id, result, model) => {
-  const sqlQuery = `DELETE FROM ${model} WHERE ID = ?`;
+  const idField = getIDField(model);
+
+  const sqlQuery = `DELETE FROM ${model} WHERE ${idField}=?`;
 
   sql.query(sqlQuery, id, (err, res) => {
     if (err) {

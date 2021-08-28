@@ -8,7 +8,7 @@ for /f "tokens=*" %%i in (files-list.txt) DO (
     type %%i.SQL >> SOURCE.SQL
     del %%i.SQL
 )
-type final.txt >> SOURCE.SQL
+type final.SQL >> SOURCE.SQL
 
 powershell -Command "(gc SOURCE.SQL) -replace '\*\*', '1' | Out-File FILE1"
 powershell -Command "(gc FILE1) -replace ',,', ',NULL,' | Out-File FILE2"
