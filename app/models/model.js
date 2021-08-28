@@ -38,7 +38,7 @@ Model.create = (newRecord, result, model) => {
 
 Model.findById = (id, result, model) => {
   let idField = getIDField(model);
-  const sqlQuery = `SELECT * FROM ${model} WHERE ${idField} = ${id}`;
+  const sqlQuery = `SELECT * FROM ${model} WHERE ${idField}=${id}`;
 
   sql.query(sqlQuery, (err, res) => {
     if (err) {

@@ -9,11 +9,11 @@
   },
   {
     "model": "clientes-activos",
-    "all": "SELECT c.ID, c.CLICOD, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST  FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD WHERE c.VENCOD={search} ORDER BY c.CLICOD;"
+    "all": "SELECT c.CLICOD, c.CLINOM, v.VENNOM, c.CLIDOM, c.CLILOC, c.CLITEL, CASE CLIEST WHEN 'A' THEN 'Activo' WHEN 'I' THEN 'Inactivo' ELSE CLIEST END CLIEST  FROM clientes c INNER JOIN vendedor v ON v.VENCOD = c.VENCOD WHERE c.VENCOD={search} ORDER BY c.CLICOD;"
   },
   {
     "model": "clientes-tipos",
-    "all": "SELECT c.ID, c.TIPCOD, t.TIPDES,  c.CLIPRODPRE FROM cliente1 c INNER JOIN tipo t ON c.TIPCOD = t.TIPCOD WHERE CLICOD={search} ORDER BY c.TIPCOD;"
+    "all": "SELECT c.TIPCOD, t.TIPDES, c.CLIPRODPRE FROM cliente1 c INNER JOIN tipo t ON c.TIPCOD = t.TIPCOD WHERE CLICOD={search} ORDER BY c.TIPCOD;"
   },
   {
     "model": "clientes-remitos",

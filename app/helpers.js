@@ -102,8 +102,14 @@ exports.updateNumber = (code, value) => {
 exports.getIDField = (model) => {
   let idField = "";
   switch (model) {
+    case "ajustest":
+      idField = "AJUNUM";
+      break;
     case "clientes":
       idField = "CLICOD";
+      break;
+    case "concepto":
+      idField = "CONNUM";
       break;
     case "pagos":
       idField = "PAGNUM";
