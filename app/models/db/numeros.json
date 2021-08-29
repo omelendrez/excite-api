@@ -28,5 +28,10 @@
     "model": "transpor",
     "field": "TRACOD",
     "NUMCOD": 60
+  },
+  {
+    "model": "vendedor",
+    "field": "VENCOD",
+    "NUMCOD": 70
   }
 ]
