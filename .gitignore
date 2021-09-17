@@ -138,3 +138,5 @@ dist
 # SQL queries
 
 # /backups/\*.sql
+
+/copy
