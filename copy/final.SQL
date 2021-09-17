@@ -246,3 +246,12 @@ WHERE VENNOM = '';
 
 /*vendedo1*/
 DROP TABLE vendedo1;
+
+UPDATE numeros
+SET NUMDES='Clientes' WHERE NUMCOD=0;
+
+INSERT INTO numeros (NUMCOD, NUMDES, NUMVAL, NUMPV)
+SELECT 60, 'Transportes',  MAX(TRACOD), 0 FROM transpor;
+
+INSERT INTO numeros (NUMCOD, NUMDES, NUMVAL, NUMPV)
+SELECT 70, 'Vendedores',  MAX(VENCOD), 0 FROM vendedor;
