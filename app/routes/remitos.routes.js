@@ -13,6 +13,8 @@ module.exports = (app) => {
 
   app.get(`/${url}/:id/items`, controller.findAllByParentId(`${model}-items`));
 
+  app.get(`/${url}/:id/items/compact`, controller.findAllByParentId(`${model}-compact`));
+
   app.post(`/${url}/items`, controller.create("remiitem"));
 
   app.get(`/${url}/items/:id`, controller.findOne("remiitem"));
