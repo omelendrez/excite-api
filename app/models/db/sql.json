@@ -72,6 +72,14 @@
     "all": "SELECT ID, AJUNUM, AJUFEC, AJUCAN, AJUOBS FROM ajustest WHERE PRODCOD={search} ORDER BY AJUNUM DESC;"
   },
   {
+    "model": "producto-ventas",
+    "all": "SELECT r.REMNUM, r.REMFEC, c.CLINOM, SUM(ri.REMCAN) REMCAN FROM remitos r INNER JOIN clientes c ON r.CLICOD = c.CLICOD INNER JOIN remiitem ri ON ri.REMNUM = r.REMNUM AND ri.PRODCOD={search} GROUP BY r.REMNUM, r.REMFEC, c.CLINOM;"
+  },
+  {
+    "model": "producto-ventas-subtipo",
+    "all": "SELECT p.SUBTIPCOD, t.SUBTIPDES, p.PRODCOD, p.PRODDES, SUM(ri.REMCAN) REMCAN FROM remiitem ri INNER JOIN producto p ON p.PRODCOD = ri.PRODCOD AND p.PRODEST = 'A' INNER JOIN tipo1 t ON t.SUBTIPCOD = p.SUBTIPCOD AND t.SUBTIPEST = 'A' GROUP BY p.SUBTIPCOD, p.PRODCOD, p.PRODDES ORDER BY p.TIPCOD, p.SUBTIPCOD;"
+  },
+  {
     "model": "provinci",
     "all": "SELECT PROCOD, PRONOM FROM provinci ORDER BY PROCOD;"
   },
