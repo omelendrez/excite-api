@@ -85,7 +85,7 @@
   },
   {
     "model": "remitos-compact",
-    "all": "SELECT r.REMNUM, t.TIPCOD, t.TIPDES, SUM(r.REMCAN), r.REMPRE FROM remiitem r INNER JOIN producto p ON p.PRODCOD = r.PRODCOD INNER JOIN tipo t ON t.TIPCOD = p.TIPCOD WHERE r.REMNUM={search} GROUP BY t.TIPCOD, t.TIPDES"
+    "all": "SELECT r.REMNUM, t.TIPCOD PRODCOD, t.TIPDES PRODDES, SUM(r.REMCAN), r.REMPRE FROM remiitem r INNER JOIN producto p ON p.PRODCOD = r.PRODCOD INNER JOIN tipo t ON t.TIPCOD = p.TIPCOD WHERE r.REMNUM={search} GROUP BY t.TIPCOD, t.TIPDES"
   },
   {
     "model": "remitos-deudores",
