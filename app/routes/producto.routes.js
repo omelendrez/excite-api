@@ -15,7 +15,7 @@ module.exports = (app) => {
   );
 
   app.get(
-    `/${url}-ventas/:id`,
+    `/${url}-ventas-producto/:id`,
     controller.findAllByParentId(`${model}-ventas`)
   );
 
