@@ -104,8 +104,6 @@ Model.getAllByParentId = (id, query, result, model) => {
     }
   }
 
-  console.log(sqlQuery)
-
   if (!sqlQuery) {
     return result(null, [])
   }
