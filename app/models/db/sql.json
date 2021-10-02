@@ -73,7 +73,7 @@
   },
   {
     "model": "producto-ventas",
-    "all": "SELECT r.REMNUM, r.REMFEC, c.CLINOM, SUM(ri.REMCAN) REMCAN FROM remitos r INNER JOIN clientes c ON r.CLICOD = c.CLICOD INNER JOIN remiitem ri ON ri.REMNUM = r.REMNUM AND ri.PRODCOD={search} GROUP BY r.REMNUM, r.REMFEC, c.CLINOM;"
+    "all": "SELECT r.REMNUM, r.REMFEC, c.CLINOM, SUM(ri.REMCAN) REMCAN FROM remitos r INNER JOIN clientes c ON r.CLICOD = c.CLICOD INNER JOIN remiitem ri ON ri.REMNUM = r.REMNUM AND ri.PRODCOD='{search}' GROUP BY r.REMNUM, r.REMFEC, c.CLINOM;"
   },
   {
     "model": "producto-ventas-subtipo",
