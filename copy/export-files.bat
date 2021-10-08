@@ -4,7 +4,7 @@ set src_folder=C:\Users\Omar\Documents\excite\db
 del SOURCE.SQL
 for /f "tokens=*" %%i in (files-list.txt) DO (
     "C:\Program Files (x86)\DBF Viewer 2000\dbview.exe" "%src_folder%\%%i.DBF" /EXPORT:"%%i.SQL" /mysql /SKIPD
-    echo ALTER TABLE %%i ADD COLUMN ID MEDIUMINT NOT NULL AUTO_INCREMENT FIRST,  ADD PRIMARY KEY (ID^); >> %%i.SQL
+    echo ALTER TABLE %%i ADD COLUMN ID INT NOT NULL AUTO_INCREMENT FIRST,  ADD PRIMARY KEY (ID^); >> %%i.SQL
     type %%i.SQL >> SOURCE.SQL
     del %%i.SQL
 )
