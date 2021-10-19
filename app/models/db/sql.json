@@ -65,7 +65,7 @@
   },
   {
     "model": "producto-activos",
-    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD LEFT JOIN tipo1 t1 ON t1.TIPCOD = p.TIPCOD AND p.SUBTIPCOD = t1.SUBTIPCOD WHERE p.PRODEST='A' ORDER BY p.PRODCOD;"
+    "all": "SELECT p.ID, p.PRODCOD, p.PRODDES, p.TIPCOD, t.TIPDES, p.SUBTIPCOD, t1.SUBTIPDES, p.PRODPRE FROM producto p INNER JOIN tipo t ON p.TIPCOD = t.TIPCOD INNER JOIN tipo1 t1 ON t1.TIPCOD = p.TIPCOD AND p.SUBTIPCOD = t1.SUBTIPCOD WHERE p.PRODEST='A' AND p.PRODSTO > 0 AND t.TIPDES <> '' ORDER BY p.PRODCOD;"
   },
   {
     "model": "producto-ajustes",
