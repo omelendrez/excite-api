@@ -101,7 +101,7 @@
   },
   {
     "model": "facturas",
-    "all": "SELECT f.FACNUM, f.FACFEC, f.FACREMNUM, f.CLICOD, c.CLINOM, c.CLICUIT, c.CLIDOM, c.CLITEL, c.CLILOC, c.IVACOD, f.FACIVA, f.FACNET, f.ESTCOD, f.FACOFINUM, f.FACDES FROM facturas f INNER JOIN clientes c ON c.CLICOD=f.CLICOD WHERE f.FACNUM='{search}';"
+    "all": "SELECT f.FACNUM, f.FACFEC, f.FACREMNUM, c.CLIFAN CLINOM, c.CLICUIT, c.CLIDOM, c.CLITEL, c.CLILOC, p.PRONOM, c.IVACOD, f.FACIVA, f.FACNET, f.ESTCOD, f.FACOFINUM, f.FACDES FROM facturas f INNER JOIN clientes c ON c.CLICOD = f.CLICOD INNER JOIN provinci p ON p.PROCOD=c.PROCOD WHERE f.FACNUM='{search}';"
   },
   {
     "model": "facturas-items",
