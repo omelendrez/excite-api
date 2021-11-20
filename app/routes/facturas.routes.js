@@ -5,4 +5,7 @@ module.exports = app => {
 
   app.get(`/${url}/:id`, controller.findAllByParentId(model))
   app.get(`/${url}/:id/items`, controller.findAllByParentId(`${model}-items`))
+
+  app.post(`/${url}/:id`, controller.compute(model))
+
 };

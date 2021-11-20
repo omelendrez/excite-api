@@ -220,4 +220,31 @@ Model.removeAll = (result, model) => {
   })
 }
 
+Model.compute = (id, result, model) => {
+  let sqlQuery = ''
+  const sqlObject = sqlQueries.find((query) => query.model === model)
+
+  if (sqlObject) {
+    if (sqlObject.compute) {
+      sqlQuery = sqlObject.compute
+        .split('{paramValue}')
+        .join(id)
+    }
+  }
+
+  if (!sqlQuery) {
+    return result(null, [])
+  }
+
+  sql.query(sqlQuery, (err, res) => {
+    if (err) {
+      console.log('error: ', err)
+      result(err, null)
+      return
+    }
+
+    result(null, res)
+  })
+}
+
 module.exports = Model

@@ -101,6 +101,7 @@
   },
   {
     "model": "facturas",
+    "compute": "SET @BudgetNumber = {paramValue};SET @InvoiceType='E';SET @InvoiceNumber = (SELECT NUMVAL FROM numeros WHERE NUMCOD=22)+1;SET @InvoiceTotal = (SELECT SUM(REMCAN*REMPRE) FROM remiitem WHERE REMNUM=@BudgetNumber);SELECT * FROM remiitem WHERE REMNUM=@BudgetNumber;SELECT * FROM remitos WHERE REMNUM=@BudgetNumber;SELECT @InvoiceTotal;INSERT INTO facturas (FACLET,FACNUM,FACFEC,FACREMNUM,CLICOD,VENCOD,FACIVA,FACNET,FACOFINUM,FACDES) SELECT @InvoiceType, @InvoiceNumber, CURDATE(), @BudgetNumber, CLICOD, VENCOD, 0, @InvoiceTotal,0, REMDES FROM remitos WHERE REMNUM=@BudgetNumber;INSERT INTO factura1 (FACLET,FACNUM,PRODCOD,FACCAN,FACPRE) SELECT @InvoiceType, @InvoiceNumber, PRODCOD, REMCAN, REMPRE FROM remiitem WHERE REMNUM=@BudgetNumber;UPDATE remitos SET ESTCOD='F',REMFACNUM=@InvoiceNumber,REMFACLET=@InvoiceType WHERE REMNUM=@BudgetNumber;UPDATE numeros SET NUMVAL=@InvoiceNumber WHERE NUMCOD=22;",
     "all": "SELECT f.FACNUM, f.FACFEC, f.FACREMNUM, c.CLIFAN CLINOM, c.CLICUIT, c.CLIDOM, c.CLITEL, c.CLILOC, p.PRONOM, c.IVACOD, f.FACIVA, f.FACNET, f.ESTCOD, f.FACOFINUM, f.FACDES FROM facturas f INNER JOIN clientes c ON c.CLICOD = f.CLICOD INNER JOIN provinci p ON p.PROCOD=c.PROCOD WHERE f.FACNUM='{search}';"
   },
   {

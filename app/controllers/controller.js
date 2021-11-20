@@ -181,3 +181,21 @@ exports.deleteAll = (model) => {
     }, model);
   };
 };
+
+exports.compute = (model) => {
+  return (req, res) => {
+    Model.compute(
+      req.params.id,
+      (err, data) => {
+        if (err)
+          res.status(500).send({
+            message: err.message || "Error intentando cargar los datos.",
+            error: err,
+          });
+        else res.send(data);
+      },
+      model
+    );
+  };
+};
+
