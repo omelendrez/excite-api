@@ -3,15 +3,6 @@ module.exports = app => {
   const model = 'facturas'
   const url = 'facturas'
 
-  app.post(`/${url}`, controller.create(model))
-
-  app.get(`/${url}`, controller.findAll(model))
-
-  app.get(`/${url}/:id`, controller.findOne(model))
-
-  app.put(`/${url}/:id`, controller.update(model))
-
-  app.delete(`/${url}/:id`, controller.delete(model))
-
-  app.delete(`/${url}`, controller.deleteAll(model))
+  app.get(`/${url}/:id`, controller.findAllByParentId(model))
+  app.get(`/${url}/:id/items`, controller.findAllByParentId(`${model}-items`))
 };
