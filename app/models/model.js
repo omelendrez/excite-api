@@ -243,7 +243,7 @@ Model.compute = (id, result, model) => {
       return
     }
 
-    result(null, res)
+    result(null, res[5])
   })
 }
 
