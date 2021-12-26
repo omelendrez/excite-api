@@ -19,10 +19,12 @@
   "homepage": "https://github.com/omelendrez/excite-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dbffile": "^1.8.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.0",
-    "node-dbf": "^0.4.0"
+    "node-dbf": "^0.4.0",
+    "nodemon": "^2.0.15"
   }
 }
